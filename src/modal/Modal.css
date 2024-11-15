@@ -1,0 +1,171 @@
+.containerModal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.cardModal{
+    background-color: white;
+    border-radius: 20px;
+    min-width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 0;
+    animation: grow 0.8s ease forwards; 
+}
+
+.cardModalNewPlayer{
+    background-color: white;
+    border-radius: 20px;
+    min-width: 80%;
+    min-height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 0 20px;
+    animation: grow 0.8s ease forwards; 
+}
+.cardModalEditCarrer{
+    background-color: white;
+    border-radius: 20px;
+    min-width: 80%;
+    min-height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 0;
+    animation: grow 0.8s ease forwards; 
+}
+
+.cardModalNewSeason{
+    background-color: white;
+    border-radius: 20px;
+    min-width: 80%;
+    min-height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 0;
+    animation: grow 0.8s ease forwards; 
+}
+
+
+@keyframes grow {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.inputDate{
+    width: 60%;
+    margin-top: 5%;
+    border: none;
+    border-bottom: 2px solid #01CE64;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    font-size: 18px;
+}
+
+.containerButtons{
+    display: flex;
+    gap: 2%;
+    margin: 0 0 5% 5%;
+}
+
+.buttonsPosition{
+   border: #01CE64 1px solid;
+   min-width: 65px;
+   text-align: center;
+   padding: 10px;
+   border-radius: 20px;
+   color: #01CE64;
+   cursor: pointer;
+  }
+
+  .selectedPosition{
+    background-color: #01CE64;
+    color: white;
+  }
+
+  .delete{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    font-size: 26px;
+  }
+
+  .deleteButton{
+    width: fit-content;
+  }
+
+  .textDelete{
+    display: flex;
+  }
+
+  .wrappeDeletedButtons{
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+    font-size: 20px;
+  }
+
+  .textButtonDelete{
+    display: flex;
+    cursor: pointer;
+  }
+
+  #delete{
+    color: red;
+  }
+
+  .back{
+    margin-right: 5%;
+    margin-top: 1%;
+  }
+
+  .danger{
+    margin-left: 5%;
+    margin-top: 1%;
+  }
+  @media(min-width:600px){
+    .cardModal{
+      min-width: 60%;
+      min-height: fit-content;
+    }
+    .cardModalNewPlayer{
+      min-width: 60%;
+      min-height: fit-content;
+    }
+    .cardModalEditCarrer{
+      min-width: 60%;
+      min-height: fit-content;
+    }
+    }
+  @media(min-width:840px){
+    .cardModal{
+      min-width: 30%;
+    }
+    .cardModalNewPlayer{
+      min-width: 30%;
+    }
+    .cardModalEditCarrer{
+      min-width: 30%;
+    }
+  }

@@ -1,0 +1,101 @@
+.cardContainer{
+    display: flex;
+}
+
+.containerCardModal{
+    border-top: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    background-color: rgb(241, 241, 241);
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.allInputs{
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleInput{
+    font-size: 18px;
+}
+
+.inputs {
+    width: 40%;
+    margin-top: 5%;
+    border: none;
+    border-bottom: 2px solid #01CE64;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    font-size: 18px;
+  }
+.inputPlayer {
+    width: 70%;
+    margin-top: 5%;
+    border: none;
+    border-bottom: 2px solid #01CE64;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .inputPlayer::placeholder {
+    color: #999;
+  }
+  
+  .inputPlayer:focus {
+    transition: all 0.4s ease;
+    outline: none;
+  }
+  
+  .inputPlayer:focus::placeholder {
+    color: transparent;
+  }
+  .inputs::placeholder {
+    color: #999;
+  }
+  
+  .inputs:focus {
+    transition: all 0.4s ease;
+    outline: none;
+  }
+  
+  .inputs:focus::placeholder {
+    color: transparent;
+  }
+
+  .newSeasonInput{
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonInputNewSeason{
+    background-color: #01CE64;
+    padding: 10%;
+}
+
+.inputsNewSeason{ 
+    border: none;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.3s ease;
+    text-align: center;
+  }
+  
+  
+  .inputsNewSeason:focus {
+    transition: all 0.4s ease;
+    outline: none;
+  }
+  

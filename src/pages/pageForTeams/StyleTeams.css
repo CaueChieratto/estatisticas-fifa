@@ -1,0 +1,80 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.seasons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.containerStats {
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+    min-width: 298px;
+    max-height: 0;  
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    opacity: 0; 
+}
+  
+.containerStats.visible {
+    max-height: 500px; 
+    opacity: 1; 
+}
+  
+.containerStats.hidden {
+    max-height: 0;
+    opacity: 0;
+}
+
+.containerStatsTotal{
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: none;
+    background-color: white;
+    border-radius: 5px;
+    min-width: 298px;
+}
+
+.wrapperNewPlayer{
+    display: flex;
+    justify-content: center;
+}
+
+.newPlayer{
+    width: fit-content;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+.newSeason{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.addSeason{
+    width: fit-content;
+    cursor: pointer;
+}
+
+.pencil{
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid black;
+}
+
+.edit{
+    cursor: pointer;
+}
+
+.deleteButton{
+    cursor: pointer;
+}
