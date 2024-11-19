@@ -13,7 +13,9 @@ export default function NewPlayerModal(props) {
     playerName: "",
     games: 0,
     goals: 0,
+    overall: 0,
     assists: 0,
+    rating: 0,
     balonDors: 0,
     cleanSheets: 0,
   });
@@ -51,6 +53,7 @@ export default function NewPlayerModal(props) {
           </div>
         </div>
         <Input
+          showAll={false}
           setEditedPlayer={editPlayer}
           player={editedPlayer}
           playerPosition={playerPosition}

@@ -9,7 +9,13 @@
     justify-content: center;
     gap: 5px;
     align-items: center;
-    cursor: pointer;
+    cursor: default;
+}
+
+.openSeasons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .containerStats {
@@ -17,12 +23,11 @@
     border: 1px solid black;
     background-color: white;
     border-radius: 5px;
-    min-width: 298px;
+    min-width: 360px;
     max-height: 0;  
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    opacity: 0; 
 }
+
   
 .containerStats.visible {
     max-height: 500px; 
@@ -40,7 +45,12 @@
     border-bottom: none;
     background-color: white;
     border-radius: 5px;
-    min-width: 298px;
+    min-width: 360px;
+}
+
+.wrapperInfos{
+    display: flex;
+    position: relative;
 }
 
 .wrapperNewPlayer{
@@ -69,10 +79,14 @@
     display: flex;
     align-items: flex-end;
     border-bottom: 1px solid black;
+    position: relative;
 }
 
 .edit{
     cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .deleteButton{

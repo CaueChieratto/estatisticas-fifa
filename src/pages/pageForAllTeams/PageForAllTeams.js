@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ButtonGreen from "../../components/buttons/ButtonGreen";
 import "./StyleForAllTeams.css";
 import Allteams from "../../components/allTeams/Allteams";
@@ -16,12 +15,6 @@ export default function PageForAllTeams() {
       setFifaData(JSON.parse(storedData));
     }
   }, []);
-
-  const navigate = useNavigate();
-
-  function linkTeams(carrer) {
-    navigate("/PageForTeams", { state: { carrer: carrer } });
-  }
 
   const [createNewCarrer, setCreateNewCarrer] = useState(false);
   const [newCarrer, setNewCarrer] = useState({});
@@ -105,8 +98,9 @@ export default function PageForAllTeams() {
               <RiCloseCircleLine />
             </div>
             <div className="containerAllClubs">
-              <div className="carrers" onClick={() => linkTeams(carrer)}>
+              <div className="carrers">
                 <Allteams
+                  carrer={carrer}
                   club={carrer.club}
                   seasons={carrer.seasons}
                   numberTitles={carrer.numberTitles}

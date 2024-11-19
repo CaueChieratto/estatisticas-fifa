@@ -1,31 +1,77 @@
-.playerContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+.infosTitle{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
-    padding: 5px 0 5px 0;
+    justify-items: center;
+    min-height: 20px; 
+    border-bottom: 1px solid rgb(205,205,205);
+
+}
+
+.infosTitleStats{
+    display: grid;
+    grid-template-columns: 2fr  1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+    min-height: 34px; 
+}
+
+.stats{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.infoStats{
+    display: flex;
+    width: 100%;
+}
+
+.containerName{
+    display: flex;
+    cursor: default;
+    align-items: center;
+}
+
+.containerNameClick{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
 }
 
 .player{
-    font-size: 14px;
-    margin-left: 10px;
+    font-size: 12px;
+    min-width: 120px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.playersStats{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
-    gap: 5%;
-    align-items: flex-end;
-    width: 100%;
+.total{
+    gap: 3px;
+    font-size: 10px;
+    min-width: 120px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .statsNumber{
     display: flex;
     flex-direction: column;
     min-width: fit-content;
     font-size: 12px;
+    justify-content: center;
+}
+
+#rating{ 
+    color: #1E88E5;
+    /* color: ##33C771;
+    color: #F08022;
+    color: #DD3636; */
 }
 
 .statsName{
@@ -34,4 +80,41 @@
 
 .borderTotal{
     border-bottom: 1px solid black;
+}
+
+.arrowIcon{
+    font-size: 10px;
+}
+
+.wrapperStatsLeagues{
+    border-top: 1px solid rgb(205,205,205);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+    min-height: 18px; 
+}
+
+.containerIMGleagues{
+    display: flex;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.leagues{
+    width: 15px;
+}
+
+.wrapperNewStatsLeagues{
+    border-top: 1px solid rgb(205,205,205);
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.addStats{
+    cursor: pointer;
+    width: fit-content;
 }

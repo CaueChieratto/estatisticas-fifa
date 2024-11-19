@@ -14,6 +14,7 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
+import Infos from "../../components/player/Infos.js";
 
 export default function PageForTeams() {
   const location = useLocation();
@@ -197,9 +198,11 @@ export default function PageForTeams() {
     }
   };
 
-  const [openSeasons, setOpenSeasons] = useState([]); // Declaração do estado corretamente
+  const [openSeasons, setOpenSeasons] = useState([]);
 
   const toggleVisibility = (seasonId) => {
+    if (openStats || openNewStats || openDelete) return;
+
     setOpenSeasons((prev) => {
       if (prev.includes(seasonId)) {
         return prev.filter((id) => id !== seasonId);
@@ -220,16 +223,18 @@ export default function PageForTeams() {
             >
               <RiCloseCircleLine />
             </div>
-            <div
-              className="seasons"
-              onClick={() => toggleVisibility(season.id)}
-            >
-              Temporada {season.season}
-              {openSeasons.includes(season.id) ? (
-                <FaArrowUp /> // Mostra a seta para cima quando a temporada está aberta
-              ) : (
-                <FaArrowDown /> // Mostra a seta para baixo quando a temporada está fechada
-              )}
+            <div className="seasons">
+              <div
+                className="openSeasons"
+                onClick={() => toggleVisibility(season.id)}
+              >
+                Temporada {season.season}
+                {openSeasons.includes(season.id) ? (
+                  <FaArrowUp />
+                ) : (
+                  <FaArrowDown />
+                )}
+              </div>
               <div
                 className={`containerStats ${
                   openSeasons.includes(season.id) ? "visible" : "hidden"
@@ -237,7 +242,6 @@ export default function PageForTeams() {
               >
                 {season.players.map((player) => (
                   <div
-                    className="pencil"
                     key={
                       player.id +
                       player.playerName +
@@ -249,17 +253,30 @@ export default function PageForTeams() {
                       player.cleanSheets
                     }
                   >
-                    <PlayerContainer
-                      playerPosition={player.position}
-                      playerName={player.playerName}
-                      games={player.games}
-                      goals={player.goals}
-                      assists={player.assists}
-                      balonDors={player.balonDors}
-                      cleanSheets={player.cleanSheets}
-                    />
-                    <div className="edit" onClick={() => showStats(player)}>
-                      <GoPencil />
+                    <div className="wrapperInfos">
+                      <Infos
+                        playerName={player.playerName}
+                        playerPosition={player.position}
+                      />
+                    </div>
+                    <div className="pencil">
+                      <PlayerContainer
+                        total
+                        playerPosition={player.position}
+                        games={player.games}
+                        goals={player.goals}
+                        assists={player.assists}
+                        rating={player.rating}
+                        overall={player.overall}
+                        balonDors={player.balonDors}
+                        cleanSheets={player.cleanSheets}
+                        carrer={carrer}
+                        season={season}
+                        player={player}
+                      />
+                      <div className="edit">
+                        <RiCloseCircleLine />
+                      </div>
                     </div>
                   </div>
                 ))}

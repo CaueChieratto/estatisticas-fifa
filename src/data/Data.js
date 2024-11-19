@@ -14,10 +14,16 @@
 //             {
 //               position: 0,
 //               playerName: "YAMAL",
-//               games: 57,
-//               goals: 404303,
-//               assists: 200,
-//               balonDors: 103,
+//               leagues: [
+//                 {
+//                   leagueName: "laliga",
+//                   leagueImage: "./laliga.png",
+//                   games: 200,
+//                   goals: 200,
+//                   assists: 202,
+//                   rating: 9.8,
+//                 },
+//               ],
 //             },
 //             {
 //               position: 1,
@@ -28,10 +34,6 @@
 //               cleanSheets: 27,
 //             },
 //           ],
-//         },
-//         {
-//           season: 2,
-//           players: [],
 //         },
 //       ],
 //     },
