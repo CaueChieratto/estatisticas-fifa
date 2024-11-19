@@ -4,13 +4,9 @@ import Input from "../components/inputs/Input";
 import ButtonGreen from "../components/buttons/ButtonGreen";
 
 export default function NewStatsLeagues(props) {
-  const [playerPosition, setPlayerPosition] = useState(0);
-  const changePlayerPosition = (position) => {
-    setPlayerPosition(position);
-  };
-
   const [editedLeague, setEditedLeague] = useState({
     league: "",
+    leagueImage: "",
     games: 0,
     goals: 0,
     assists: 0,
@@ -20,7 +16,28 @@ export default function NewStatsLeagues(props) {
 
   const handleLeagueChange = (event) => {
     const selectedLeague = event.target.value;
-    setEditedLeague((prev) => ({ ...prev, league: selectedLeague }));
+
+    let leagueImage = "";
+
+    if (selectedLeague === "La Liga") {
+      leagueImage = "./laliga.png";
+    } else if (selectedLeague === "La Liga 2") {
+      leagueImage = "./laliga2.png";
+    } else if (selectedLeague === "Copa do Rey") {
+      leagueImage = "./copadorey.png";
+    } else if (selectedLeague === "Champions League") {
+      leagueImage = "./champions.png";
+    }
+
+    setEditedLeague((prev) => ({
+      ...prev,
+      league: selectedLeague,
+      leagueImage: leagueImage,
+    }));
+
+    if (selectedLeague === "") {
+      alert("Selecione uma opção");
+    }
   };
 
   const editLeague = (player) => {
@@ -42,6 +59,9 @@ export default function NewStatsLeagues(props) {
             value={editedLeague.league}
             onChange={handleLeagueChange}
           >
+            <option value="" disabled selected>
+              Selecione uma opção
+            </option>
             <option value="La Liga">La Liga</option>
             <option value="La Liga 2">La Liga 2</option>
             <option value="Copa do Rey">Copa do Rey</option>

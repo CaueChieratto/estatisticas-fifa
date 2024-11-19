@@ -1,6 +1,6 @@
 .infosTitle{
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr ;
     width: 100%;
     justify-items: center;
     min-height: 20px; 
@@ -10,7 +10,7 @@
 
 .infosTitleStats{
     display: grid;
-    grid-template-columns: 2fr  1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr  1fr 1fr 1fr 1fr 1fr ;
     width: 100%;
     justify-items: center;
     min-height: 34px; 
@@ -18,7 +18,7 @@
 
 .stats{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .infoStats{
@@ -39,6 +39,7 @@
 }
 
 .player{
+    gap: 5px;
     font-size: 12px;
     min-width: 120px;
     height: 100%;
@@ -62,17 +63,17 @@
 .statsNumber{
     display: flex;
     flex-direction: column;
-    min-width: fit-content;
     font-size: 12px;
     justify-content: center;
+    width: fit-content;
 }
 
-#rating{ 
+/* #rating{ 
     color: #1E88E5;
-    /* color: ##33C771;
+    color: ##33C771;
     color: #F08022;
-    color: #DD3636; */
-}
+    color: #DD3636;
+} */
 
 .statsName{
     font-size: 10px;
@@ -117,4 +118,14 @@
 .addStats{
     cursor: pointer;
     width: fit-content;
+}
+
+.close{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: rgb(255, 97, 97);
+    cursor: pointer;
 }

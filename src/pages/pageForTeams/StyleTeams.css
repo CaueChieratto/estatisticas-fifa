@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .containerStats {
@@ -79,14 +80,18 @@
     display: flex;
     align-items: flex-end;
     border-bottom: 1px solid black;
+}
+
+.classForPencilEdit{
     position: relative;
 }
 
 .edit{
     cursor: pointer;
     position: absolute;
-    bottom: 0;
-    right: 0;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
 
 .deleteButton{

@@ -11,11 +11,11 @@ export default function Infos(props) {
   return (
     <div className="infosTitle">
       <div className="containerName">
-        <span className="player">{props.playerName}</span>
+        <span className="player">
+          {props.playerName}
+          <div>{props.overall}</div>
+        </span>
       </div>
-      <span className="statsNumber">
-        <BsFillClipboard2PulseFill />
-      </span>
       <span className="statsNumber">
         <TbSoccerField />
       </span>

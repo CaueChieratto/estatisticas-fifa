@@ -253,8 +253,14 @@ export default function PageForTeams() {
                       player.cleanSheets
                     }
                   >
+                    <div className="classForPencilEdit">
+                      <div className="edit" onClick={() => showStats(player)}>
+                        <GoPencil />
+                      </div>
+                    </div>
                     <div className="wrapperInfos">
                       <Infos
+                        overall={player.overall}
                         playerName={player.playerName}
                         playerPosition={player.position}
                       />
@@ -274,9 +280,6 @@ export default function PageForTeams() {
                         season={season}
                         player={player}
                       />
-                      <div className="edit">
-                        <RiCloseCircleLine />
-                      </div>
                     </div>
                   </div>
                 ))}
