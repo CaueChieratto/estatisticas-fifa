@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import PlayerContainer from "./PlayerContainer.js";
 import Infos from "./Infos.js";
+import PlayerTotal from "./PlayerTotal.js";
 
 export default function Total(props) {
   const [playersStatsTotal, setPlayersStatsTotal] = useState([]);
@@ -16,17 +16,7 @@ export default function Total(props) {
 
     props.seasons.forEach((season) => {
       season.players.forEach((player) => {
-        const {
-          playerName,
-          games,
-          goals,
-          assists,
-          balonDors,
-          cleanSheets,
-          rating,
-          overall,
-        } = player;
-
+        const { playerName, balonDors } = player;
         if (!playersStats[playerName]) {
           playersStats[playerName] = {
             playerName: playerName,
@@ -35,31 +25,39 @@ export default function Total(props) {
             assists: 0,
             balonDors: 0,
             ratingSum: 0,
+            ratingCount: 0,
             overall: 0,
             cleanSheets: 0,
             position: player.position,
+            leagues: player.leagues,
           };
         }
-
-        playersStats[playerName].games += Number(games);
-        playersStats[playerName].goals += Number(goals);
-        playersStats[playerName].assists += Number(assists);
         playersStats[playerName].balonDors += Number(balonDors);
-        playersStats[playerName].cleanSheets += Number(cleanSheets || 0);
+        player.leagues?.forEach((league) => {
+          const { games, goals, assists, cleanSheets, rating, overall } =
+            league;
+          playersStats[playerName].games += Number(games);
+          playersStats[playerName].goals += Number(goals);
+          playersStats[playerName].assists += Number(assists);
+          playersStats[playerName].cleanSheets += Number(cleanSheets || 0);
 
-        playersStats[playerName].overall = Math.max(
-          playersStats[playerName].overall,
-          Number(overall || 0)
-        );
+          playersStats[playerName].overall = Math.max(
+            playersStats[playerName].overall,
+            Number(overall || 0)
+          );
 
-        playersStats[playerName].ratingSum += Number(rating || 0);
+          playersStats[playerName].ratingSum += Number(rating || 0);
+          playersStats[playerName].ratingCount += rating ? 1 : 0;
+        });
       });
     });
 
     const formattedStats = Object.values(playersStats).map((player) => ({
       ...player,
       rating:
-        player.games > 0 ? (player.ratingSum / player.games).toFixed(2) : 0,
+        player.ratingCount > 0
+          ? (player.ratingSum / player.ratingCount).toFixed(2)
+          : 0,
     }));
 
     setPlayersStatsTotal(formattedStats);
@@ -74,10 +72,13 @@ export default function Total(props) {
             playersStatsTotal.map((player, index) => (
               <div className="borderTotal" key={index}>
                 <Infos
+                  show={false}
                   playerName={player.playerName}
                   playerPosition={player.position}
                 />
-                <PlayerContainer
+                <PlayerTotal
+                  seasons={props.seasons}
+                  leagues={player.league}
                   playerPosition={player.position}
                   total
                   games={player.games}

@@ -56,7 +56,7 @@ export default function PlayerContainer(props) {
           <span className="statsNumber">{totalGoals}</span>
           <span className="statsNumber">{totalAssists}</span>
           <span className="statsNumber" id="rating">
-            {averageRating.toFixed(2)}
+            {averageRating === 10 ? "10" : averageRating.toFixed(2)}
           </span>
           {props.playerPosition == 0 && (
             <span className="statsNumber">{props.balonDors}</span>
@@ -68,6 +68,8 @@ export default function PlayerContainer(props) {
         {openStatsInLeagues && (
           <>
             <LeaguesContainer
+              updatePage={props.updatePage}
+              showNewleagues={true}
               carrer={props.carrer}
               season={props.season}
               player={props.player}

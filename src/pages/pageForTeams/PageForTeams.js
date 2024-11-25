@@ -212,6 +212,11 @@ export default function PageForTeams() {
     });
   };
 
+  const updatePage = (fifaData) => {
+    const currentCarrer = fifaData.carrers.find((c) => c.club === carrer.club);
+    if (currentCarrer) setSeasons(currentCarrer.seasons);
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -260,13 +265,19 @@ export default function PageForTeams() {
                     </div>
                     <div className="wrapperInfos">
                       <Infos
+                        show={true}
                         overall={player.overall}
                         playerName={player.playerName}
                         playerPosition={player.position}
+                        season={season}
+                        seasons={seasons}
+                        setSeasons={setSeasons}
+                        carrer={carrer}
                       />
                     </div>
                     <div className="pencil">
                       <PlayerContainer
+                        updatePage={updatePage}
                         total
                         playerPosition={player.position}
                         games={player.games}

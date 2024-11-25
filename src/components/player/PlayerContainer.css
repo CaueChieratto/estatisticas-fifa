@@ -5,7 +5,10 @@
     justify-items: center;
     min-height: 20px; 
     border-bottom: 1px solid rgb(205,205,205);
+}
 
+.infosTitle.expanded {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .infosTitleStats{
@@ -14,6 +17,10 @@
     width: 100%;
     justify-items: center;
     min-height: 34px; 
+}
+
+.infosTitleStats.expanded {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .stats{
@@ -30,6 +37,7 @@
     display: flex;
     cursor: default;
     align-items: center;
+    position: relative;
 }
 
 .containerNameClick{
@@ -66,6 +74,16 @@
     font-size: 12px;
     justify-content: center;
     width: fit-content;
+}
+
+.seasonsInClub{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    width: 40px;
 }
 
 /* #rating{ 

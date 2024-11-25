@@ -84,8 +84,8 @@
 
 .containerButtons{
     display: flex;
-    gap: 2%;
-    margin: 0 auto;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
 }
 
 .selects{
@@ -109,10 +109,11 @@
 
 .buttonsPosition{
    border: #01CE64 1px solid;
-   min-width: 65px;
+   min-width: 120px;
    text-align: center;
-   padding: 10px;
-   border-radius: 20px;
+   align-content: center;
+   height: 30px;
+   border-radius: 15px;
    color: #01CE64;
    cursor: pointer;
   }

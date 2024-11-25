@@ -3,6 +3,7 @@ import "./PlayerContainer.css";
 import { IoAddCircleOutline } from "react-icons/io5";
 import NewStatsLeagues from "../../modal/NewStatsLeagues";
 import DeleteSeason from "../../modal/DeleteSeason";
+import { FcFullTrash } from "react-icons/fc";
 
 export default function LeaguesContainer(props) {
   const [newPlayerStatsLeagues, setNewPlayerStatsLeagues] = useState(false);
@@ -55,7 +56,8 @@ export default function LeaguesContainer(props) {
     };
 
     localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    console.log("fifaData atualizado:", updatedFifaData);
+    // console.log("fifaData atualizado:", updatedFifaData);
+    props.updatePage(updatedFifaData);
   };
 
   const addLeagueToPlayer = (league) => {
@@ -68,12 +70,11 @@ export default function LeaguesContainer(props) {
 
   const deleteLeagueFromPlayer = () => {
     if (leagueToDelete !== null) {
-      // Fazendo uma cópia do array para evitar mutação direta
       const updatedLeagues = [...props.player.leagues];
-      updatedLeagues.splice(leagueToDelete, 1); // Removendo o item pelo índice
-      props.player.leagues = updatedLeagues; // Atualizando o estado de leagues do player
-      updateFifaData(); // Atualizando os dados no localStorage
-      closeModalDelete(); // Fechando o modal
+      updatedLeagues.splice(leagueToDelete, 1);
+      props.player.leagues = updatedLeagues;
+      updateFifaData();
+      closeModalDelete();
     }
   };
 
@@ -111,7 +112,7 @@ export default function LeaguesContainer(props) {
             <span className="statsNumber">{league.cleanSheets}</span>
           )}
           <div className="close" onClick={() => openModalDelete(leagueIndex)}>
-            del
+            <FcFullTrash />
           </div>
         </div>
       ))}

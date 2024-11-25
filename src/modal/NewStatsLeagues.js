@@ -25,6 +25,8 @@ export default function NewStatsLeagues(props) {
       leagueImage = "./laliga2.png";
     } else if (selectedLeague === "Copa do Rey") {
       leagueImage = "./copadorey.png";
+    } else if (selectedLeague === "Supercopa") {
+      leagueImage = "./superCopaEspanha.png";
     } else if (selectedLeague === "Champions League") {
       leagueImage = "./champions.png";
     }
@@ -34,10 +36,6 @@ export default function NewStatsLeagues(props) {
       league: selectedLeague,
       leagueImage: leagueImage,
     }));
-
-    if (selectedLeague === "") {
-      alert("Selecione uma opção");
-    }
   };
 
   const editLeague = (player) => {
@@ -45,6 +43,11 @@ export default function NewStatsLeagues(props) {
   };
 
   const statsLeague = () => {
+    if (editedLeague.league === "") {
+      alert("Selecione uma opção");
+      return;
+    }
+
     props.addLeagueToPlayer(editedLeague);
     props.closeModal();
   };
@@ -59,12 +62,13 @@ export default function NewStatsLeagues(props) {
             value={editedLeague.league}
             onChange={handleLeagueChange}
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Selecione uma opção
             </option>
             <option value="La Liga">La Liga</option>
             <option value="La Liga 2">La Liga 2</option>
             <option value="Copa do Rey">Copa do Rey</option>
+            <option value="Supercopa">Supercopa da Espanha</option>
             <option value="Champions League">Champions League</option>
           </select>
         </div>
