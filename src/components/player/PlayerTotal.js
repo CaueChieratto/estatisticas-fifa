@@ -32,7 +32,20 @@ export default function PlayerTotal(props) {
             <span className="statsNumber">{props.cleanSheets}</span>
           )}
           <span className="statsNumber">{props.assists}</span>
-          <span className="statsNumber" id="rating">
+          <span
+            className="statsNumber"
+            id="rating"
+            style={{
+              color:
+                props.rating >= 9
+                  ? "#1E88E5"
+                  : props.rating >= 8
+                  ? "#33C771"
+                  : props.rating >= 7
+                  ? "#F08022"
+                  : "#DD3636",
+            }}
+          >
             {props.rating === 10
               ? "10"
               : typeof props.rating === "number"
