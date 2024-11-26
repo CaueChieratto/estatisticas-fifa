@@ -24,7 +24,7 @@ export default function NewStatsLeagues(props) {
     } else if (selectedLeague === "La Liga 2") {
       leagueImage = "./laliga2.png";
     } else if (selectedLeague === "Copa do Rey") {
-      leagueImage = "./copadorey.png";
+      leagueImage = "./copaRey.png";
     } else if (selectedLeague === "Supercopa") {
       leagueImage = "./superCopaEspanha.png";
     } else if (selectedLeague === "Champions League") {
