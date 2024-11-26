@@ -60,11 +60,15 @@ export default function Total(props) {
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
         combinedValue:
-          player.games * 0.6 +
-          player.goals * 0.3 +
-          (player.ratingSum / player.ratingCount || 0) * 0.1, // Ponderação
+          player.games * 0.5 +
+          (player.position === 1 ? player.cleanSheets : player.goals) * 0.25 +
+          player.assists * 0.15 +
+          (player.ratingSum / player.ratingCount || 0) * 0.1,
       }))
-      .sort((a, b) => b.combinedValue - a.combinedValue); // Ordena pela soma ponderada
+      .sort((a, b) => {
+        if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;
+        return b.combinedValue - a.combinedValue;
+      });
 
     setPlayersStatsTotal(formattedStats);
   };
