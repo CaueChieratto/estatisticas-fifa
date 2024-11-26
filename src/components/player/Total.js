@@ -52,13 +52,15 @@ export default function Total(props) {
       });
     });
 
-    const formattedStats = Object.values(playersStats).map((player) => ({
-      ...player,
-      rating:
-        player.ratingCount > 0
-          ? (player.ratingSum / player.ratingCount).toFixed(2)
-          : 0,
-    }));
+    const formattedStats = Object.values(playersStats)
+      .map((player) => ({
+        ...player,
+        rating:
+          player.ratingCount > 0
+            ? (player.ratingSum / player.ratingCount).toFixed(2)
+            : 0,
+      }))
+      .sort((a, b) => b.goals - a.goals);
 
     setPlayersStatsTotal(formattedStats);
   };
