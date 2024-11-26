@@ -31,7 +31,7 @@
 
   
 .containerStats.visible {
-    max-height: 500px; 
+    max-height: 10000vh; 
     opacity: 1; 
 }
   
