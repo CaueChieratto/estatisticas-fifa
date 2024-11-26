@@ -198,6 +198,11 @@ export default function PageForTeams() {
     }
   };
 
+  const updatePage = (fifaData) => {
+    const currentCarrer = fifaData.carrers.find((c) => c.club === carrer.club);
+    if (currentCarrer) setSeasons(currentCarrer.seasons);
+  };
+
   const [openSeasons, setOpenSeasons] = useState([]);
 
   const toggleVisibility = (seasonId) => {
@@ -210,11 +215,6 @@ export default function PageForTeams() {
         return [...prev, seasonId];
       }
     });
-  };
-
-  const updatePage = (fifaData) => {
-    const currentCarrer = fifaData.carrers.find((c) => c.club === carrer.club);
-    if (currentCarrer) setSeasons(currentCarrer.seasons);
   };
 
   return (

@@ -29,6 +29,10 @@ export default function NewStatsLeagues(props) {
       leagueImage = "./superCopaEspanha.png";
     } else if (selectedLeague === "Champions League") {
       leagueImage = "./champions.png";
+    } else if (selectedLeague === "Europa League") {
+      leagueImage = "./europaLeague.png";
+    } else if (selectedLeague === "Conference League") {
+      leagueImage = "./conferenceLeague.png";
     }
 
     setEditedLeague((prev) => ({
@@ -70,6 +74,8 @@ export default function NewStatsLeagues(props) {
             <option value="Copa do Rey">Copa do Rey</option>
             <option value="Supercopa">Supercopa da Espanha</option>
             <option value="Champions League">Champions League</option>
+            <option value="Europa League">Europa League</option>
+            <option value="Conference League">Conference League</option>
           </select>
         </div>
 

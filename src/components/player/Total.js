@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Infos from "./Infos.js";
 import PlayerTotal from "./PlayerTotal.js";
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function Total(props) {
   const [playersStatsTotal, setPlayersStatsTotal] = useState([]);
+  const [openSeasons, setOpenSeasons] = useState([]);
 
   useEffect(() => {
     if (props.seasons) {
@@ -16,7 +19,7 @@ export default function Total(props) {
 
     props.seasons.forEach((season) => {
       season.players.forEach((player) => {
-        const { playerName, balonDors } = player;
+        const { playerName, balonDors, overall } = player;
         if (!playersStats[playerName]) {
           playersStats[playerName] = {
             playerName: playerName,
@@ -26,25 +29,32 @@ export default function Total(props) {
             balonDors: 0,
             ratingSum: 0,
             ratingCount: 0,
-            overall: 0,
+            overall: 0, // Inicializa como 0
             cleanSheets: 0,
             position: player.position,
             leagues: player.leagues,
           };
         }
+
+        // Atualiza o balonDors
         playersStats[playerName].balonDors += Number(balonDors);
+
+        // Atualiza o maior valor de overall diretamente do player
+        const numericOverall = overall ? Number(overall) : 0;
+        playersStats[playerName].overall = Math.max(
+          playersStats[playerName].overall,
+          numericOverall
+        );
+
+        // Agora, vamos iterar sobre as ligas
         player.leagues?.forEach((league) => {
-          const { games, goals, assists, cleanSheets, rating, overall } =
-            league;
+          const { games, goals, assists, cleanSheets, rating } = league;
+
+          // Atualizando as estatísticas gerais
           playersStats[playerName].games += Number(games);
           playersStats[playerName].goals += Number(goals);
           playersStats[playerName].assists += Number(assists);
           playersStats[playerName].cleanSheets += Number(cleanSheets || 0);
-
-          playersStats[playerName].overall = Math.max(
-            playersStats[playerName].overall,
-            Number(overall || 0)
-          );
 
           playersStats[playerName].ratingSum += Number(rating || 0);
           playersStats[playerName].ratingCount += rating ? 1 : 0;
@@ -73,39 +83,71 @@ export default function Total(props) {
     setPlayersStatsTotal(formattedStats);
   };
 
+  const toggleVisibility = (seasonId) => {
+    setOpenSeasons((prev) => {
+      if (prev.includes(seasonId)) {
+        return prev.filter((id) => id !== seasonId);
+      } else {
+        return [...prev, seasonId];
+      }
+    });
+  };
+
   return (
     <div className="container">
       <div className="seasons">
-        total
-        <div className="containerStatsTotal">
-          {playersStatsTotal.length > 0 ? (
-            playersStatsTotal.map((player, index) => (
-              <div className="borderTotal" key={index}>
-                <Infos
-                  show={false}
-                  playerName={player.playerName}
-                  playerPosition={player.position}
-                />
-                <PlayerTotal
-                  seasons={props.seasons}
-                  player={player}
-                  leagues={player.league}
-                  playerPosition={player.position}
-                  total
-                  games={player.games}
-                  goals={player.goals}
-                  assists={player.assists}
-                  balonDors={player.balonDors}
-                  cleanSheets={player.cleanSheets}
-                  rating={player.rating}
-                  overall={player.overall}
-                />
-              </div>
-            ))
+        <div
+          onClick={() => toggleVisibility("total")}
+          style={{
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          Total
+          {openSeasons.includes("total") ? (
+            <span>
+              <FaArrowUp />
+            </span>
           ) : (
-            <div>Nenhum jogador disponivel</div>
+            <span>
+              <FaArrowDown />
+            </span>
           )}
         </div>
+        {openSeasons.includes("total") && (
+          <div className="containerStatsTotal">
+            {playersStatsTotal.length > 0 ? (
+              playersStatsTotal.map((player, index) => (
+                <div className="borderTotal" key={index}>
+                  <Infos
+                    show={false}
+                    overall={player.overall}
+                    playerName={player.playerName}
+                    playerPosition={player.position}
+                  />
+                  <PlayerTotal
+                    seasons={props.seasons}
+                    player={player}
+                    leagues={player.league}
+                    playerPosition={player.position}
+                    total
+                    games={player.games}
+                    goals={player.goals}
+                    assists={player.assists}
+                    balonDors={player.balonDors}
+                    cleanSheets={player.cleanSheets}
+                    rating={player.rating}
+                    overall={player.overall}
+                  />
+                </div>
+              ))
+            ) : (
+              <div>Nenhum jogador disponível</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
