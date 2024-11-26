@@ -59,8 +59,12 @@ export default function Total(props) {
           player.ratingCount > 0
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
+        combinedValue:
+          player.games * 0.6 +
+          player.goals * 0.3 +
+          (player.ratingSum / player.ratingCount || 0) * 0.1, // Ponderação
       }))
-      .sort((a, b) => b.games - a.games);
+      .sort((a, b) => b.combinedValue - a.combinedValue); // Ordena pela soma ponderada
 
     setPlayersStatsTotal(formattedStats);
   };
