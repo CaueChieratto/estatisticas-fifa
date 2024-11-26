@@ -5,10 +5,12 @@
     justify-items: center;
     min-height: 20px; 
     border-bottom: 1px solid rgb(205,205,205);
+    align-items: center;
 }
 
 .infosTitle.expanded {
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
 }
 
 .infosTitleStats{
@@ -17,15 +19,18 @@
     width: 100%;
     justify-items: center;
     min-height: 34px; 
+    align-items: center;
 }
 
 .infosTitleStats.expanded {
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
 }
 
 .stats{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
 }
 
 .infoStats{
@@ -68,6 +73,33 @@
     align-items: center;
 }
 
+
+.overall{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: white !important;
+    width: 30px !important;
+    height: 21px !important;
+    border-radius: .175em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold !important;
+}
+
+.overallSmall{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: white !important;
+    width: 22px !important;
+    height: 14px !important;
+    border-radius: .175em !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold !important;
+    font-size: 10px !important;
+}
+
+
 .statsNumber{
     display: flex;
     flex-direction: column;
@@ -85,13 +117,6 @@
     gap: 10%;
     width: 40px;
 }
-
-/* #rating{ 
-    color: #1E88E5;
-    color: ##33C771;
-    color: #F08022;
-    color: #DD3636;
-} */
 
 .statsName{
     font-size: 10px;
@@ -112,6 +137,7 @@
     width: 100%;
     justify-items: center;
     min-height: 18px; 
+    align-items: center;
 }
 
 .containerIMGleagues{

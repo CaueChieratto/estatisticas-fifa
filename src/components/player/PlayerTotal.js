@@ -33,17 +33,21 @@ export default function PlayerTotal(props) {
           )}
           <span className="statsNumber">{props.assists}</span>
           <span
-            className="statsNumber"
+            className="statsNumber overall"
             id="rating"
             style={{
-              color:
-                props.rating >= 9
-                  ? "#1E88E5"
-                  : props.rating >= 8
-                  ? "#33C771"
-                  : props.rating >= 7
-                  ? "#F08022"
-                  : "#DD3636",
+              background:
+                props.rating <= 5.49
+                  ? "#E03131"
+                  : props.rating <= 6
+                  ? "#FD7E14"
+                  : props.rating <= 6.5
+                  ? "#FCC419"
+                  : props.rating <= 7
+                  ? "#66A80F"
+                  : props.rating <= 8
+                  ? "#2B8A3E"
+                  : "#1E88E5",
             }}
           >
             {props.rating === 10

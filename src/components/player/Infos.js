@@ -61,7 +61,24 @@ export default function Infos(props) {
       <div className="containerName">
         <span className="player">
           {props.playerName}
-          <div>{props.overall}</div>
+          <div
+            style={{
+              color:
+                props.overall <= 50
+                  ? "#E03131"
+                  : props.overall <= 60
+                  ? "#FD7E14"
+                  : props.overall <= 70
+                  ? "#FCC419"
+                  : props.overall <= 80
+                  ? "#66a80f"
+                  : props.overall <= 90
+                  ? "#2B8A3E"
+                  : "#1E88E5",
+            }}
+          >
+            {props.overall}
+          </div>
           {props.show && (
             <div onClick={showModalDelete}>
               <RiCloseCircleLine />

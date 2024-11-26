@@ -98,16 +98,20 @@ export default function LeaguesContainer(props) {
           )}
           <span className="statsNumber">{league.assists}</span>
           <span
-            className="statsNumber"
+            className="statsNumber overallSmall"
             style={{
-              color:
-                league.rating >= 9
-                  ? "#1E88E5"
-                  : league.rating >= 8
-                  ? "#33C771"
-                  : league.rating >= 7
-                  ? "#F08022"
-                  : "#DD3636",
+              background:
+                league.rating <= 5.49
+                  ? "#E03131"
+                  : league.rating <= 6
+                  ? "#FD7E14"
+                  : league.rating <= 6.5
+                  ? "#FCC419"
+                  : league.rating <= 7
+                  ? "#66A80F"
+                  : league.rating <= 8
+                  ? "#2B8A3E"
+                  : "#1E88E5",
             }}
           >
             {league.rating}

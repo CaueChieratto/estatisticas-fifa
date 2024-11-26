@@ -61,17 +61,21 @@ export default function PlayerContainer(props) {
           )}
           <span className="statsNumber">{totalAssists}</span>
           <span
-            className="statsNumber"
+            className="statsNumber overall"
             id="rating"
             style={{
-              color:
-                averageRating >= 9
-                  ? "#1E88E5"
-                  : averageRating >= 8
-                  ? "#33C771"
-                  : averageRating >= 7
-                  ? "#F08022"
-                  : "#DD3636",
+              background:
+                averageRating <= 5.49
+                  ? "#E03131"
+                  : averageRating <= 6
+                  ? "#FD7E14"
+                  : averageRating <= 6.5
+                  ? "#FCC419"
+                  : averageRating <= 7
+                  ? "#66A80F"
+                  : averageRating <= 8
+                  ? "#2B8A3E"
+                  : "#1E88E5",
             }}
           >
             {averageRating === 10 ? "10" : averageRating.toFixed(2)}
