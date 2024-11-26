@@ -60,7 +60,7 @@ export default function Total(props) {
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
       }))
-      .sort((a, b) => b.goals - a.goals);
+      .sort((a, b) => b.games - a.games);
 
     setPlayersStatsTotal(formattedStats);
   };
