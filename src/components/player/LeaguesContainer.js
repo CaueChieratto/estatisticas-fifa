@@ -56,7 +56,6 @@ export default function LeaguesContainer(props) {
     };
 
     localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    // console.log("fifaData atualizado:", updatedFifaData);
     props.updatePage(updatedFifaData);
   };
 
@@ -91,7 +90,12 @@ export default function LeaguesContainer(props) {
             {league.league}
           </div>
           <span className="statsNumber">{league.games}</span>
-          <span className="statsNumber">{league.goals}</span>
+          {props.playerPosition === 0 && (
+            <span className="statsNumber">{league.goals}</span>
+          )}
+          {props.playerPosition === 1 && (
+            <span className="statsNumber">{league.cleanSheets}</span>
+          )}
           <span className="statsNumber">{league.assists}</span>
           <span
             className="statsNumber"
@@ -108,9 +112,6 @@ export default function LeaguesContainer(props) {
           >
             {league.rating}
           </span>
-          {props.playerPosition === 1 && (
-            <span className="statsNumber">{league.cleanSheets}</span>
-          )}
           <div className="close" onClick={() => openModalDelete(leagueIndex)}>
             <FcFullTrash />
           </div>

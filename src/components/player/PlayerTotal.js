@@ -25,17 +25,21 @@ export default function PlayerTotal(props) {
           )}
 
           <span className="statsNumber">{props.games}</span>
-          <span className="statsNumber">{props.goals}</span>
-          <span className="statsNumber">{props.assists}</span>
-          <span className="statsNumber" id="rating">
-            {props.rating === 10 ? "10" : props.rating}
-          </span>
           {props.playerPosition == 0 && (
-            <span className="statsNumber">{props.balonDors}</span>
+            <span className="statsNumber">{props.goals}</span>
           )}
           {props.playerPosition == 1 && (
             <span className="statsNumber">{props.cleanSheets}</span>
           )}
+          <span className="statsNumber">{props.assists}</span>
+          <span className="statsNumber" id="rating">
+            {props.rating === 10
+              ? "10"
+              : typeof props.rating === "number"
+              ? props.rating.toFixed(2)
+              : props.rating}{" "}
+          </span>
+          <span className="statsNumber">{props.balonDors}</span>
         </div>
         {openStatsInLeagues && (
           <>

@@ -57,17 +57,15 @@ export default function Input(props) {
                 value={props.player.overall}
               />
             </div>
-            {props.playerPosition == 0 && (
-              <div className="allInputs">
-                <div className="titleInput">Bolas de Ouro</div>
-                <input
-                  onChange={(event) => changeValue(event, "balonDors")}
-                  className="inputs"
-                  type="number"
-                  value={props.player.balonDors}
-                />
-              </div>
-            )}
+            <div className="allInputs">
+              <div className="titleInput">Bolas de Ouro</div>
+              <input
+                onChange={(event) => changeValue(event, "balonDors")}
+                className="inputs"
+                type="number"
+                value={props.player.balonDors}
+              />
+            </div>
           </>
         )}
         {props.showAll && (

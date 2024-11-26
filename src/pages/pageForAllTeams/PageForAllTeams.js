@@ -7,6 +7,7 @@ import CreateNewCarrer from "../../modal/CreateNewCarrer.js";
 import { GoPencil } from "react-icons/go";
 import DeleteSeason from "../../modal/DeleteSeason.js";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export default function PageForAllTeams() {
   useEffect(() => {
@@ -15,6 +16,12 @@ export default function PageForAllTeams() {
       setFifaData(JSON.parse(storedData));
     }
   }, []);
+
+  const navigate = useNavigate();
+
+  function linkTeams(carrer) {
+    navigate("/PageForTeams", { state: { carrer: carrer } });
+  }
 
   const [createNewCarrer, setCreateNewCarrer] = useState(false);
   const [newCarrer, setNewCarrer] = useState({});
@@ -107,7 +114,7 @@ export default function PageForAllTeams() {
                   numberLeagues={carrer.numberLeagues}
                   numberCupsNationals={carrer.numberCupsNationals}
                   numberCupsInternationals={carrer.numberCupsInternationals}
-                  data={carrer.data}
+                  data={carrer.date}
                 ></Allteams>
               </div>
               <div
@@ -115,6 +122,14 @@ export default function PageForAllTeams() {
                 onClick={() => showEditCarrer(carrer)}
               >
                 <GoPencil />
+              </div>
+              <div className="containerButtonsCarrer">
+                <div
+                  className="buttonForCarrers"
+                  onClick={() => linkTeams(carrer)}
+                >
+                  <div className="button">temporadas</div>
+                </div>
               </div>
             </div>
           </div>

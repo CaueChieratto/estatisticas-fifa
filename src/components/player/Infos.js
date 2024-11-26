@@ -73,18 +73,9 @@ export default function Infos(props) {
         <TbSoccerField />
       </span>
 
-      <span className="statsNumber">
-        <GiSoccerBall />
-      </span>
-      <span className="statsNumber">
-        <MdPeopleOutline />
-      </span>
-      <span className="statsNumber">
-        <FaStar />
-      </span>
       {props.playerPosition == 0 && (
         <span className="statsNumber">
-          <GiSoccerBall color="#FFD700" />
+          <GiSoccerBall />
         </span>
       )}
       {props.playerPosition == 1 && (
@@ -92,6 +83,15 @@ export default function Infos(props) {
           <TbShieldCancel />
         </span>
       )}
+      <span className="statsNumber">
+        <MdPeopleOutline />
+      </span>
+      <span className="statsNumber">
+        <FaStar />
+      </span>
+      <span className="statsNumber">
+        <GiSoccerBall color="#FFD700" />
+      </span>
       {openDelete && (
         <DeleteSeason
           textDelete="apagar jogador"

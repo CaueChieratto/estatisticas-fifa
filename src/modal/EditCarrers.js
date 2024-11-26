@@ -38,7 +38,7 @@ export default function PageForNewCarrer(props) {
       <div className="cardModalEditCarrer" onClick={(e) => e.stopPropagation()}>
         <div className="container">
           <div className="allInputs">
-            <div className="titleInput">títulos</div>
+            <div className="titleInput">titulos</div>
             <input
               onChange={(event) => changeValueCarrer(event, "numberTitles")}
               className="inputs"

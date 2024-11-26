@@ -78,6 +78,7 @@ export default function Total(props) {
                 />
                 <PlayerTotal
                   seasons={props.seasons}
+                  player={player}
                   leagues={player.league}
                   playerPosition={player.position}
                   total

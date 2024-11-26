@@ -53,17 +53,18 @@ export default function PlayerContainer(props) {
           )}
 
           <span className="statsNumber">{totalGames}</span>
-          <span className="statsNumber">{totalGoals}</span>
-          <span className="statsNumber">{totalAssists}</span>
-          <span className="statsNumber" id="rating">
-            {averageRating === 10 ? "10" : averageRating.toFixed(2)}
-          </span>
           {props.playerPosition == 0 && (
-            <span className="statsNumber">{props.balonDors}</span>
+            <span className="statsNumber">{totalGoals}</span>
           )}
           {props.playerPosition == 1 && (
             <span className="statsNumber">{totalCleanSheets}</span>
           )}
+          <span className="statsNumber">{totalAssists}</span>
+          <span className="statsNumber" id="rating">
+            {averageRating === 10 ? "10" : averageRating.toFixed(2)}
+          </span>
+
+          <span className="statsNumber">{props.balonDors}</span>
         </div>
         {openStatsInLeagues && (
           <>

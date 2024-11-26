@@ -313,7 +313,7 @@ export default function PageForTeams() {
           </div>
         </div>
       </div>
-      <Total seasons={seasons}></Total>
+      <Total player={player} seasons={seasons}></Total>
       <div onClick={Save}>
         <ButtonGreen nameButtonSave="Salvar e Sair" />
       </div>
