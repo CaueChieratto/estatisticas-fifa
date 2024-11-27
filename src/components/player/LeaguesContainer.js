@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./PlayerContainer.css";
-import { IoAddCircleOutline } from "react-icons/io5";
+import { FcAddDatabase } from "react-icons/fc";
+
 import NewStatsLeagues from "../../modal/NewStatsLeagues";
 import DeleteSeason from "../../modal/DeleteSeason";
 import { FcFullTrash } from "react-icons/fc";
@@ -123,7 +124,8 @@ export default function LeaguesContainer(props) {
       ))}
       <div className="wrapperNewStatsLeagues">
         <div className="addStats" onClick={openModal}>
-          <IoAddCircleOutline />
+          <span className="textNewLeague">adicionar nova liga</span>
+          <FcAddDatabase />
         </div>
       </div>
 
