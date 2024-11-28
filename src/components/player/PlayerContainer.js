@@ -42,14 +42,12 @@ export default function PlayerContainer(props) {
   return (
     <>
       <div>
-        <div className="infosTitleStats">
+        <div className="infosTitleStats" onClick={showStatsInleagues}>
           {props.total && (
-            <div className="containerNameClick" onClick={showStatsInleagues}>
-              <span className="total">
-                detalhes
-                {!openStatsInLeagues ? <GoEyeClosed /> : <GoEye />}
-              </span>
-            </div>
+            <span className="total">
+              detalhes
+              {!openStatsInLeagues ? <GoEyeClosed /> : <GoEye />}
+            </span>
           )}
 
           <span className="statsNumber">{totalGames}</span>
@@ -65,15 +63,15 @@ export default function PlayerContainer(props) {
             id="rating"
             style={{
               background:
-                averageRating <= 5.49
+                averageRating <= 5.5
                   ? "#E03131"
-                  : averageRating <= 6
-                  ? "#FD7E14"
                   : averageRating <= 6.5
-                  ? "#FCC419"
+                  ? "#FD7E14"
                   : averageRating <= 7
+                  ? "#FCC419"
+                  : averageRating <= 7.99
                   ? "#66A80F"
-                  : averageRating <= 8
+                  : averageRating <= 8.5
                   ? "#2B8A3E"
                   : "#1E88E5",
             }}

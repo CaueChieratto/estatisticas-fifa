@@ -14,14 +14,12 @@ export default function PlayerTotal(props) {
   return (
     <>
       <div>
-        <div className="infosTitleStats">
+        <div className="infosTitleStats" onClick={showStatsInleagues}>
           {props.total && (
-            <div className="containerNameClick" onClick={showStatsInleagues}>
-              <span className="total">
-                detalhes
-                {!openStatsInLeagues ? <GoEyeClosed /> : <GoEye />}
-              </span>
-            </div>
+            <span className="total">
+              detalhes
+              {!openStatsInLeagues ? <GoEyeClosed /> : <GoEye />}
+            </span>
           )}
 
           <span className="statsNumber">{props.games}</span>
@@ -37,15 +35,15 @@ export default function PlayerTotal(props) {
             id="rating"
             style={{
               background:
-                props.rating <= 5.49
+                props.rating <= 5.5
                   ? "#E03131"
-                  : props.rating <= 6
-                  ? "#FD7E14"
                   : props.rating <= 6.5
-                  ? "#FCC419"
+                  ? "#FD7E14"
                   : props.rating <= 7
+                  ? "#FCC419"
+                  : props.rating <= 7.99
                   ? "#66A80F"
-                  : props.rating <= 8
+                  : props.rating <= 8.5
                   ? "#2B8A3E"
                   : "#1E88E5",
             }}

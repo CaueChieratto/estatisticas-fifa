@@ -64,7 +64,7 @@ export default function Infos(props) {
           <div
             style={{
               color:
-                props.overall <= 50
+                props.overall <= 55
                   ? "#E03131"
                   : props.overall <= 60
                   ? "#FD7E14"

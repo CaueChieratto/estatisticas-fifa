@@ -70,8 +70,11 @@ export default function PageForTeams() {
 
   const [openStats, setOpenStats] = useState(false);
   const [player, setPlayer] = useState({});
+  const [season, setSeason] = useState({});
 
-  const showStats = (player) => {
+  const showStats = (player, season) => {
+    console.log(season);
+    setSeason(season);
     setPlayer(player);
     setOpenStats(true);
     document.body.style.overflowY = "hidden";
@@ -169,12 +172,17 @@ export default function PageForTeams() {
     }
   };
 
-  const saveEditedPlayer = (editedPlayer) => {
+  const saveEditedPlayer = (editedPlayer, seasonNumber) => {
     const updatedSeasons = [...seasons];
+    console.log(updatedSeasons);
 
-    const seasonIndex = updatedSeasons.findIndex((season) =>
-      season.players.some((p) => p.playerName === editedPlayer.playerName)
-    );
+    const seasonIndex = updatedSeasons.findIndex((season) => {
+      if (season.season === seasonNumber) {
+        return season.players.some(
+          (p) => p.playerName === editedPlayer.playerName
+        );
+      }
+    });
 
     if (seasonIndex !== -1) {
       const playerIndex = updatedSeasons[seasonIndex].players.findIndex(
@@ -259,7 +267,10 @@ export default function PageForTeams() {
                     }
                   >
                     <div className="classForPencilEdit">
-                      <div className="edit" onClick={() => showStats(player)}>
+                      <div
+                        className="edit"
+                        onClick={() => showStats(player, season.season)}
+                      >
                         <GoPencil />
                       </div>
                     </div>
@@ -322,6 +333,7 @@ export default function PageForTeams() {
         <EditPlayers
           saveEditedPlayer={saveEditedPlayer}
           player={player}
+          season={season}
           closeStats={closeStats}
         ></EditPlayers>
       )}

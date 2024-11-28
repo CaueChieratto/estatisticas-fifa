@@ -7,7 +7,7 @@ export default function EditPlayers(props) {
   const [editedPlayer, setEditedPlayer] = useState(props.player);
 
   const savePlayerChanges = () => {
-    props.saveEditedPlayer(editedPlayer);
+    props.saveEditedPlayer(editedPlayer, props.season);
     props.closeStats();
   };
 
