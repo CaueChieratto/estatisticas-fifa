@@ -26,7 +26,8 @@
 }
 
 .inputs {
-    width: 70%;
+    width: 100%;
+    height: 40px;
     margin-top: 5%;
     border: none;
     border-bottom: 2px solid #01CE64;
@@ -37,7 +38,8 @@
     font-size: 18px;
   }
 .inputPlayer {
-    width: 70%;
+    width: 100%;
+    height: 40px;
     margin-top: 5%;
     border: none;
     border-bottom: 2px solid #01CE64;
