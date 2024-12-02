@@ -57,39 +57,37 @@ export default function NewStatsLeagues(props) {
   };
 
   return (
-    <div onClick={props.closeModal} className="containerModal">
-      <div className="cardModalNewPlayer" onClick={(e) => e.stopPropagation()}>
-        <div className="selects">
-          <select
-            className="options"
-            name="league"
-            value={editedLeague.league}
-            onChange={handleLeagueChange}
-          >
-            <option value="" disabled>
-              Selecione uma opção
-            </option>
-            <option value="La Liga">La Liga</option>
-            <option value="La Liga 2">La Liga 2</option>
-            <option value="Copa do Rey">Copa do Rey</option>
-            <option value="Supercopa">Supercopa da Espanha</option>
-            <option value="Champions League">Champions League</option>
-            <option value="Europa League">Europa League</option>
-            <option value="Conference League">Conference League</option>
-          </select>
-        </div>
-
-        <Input
-          showAll={true}
-          setEditedPlayer={editLeague}
-          player={editedLeague}
-          playerPosition={props.playerPosition}
-        ></Input>
-        <ButtonGreen
-          onClick={statsLeague}
-          newPlayer="Salvar Estatisticas"
-        ></ButtonGreen>
+    <div className="containerSelectLeague">
+      <div className="selects">
+        <select
+          className="options"
+          name="league"
+          value={editedLeague.league}
+          onChange={handleLeagueChange}
+        >
+          <option value="" disabled>
+            Selecione uma liga
+          </option>
+          <option value="La Liga">La Liga</option>
+          <option value="La Liga 2">La Liga 2</option>
+          <option value="Copa do Rey">Copa do Rey</option>
+          <option value="Supercopa">Supercopa da Espanha</option>
+          <option value="Champions League">Champions League</option>
+          <option value="Europa League">Europa League</option>
+          <option value="Conference League">Conference League</option>
+        </select>
       </div>
+
+      <Input
+        showAll={true}
+        setEditedPlayer={editLeague}
+        player={editedLeague}
+        playerPosition={props.playerPosition}
+      ></Input>
+      <ButtonGreen
+        onClick={statsLeague}
+        newPlayer="Salvar Estatisticas"
+      ></ButtonGreen>
     </div>
   );
 }

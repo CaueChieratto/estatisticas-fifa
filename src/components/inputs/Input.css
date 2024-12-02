@@ -1,21 +1,17 @@
 .cardContainer{
-    display: flex;
-    align-items: center;
-    height: 75%;
+  display: flex;
 }
 
 .containerCardModal{
-    border-top: 1px solid rgb(0, 0, 0);
-    border-bottom: 1px solid rgb(0, 0, 0);
-    background-color: rgb(241, 241, 241);
-    padding: 10px;
-    position: relative;
-    width: 100%;
-    height: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  border-top: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background-color: rgb(241, 241, 241);
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .allInputs{
@@ -30,29 +26,29 @@
 }
 
 .inputs {
-    width: 100%;
-    height: 25px;
-    margin-top: 5%;
-    border: none;
-    border-bottom: 2px solid #01CE64;
-    background-color: transparent;
-    color: #333;
-    transition: border-color 0.3s ease;
-    text-align: center;
-    font-size: 18px;
-  }
+  width: 100%;
+  height: 40px;
+  margin-top: 5%;
+  border: none;
+  border-bottom: 2px solid #01CE64;
+  background-color: transparent;
+  color: #333;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  font-size: 18px;
+}
 .inputPlayer {
-    width: 100%;
-    height: 25px;
-    margin-top: 5%;
-    border: none;
-    border-bottom: 2px solid #01CE64;
-    background-color: transparent;
-    color: #333;
-    transition: border-color 0.3s ease;
-    text-align: center;
-    font-size: 18px;
-  }
+  width: 100%;
+  height: 40px;
+  margin-top: 5%;
+  border: none;
+  border-bottom: 2px solid #01CE64;
+  background-color: transparent;
+  color: #333;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  font-size: 18px;
+}
   
   .inputPlayer::placeholder {
     color: #999;

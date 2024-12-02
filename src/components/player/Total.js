@@ -70,7 +70,7 @@ export default function Total(props) {
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
         combinedValue:
-          player.games * 0.35 +
+          player.games * 0.2 +
           (player.position === 1
             ? player.cleanSheets * 0.25
             : (player.goals + player.assists) * 0.4) +

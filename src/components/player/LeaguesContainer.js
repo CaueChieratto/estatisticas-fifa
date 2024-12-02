@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./PlayerContainer.css";
 import { FcAddDatabase } from "react-icons/fc";
+import { CgCloseR } from "react-icons/cg";
 
 import NewStatsLeagues from "../../modal/NewStatsLeagues";
 import DeleteSeason from "../../modal/DeleteSeason";
@@ -11,7 +12,7 @@ export default function LeaguesContainer(props) {
   const [leagueToDelete, setLeagueToDelete] = useState(null);
 
   const openModal = () => {
-    setNewPlayerStatsLeagues(true);
+    setNewPlayerStatsLeagues((prevState) => !prevState);
   };
 
   const closeModal = () => {
@@ -124,8 +125,10 @@ export default function LeaguesContainer(props) {
       ))}
       <div className="wrapperNewStatsLeagues">
         <div className="addStats" onClick={openModal}>
-          <span className="textNewLeague">adicionar nova liga</span>
-          <FcAddDatabase />
+          <span className="textNewLeague">
+            {newPlayerStatsLeagues ? "fechar" : "adicionar nova liga"}
+          </span>
+          {newPlayerStatsLeagues ? <CgCloseR /> : <FcAddDatabase />}
         </div>
       </div>
 
