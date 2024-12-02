@@ -60,6 +60,11 @@
     align-items: center;
     font-size: 15px;
     height: 50px;
+    gap: 3px;
+}
+
+.newPlayer{
+    height: 16px;
 }
 
 .newSeason{
