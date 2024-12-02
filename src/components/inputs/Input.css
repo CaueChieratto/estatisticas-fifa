@@ -1,5 +1,7 @@
 .cardContainer{
     display: flex;
+    align-items: center;
+    height: 75%;
 }
 
 .containerCardModal{
@@ -9,7 +11,7 @@
     padding: 10px;
     position: relative;
     width: 100%;
-    height: 330px;
+    height: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;

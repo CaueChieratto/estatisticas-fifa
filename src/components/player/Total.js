@@ -70,12 +70,11 @@ export default function Total(props) {
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
         combinedValue:
-          player.games * 0.3 +
+          player.games * 0.35 +
           (player.position === 1
-            ? player.cleanSheets
-            : player.goals + player.assists) *
-            0.35 +
-          (player.ratingSum / player.ratingCount || 0) * 0.4,
+            ? player.cleanSheets * 0.25
+            : (player.goals + player.assists) * 0.4) +
+          (player.ratingSum / player.ratingCount || 0) * 0.5,
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;
