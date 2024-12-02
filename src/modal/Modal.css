@@ -90,7 +90,7 @@
 .containerButtons{
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 15px;
+  margin: 20px;
 }
 
 .selects{

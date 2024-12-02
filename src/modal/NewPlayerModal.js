@@ -32,37 +32,35 @@ export default function NewPlayerModal(props) {
   };
 
   return (
-    <div onClick={props.closeNewPlayer} className="containerModal">
-      <div className="cardModalNewPlayer" onClick={(e) => e.stopPropagation()}>
-        <div className="containerButtons">
-          <div
-            onClick={() => changePlayerPosition(0)}
-            className={`buttonsPosition ${
-              playerPosition == 0 ? "selectedPosition" : ""
-            }`}
-          >
-            linha
-          </div>
-          <div
-            onClick={() => changePlayerPosition(1)}
-            className={`buttonsPosition ${
-              playerPosition == 1 ? "selectedPosition" : ""
-            }`}
-          >
-            goleiro
-          </div>
+    <div className="containerSelectLeague">
+      <div className="containerButtons">
+        <div
+          onClick={() => changePlayerPosition(0)}
+          className={`buttonsPosition ${
+            playerPosition == 0 ? "selectedPosition" : ""
+          }`}
+        >
+          linha
         </div>
-        <Input
-          showAll={false}
-          setEditedPlayer={editPlayer}
-          player={editedPlayer}
-          playerPosition={playerPosition}
-        ></Input>
-        <ButtonGreen
-          onClick={savePlayer}
-          newPlayer="Criar Novo Jogador"
-        ></ButtonGreen>
+        <div
+          onClick={() => changePlayerPosition(1)}
+          className={`buttonsPosition ${
+            playerPosition == 1 ? "selectedPosition" : ""
+          }`}
+        >
+          goleiro
+        </div>
       </div>
+      <Input
+        showAll={false}
+        setEditedPlayer={editPlayer}
+        player={editedPlayer}
+        playerPosition={playerPosition}
+      ></Input>
+      <ButtonGreen
+        onClick={savePlayer}
+        newPlayer="Criar Novo Jogador"
+      ></ButtonGreen>
     </div>
   );
 }

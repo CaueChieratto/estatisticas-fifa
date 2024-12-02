@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Infos from "../../components/player/Infos.js";
+import { CgCloseR } from "react-icons/cg";
 
 export default function PageForTeams() {
   const location = useLocation();
@@ -23,7 +24,6 @@ export default function PageForTeams() {
 
   const [seasons, setSeasons] = useState(carrer.seasons || []);
   const [historicPlayers, setHistoricPlayers] = useState([]);
-  const [selectedSeason, setSelectedSeason] = useState(null);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("fifaData"));
@@ -84,18 +84,22 @@ export default function PageForTeams() {
     document.body.style.overflowY = "auto";
   };
 
-  const [openNewStats, setOpenNewStats] = useState(false);
   const [newPlayer, setNewPlayer] = useState({});
+  const [openNewStats, setOpenNewStats] = useState(false);
+  const [selectedSeason, setSelectedSeason] = useState(null);
 
   const showNewPlayer = (season) => {
-    setSelectedSeason(season);
-    setOpenNewStats(true);
-    document.body.style.overflowY = "hidden";
+    if (selectedSeason === season && openNewStats) {
+      setOpenNewStats(false);
+      setSelectedSeason(null);
+    } else {
+      setSelectedSeason(season);
+      setOpenNewStats(true);
+    }
   };
 
   const closeNewPlayer = () => {
     setOpenNewStats(false);
-    document.body.style.overflowY = "auto";
   };
 
   const [openDelete, setOpenDelete] = useState(false);
@@ -305,14 +309,29 @@ export default function PageForTeams() {
                     </div>
                   </div>
                 ))}
-                <div className="wrapperNewPlayer">
-                  <div
-                    onClick={() => showNewPlayer(season.season)}
-                    className="newPlayer"
-                  >
-                    <IoAddCircleOutline size={25} />
+                <div
+                  className="wrapperNewPlayer"
+                  onClick={() => showNewPlayer(season.season)}
+                >
+                  <div className="newPlayer">
+                    {selectedSeason === season.season && openNewStats
+                      ? "fechar"
+                      : "adicionar jogador"}
                   </div>
+                  {selectedSeason === season.season && openNewStats ? (
+                    <CgCloseR size={20} />
+                  ) : (
+                    <IoAddCircleOutline size={25} />
+                  )}
                 </div>
+                {openNewStats && (
+                  <NewPlayerModal
+                    addPlayerToSeason={(player) =>
+                      addPlayerToSeason(player, selectedSeason)
+                    }
+                    closeNewPlayer={closeNewPlayer}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -337,14 +356,7 @@ export default function PageForTeams() {
           closeStats={closeStats}
         ></EditPlayers>
       )}
-      {openNewStats && (
-        <NewPlayerModal
-          addPlayerToSeason={(player) =>
-            addPlayerToSeason(player, selectedSeason)
-          }
-          closeNewPlayer={closeNewPlayer}
-        />
-      )}
+
       {openDelete && (
         <DeleteSeason
           closeModalDelete={closeModalDelete}
