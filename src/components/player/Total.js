@@ -29,28 +29,24 @@ export default function Total(props) {
             balonDors: 0,
             ratingSum: 0,
             ratingCount: 0,
-            overall: 0, // Inicializa como 0
+            overall: 0,
             cleanSheets: 0,
             position: player.position,
             leagues: player.leagues,
           };
         }
 
-        // Atualiza o balonDors
         playersStats[playerName].balonDors += Number(balonDors);
 
-        // Atualiza o maior valor de overall diretamente do player
         const numericOverall = overall ? Number(overall) : 0;
         playersStats[playerName].overall = Math.max(
           playersStats[playerName].overall,
           numericOverall
         );
 
-        // Agora, vamos iterar sobre as ligas
         player.leagues?.forEach((league) => {
           const { games, goals, assists, cleanSheets, rating } = league;
 
-          // Atualizando as estatísticas gerais
           playersStats[playerName].games += Number(games);
           playersStats[playerName].goals += Number(goals);
           playersStats[playerName].assists += Number(assists);
@@ -70,11 +66,12 @@ export default function Total(props) {
             ? (player.ratingSum / player.ratingCount).toFixed(2)
             : 0,
         combinedValue:
-          player.games * 0.2 +
+          player.games * 0.3 +
           (player.position === 1
-            ? player.cleanSheets * 0.25
-            : (player.goals + player.assists) * 0.4) +
-          (player.ratingSum / player.ratingCount || 0) * 0.5,
+            ? player.cleanSheets * 0.45
+            : player.goals * 0.7) +
+          player.assists * 0.65 +
+          (player.ratingSum / player.ratingCount || 0) * 0.8,
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;
