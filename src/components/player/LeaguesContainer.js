@@ -103,17 +103,19 @@ export default function LeaguesContainer(props) {
             className="statsNumber overallSmall"
             style={{
               background:
-                league.rating <= 5.5
+                league.rating <= 6
                   ? "#E03131"
                   : league.rating <= 6.5
                   ? "#FD7E14"
                   : league.rating <= 7
                   ? "#FCC419"
-                  : league.rating <= 7.49
+                  : league.rating <= 7.5
                   ? "#66A80F"
                   : league.rating <= 8
                   ? "#2B8A3E"
-                  : "#1E88E5",
+                  : league.rating <= 8.5
+                  ? "#1E88E5"
+                  : "#00FF00",
             }}
           >
             {league.rating}

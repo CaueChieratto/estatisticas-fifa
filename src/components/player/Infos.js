@@ -72,8 +72,10 @@ export default function Infos(props) {
                   ? "#FCC419"
                   : props.overall <= 80
                   ? "#66a80f"
-                  : props.overall <= 90
+                  : props.overall <= 89
                   ? "#2B8A3E"
+                  : props.overall > 95
+                  ? "#00FF00"
                   : "#1E88E5",
             }}
           >

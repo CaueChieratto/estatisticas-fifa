@@ -63,17 +63,19 @@ export default function PlayerContainer(props) {
             id="rating"
             style={{
               background:
-                averageRating <= 5.5
+                averageRating <= 6
                   ? "#E03131"
                   : averageRating <= 6.5
                   ? "#FD7E14"
                   : averageRating <= 7
                   ? "#FCC419"
-                  : averageRating <= 7.49
+                  : averageRating <= 7.5
                   ? "#66A80F"
                   : averageRating <= 8
                   ? "#2B8A3E"
-                  : "#1E88E5",
+                  : averageRating <= 8.5
+                  ? "#1E88E5"
+                  : "#00FF00",
             }}
           >
             {averageRating === 10 ? "10" : averageRating.toFixed(2)}
