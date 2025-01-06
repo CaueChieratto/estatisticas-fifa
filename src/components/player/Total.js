@@ -28,7 +28,7 @@ export default function Total(props) {
             assists: 0,
             balonDors: 0,
             ratingSum: 0,
-            gamesSum: 0, // Soma dos jogos
+            gamesSum: 0,
             overall: 0,
             cleanSheets: 0,
             position: player.position,
@@ -55,8 +55,8 @@ export default function Total(props) {
           playersStats[playerName].assists += Number(assists);
           playersStats[playerName].cleanSheets += Number(cleanSheets || 0);
 
-          playersStats[playerName].ratingSum += ratingNumber * gamesNumber; // Soma ponderada das classificações
-          playersStats[playerName].gamesSum += gamesNumber; // Soma total de jogos
+          playersStats[playerName].ratingSum += ratingNumber * gamesNumber;
+          playersStats[playerName].gamesSum += gamesNumber;
         });
       });
     });
@@ -66,7 +66,7 @@ export default function Total(props) {
         ...player,
         rating:
           player.gamesSum > 0
-            ? (player.ratingSum / player.gamesSum).toFixed(2) // Média ponderada
+            ? (player.ratingSum / player.gamesSum).toFixed(2)
             : 0,
         combinedValue:
           player.games * 0.3 +
@@ -74,7 +74,7 @@ export default function Total(props) {
             ? player.cleanSheets * 0.45
             : player.goals * 0.7) +
           player.assists * 0.65 +
-          (player.ratingSum / player.gamesSum || 0) * 0.8, // Ajustando o cálculo ponderado
+          (player.ratingSum / player.gamesSum || 0) * 0.8,
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;

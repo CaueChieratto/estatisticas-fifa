@@ -38,8 +38,8 @@ export default function PlayerContainer(props) {
           const rating = parseFloat(league.rating) || 0;
           const games = parseInt(league.games, 10) || 0;
           return {
-            totalRating: acc.totalRating + rating * games, // Soma ponderada das classificações
-            totalGames: acc.totalGames + games, // Soma dos jogos
+            totalRating: acc.totalRating + rating * games,
+            totalGames: acc.totalGames + games,
           };
         },
         { totalRating: 0, totalGames: 0 }
