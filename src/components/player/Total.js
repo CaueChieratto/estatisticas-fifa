@@ -28,7 +28,7 @@ export default function Total(props) {
             assists: 0,
             balonDors: 0,
             ratingSum: 0,
-            ratingCount: 0,
+            gamesSum: 0, // Soma dos jogos
             overall: 0,
             cleanSheets: 0,
             position: player.position,
@@ -47,13 +47,16 @@ export default function Total(props) {
         player.leagues?.forEach((league) => {
           const { games, goals, assists, cleanSheets, rating } = league;
 
-          playersStats[playerName].games += Number(games);
+          const gamesNumber = Number(games) || 0;
+          const ratingNumber = Number(rating) || 0;
+
+          playersStats[playerName].games += gamesNumber;
           playersStats[playerName].goals += Number(goals);
           playersStats[playerName].assists += Number(assists);
           playersStats[playerName].cleanSheets += Number(cleanSheets || 0);
 
-          playersStats[playerName].ratingSum += Number(rating || 0);
-          playersStats[playerName].ratingCount += rating ? 1 : 0;
+          playersStats[playerName].ratingSum += ratingNumber * gamesNumber; // Soma ponderada das classificações
+          playersStats[playerName].gamesSum += gamesNumber; // Soma total de jogos
         });
       });
     });
@@ -62,8 +65,8 @@ export default function Total(props) {
       .map((player) => ({
         ...player,
         rating:
-          player.ratingCount > 0
-            ? (player.ratingSum / player.ratingCount).toFixed(2)
+          player.gamesSum > 0
+            ? (player.ratingSum / player.gamesSum).toFixed(2) // Média ponderada
             : 0,
         combinedValue:
           player.games * 0.3 +
@@ -71,7 +74,7 @@ export default function Total(props) {
             ? player.cleanSheets * 0.45
             : player.goals * 0.7) +
           player.assists * 0.65 +
-          (player.ratingSum / player.ratingCount || 0) * 0.8,
+          (player.ratingSum / player.gamesSum || 0) * 0.8, // Ajustando o cálculo ponderado
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;

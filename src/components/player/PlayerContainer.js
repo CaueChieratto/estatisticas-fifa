@@ -32,11 +32,22 @@ export default function PlayerContainer(props) {
         )
       : 0;
 
-  const averageRating = leagues.length
+  const weightedAverageRating = leagues.length
     ? leagues.reduce(
-        (acc, league) => acc + (parseFloat(league.rating) || 0),
-        0
-      ) / leagues.length
+        (acc, league) => {
+          const rating = parseFloat(league.rating) || 0;
+          const games = parseInt(league.games, 10) || 0;
+          return {
+            totalRating: acc.totalRating + rating * games, // Soma ponderada das classificações
+            totalGames: acc.totalGames + games, // Soma dos jogos
+          };
+        },
+        { totalRating: 0, totalGames: 0 }
+      )
+    : { totalRating: 0, totalGames: 0 };
+
+  const averageRating = weightedAverageRating.totalGames
+    ? weightedAverageRating.totalRating / weightedAverageRating.totalGames
     : 0;
 
   return (
