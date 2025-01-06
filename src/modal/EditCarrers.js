@@ -6,26 +6,16 @@ export default function PageForNewCarrer(props) {
   const [editedCarrer, setEditedCarrer] = useState(props.carrer);
 
   const changeValueCarrer = (event, input) => {
-    const { value } = event.target;
-    switch (input) {
-      case "numberTitles":
-        setEditedCarrer({ ...editedCarrer, numberTitles: value });
-        break;
-      case "numberLeagues":
-        setEditedCarrer({ ...editedCarrer, numberLeagues: value });
-        break;
-      case "numberCupsNationals":
-        setEditedCarrer({ ...editedCarrer, numberCupsNationals: value });
-        break;
-      case "numberCupsInternationals":
-        setEditedCarrer({
-          ...editedCarrer,
-          numberCupsInternationals: value,
-        });
-        break;
-      default:
-        break;
-    }
+    const newValue = Number(event.target.value);
+
+    const updatedCarrer = { ...editedCarrer, [input]: newValue };
+
+    updatedCarrer.numberTitles =
+      (Number(updatedCarrer.numberLeagues) || 0) +
+      (Number(updatedCarrer.numberCupsNationals) || 0) +
+      (Number(updatedCarrer.numberCupsInternationals) || 0);
+
+    setEditedCarrer(updatedCarrer);
   };
 
   const saveChanges = () => {
@@ -37,15 +27,6 @@ export default function PageForNewCarrer(props) {
     <div onClick={props.closeEditCarrer} className="containerModal">
       <div className="cardModalEditCarrer" onClick={(e) => e.stopPropagation()}>
         <div className="container">
-          <div className="allInputs">
-            <div className="titleInput">titulos</div>
-            <input
-              onChange={(event) => changeValueCarrer(event, "numberTitles")}
-              className="inputs"
-              type="number"
-              value={editedCarrer.numberTitles}
-            />
-          </div>
           <div className="allInputs">
             <div className="titleInput">ligas</div>
             <input
