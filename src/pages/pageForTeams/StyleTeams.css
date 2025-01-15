@@ -100,3 +100,13 @@
 .deleteButton{
     cursor: pointer;
 }
+
+.hiddenText {
+    display: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+  
+.hiddenText.visible {
+    display: block;
+}

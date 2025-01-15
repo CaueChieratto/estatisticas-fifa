@@ -1,0 +1,44 @@
+.containerTransfers{
+    width: 100%;
+    border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.containerInfos{
+    margin: 0 16px;
+    padding: 8px 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infosPlayer{
+    width: 175px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infosTransfer{
+    height: 38px;
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infosTitles{
+    font-size: 14px;
+    color: rgb(55, 55, 55)
+}
+
+.infos{
+    font-size: 12px;
+    color: rgba(34, 34, 38, 0.45);
+}
+
+.number{
+    font-size: 14px;
+    color: #c81419
+    /* color: #0bb32a */
+}

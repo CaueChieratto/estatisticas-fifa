@@ -16,6 +16,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Infos from "../../components/player/Infos.js";
 import { CgCloseR } from "react-icons/cg";
+import Transfers from "../../components/transfers/Transfers.js";
 
 export default function PageForTeams() {
   const location = useLocation();
@@ -333,6 +334,13 @@ export default function PageForTeams() {
                   />
                 )}
               </div>
+            </div>
+            <div
+              className={`hiddenText ${
+                openSeasons.includes(season.id) ? "visible" : "hidden"
+              }`}
+            >
+              <Transfers />
             </div>
           </div>
         ))}

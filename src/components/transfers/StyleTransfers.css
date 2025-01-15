@@ -1,0 +1,55 @@
+.containerTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.titleTransfer{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.addPlayer{
+    cursor: pointer;
+    width: 100vw;
+    text-align: center;
+    height: 30px;
+}
+
+.containerTransferInfos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.iconInfoTransfer{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 2.7px;
+}
+
+.infosTranfers{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.moneyMoved{
+    font-size: 16px;
+}
+
+.seasonProfit{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 2%;
+}
