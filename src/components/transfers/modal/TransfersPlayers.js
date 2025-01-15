@@ -59,21 +59,28 @@ export default function TransfersPlayers(props) {
 
   useEffect(() => {
     const handleTouchMove = (e) => {
-      handleDrag(e);
-      e.preventDefault();
+      if (dragging) {
+        e.preventDefault(); // Impede o scroll da página durante o drag
+        handleDrag(e);
+      }
     };
 
     const handleTouchEnd = () => {
       handleDragEnd();
     };
 
+    // Bloqueia o scroll da página
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("touchend", handleTouchEnd);
-    document.body.style.overflow = "hidden";
+
+    // Bloqueia o scroll da página no PC também, se necessário
+    const preventDefaultScroll = (e) => e.preventDefault();
+    window.addEventListener("wheel", preventDefaultScroll, { passive: false });
 
     return () => {
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("wheel", preventDefaultScroll);
     };
   }, [dragging]);
 

@@ -74,10 +74,20 @@
 }
   
 .containerPlayersTransfer{
-    height: 100%;
+    max-height: 100%; 
+    overflow-y: auto;
 }
 
 .titleTransfer{
     font-size: 18px;
     margin: 5% 16px 16px 16px;
+}
+
+.containerPlayersTransfer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.containerPlayersTransfer {
+    scrollbar-width: none;
 }
