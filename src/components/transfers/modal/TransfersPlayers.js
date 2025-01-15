@@ -10,9 +10,13 @@ export default function TransfersPlayers(props) {
   const startY = useRef(0);
   const currentY = useRef(0);
 
-  // Impede o scroll da página ao abrir o modal
   useEffect(() => {
-    const handlePreventScroll = (e) => e.preventDefault();
+    const handlePreventScroll = (e) => {
+      if (!cardRef.current.contains(e.target)) {
+        e.preventDefault();
+      }
+    };
+
     document.body.style.overflow = "hidden";
     document.addEventListener("touchmove", handlePreventScroll, {
       passive: false,
