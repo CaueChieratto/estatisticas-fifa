@@ -16,6 +16,7 @@
     overflow-y: auto;
     background-color: white;
     border-radius: 16px 16px 0px 0px;
+    padding-bottom: 50px;
 }
 
 .containerTopModal{
