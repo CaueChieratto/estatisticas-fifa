@@ -60,6 +60,7 @@ export default function TransfersPlayers(props) {
   useEffect(() => {
     const handleTouchMove = (e) => {
       handleDrag(e);
+      e.preventDefault();
     };
 
     const handleTouchEnd = () => {
@@ -68,6 +69,7 @@ export default function TransfersPlayers(props) {
 
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("touchend", handleTouchEnd);
+    document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("touchmove", handleTouchMove);

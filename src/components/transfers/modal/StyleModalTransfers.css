@@ -13,6 +13,7 @@
 .cardModalTransfer{
     width: 100%;
     height: 85%;
+    overflow-y: auto;
     background-color: white;
     border-radius: 16px 16px 0px 0px;
 }
