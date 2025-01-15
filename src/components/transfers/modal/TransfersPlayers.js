@@ -10,6 +10,20 @@ export default function TransfersPlayers(props) {
   const startY = useRef(0);
   const currentY = useRef(0);
 
+  // Impede o scroll da página ao abrir o modal
+  useEffect(() => {
+    const handlePreventScroll = (e) => e.preventDefault();
+    document.body.style.overflow = "hidden";
+    document.addEventListener("touchmove", handlePreventScroll, {
+      passive: false,
+    });
+
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("touchmove", handlePreventScroll);
+    };
+  }, []);
+
   const handleClose = () => {
     setClosing(true);
     setTimeout(props.closeModal, 400);
@@ -50,38 +64,20 @@ export default function TransfersPlayers(props) {
         cardRef.current.style.transform = "translateY(0)";
       }
     }
-
-    window.removeEventListener("mousemove", handleDrag);
-    window.removeEventListener("touchmove", handleDrag);
-    window.removeEventListener("mouseup", handleDragEnd);
-    window.removeEventListener("touchend", handleDragEnd);
   };
 
   useEffect(() => {
-    const handleTouchMove = (e) => {
-      if (dragging) {
-        e.preventDefault(); // Impede o scroll da página durante o drag
-        handleDrag(e);
-      }
-    };
-
-    const handleTouchEnd = () => {
-      handleDragEnd();
-    };
-
-    // Bloqueia o scroll da página
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
-    window.addEventListener("touchend", handleTouchEnd);
-
-    // Bloqueia o scroll da página no PC também, se necessário
-    const preventDefaultScroll = (e) => e.preventDefault();
-    window.addEventListener("wheel", preventDefaultScroll, { passive: false });
-
-    return () => {
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
-      window.removeEventListener("wheel", preventDefaultScroll);
-    };
+    if (dragging) {
+      window.addEventListener("mousemove", handleDrag);
+      window.addEventListener("touchmove", handleDrag, { passive: false });
+      window.addEventListener("mouseup", handleDragEnd);
+      window.addEventListener("touchend", handleDragEnd);
+    } else {
+      window.removeEventListener("mousemove", handleDrag);
+      window.removeEventListener("touchmove", handleDrag);
+      window.removeEventListener("mouseup", handleDragEnd);
+      window.removeEventListener("touchend", handleDragEnd);
+    }
   }, [dragging]);
 
   return (
