@@ -7,7 +7,7 @@ export default function Arrivals() {
       <div className="containerTransfers">
         <div className="containerInfos">
           <div className="infosPlayer">
-            <div className="infosTitles">Dani Olmo</div>
+            <div className="infosTitles">Daniaaaaaaaaaa Olmo</div>
             <div className="infos">
               Transferencia <span className="number">€55M</span>
             </div>
@@ -273,7 +273,7 @@ export default function Arrivals() {
       <div className="containerTransfers">
         <div className="containerInfos">
           <div className="infosPlayer">
-            <div className="infosTitles">Pau Victor</div>
+            <div className="infosTitles">Pau Victorbbbbbbbbbb</div>
             <div className="infos">
               Transferencia <span className="number">€2.7M</span>
             </div>

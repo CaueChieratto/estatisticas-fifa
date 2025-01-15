@@ -16,8 +16,8 @@
     overflow-y: auto;
     background-color: white;
     border-radius: 16px 16px 0px 0px;
-    padding-bottom: 50px;
 }
+
 
 .containerTopModal{
     display: flex;
@@ -78,6 +78,10 @@
     max-height: calc(100vh - 150px); 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.containerPlayersTransfer > *:last-child {
+    margin-bottom: 100px;
 }
 
 .titleTransfer{
