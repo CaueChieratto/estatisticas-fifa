@@ -11,13 +11,21 @@
 }
 
 .cardModalTransfer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 85%;
     overflow-y: auto;
     background-color: white;
-    border-radius: 16px 16px 0px 0px;
+    border-radius: 16px 16px 0 0;
+    animation: slideUp 0.2s ease-out forwards;
+    transform: translateY(0);
 }
 
+.cardModalTransfer.closing {
+    animation: slideDown 0.4s ease-out forwards;
+}
 
 .containerTopModal{
     display: flex;
@@ -26,6 +34,11 @@
     padding: 2%;
     border-radius: 16px 16px 0px 0px;
     height: 20px;
+    cursor: grab;
+}
+
+.containerTopModal:active {
+  cursor: grabbing;
 }
 
 .bar{
@@ -81,10 +94,10 @@
 }
 
 .containerPlayersTransfer > *:last-child {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
 }
 
-.titleTransfer{
+.titleTransfers{
     font-size: 18px;
     margin: 5% 16px 16px 16px;
 }

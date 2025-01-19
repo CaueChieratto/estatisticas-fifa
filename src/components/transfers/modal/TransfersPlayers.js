@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./StyleModalTransfers.css";
 import { AiOutlineClose } from "react-icons/ai";
-import Arrivals from "../../arrivalsAndExits/Arrivals";
+import PlayersTransfers from "../../playerTransfer/PlayersTransfers.js";
 
 export default function TransfersPlayers(props) {
   const [closing, setClosing] = useState(false);
@@ -106,15 +106,75 @@ export default function TransfersPlayers(props) {
         <div className="containerPlayersTransfer">
           {props.modalType === "arrivals" && (
             <div>
-              <div className="titleTransfer">Contratações da Temporada</div>
-              <Arrivals />
+              <div className="titleTransfers">Contratações da Temporada</div>
+              <PlayersTransfers
+                arrival={true}
+                transfer={true}
+                numberValue={true}
+                playerTransfer="Wojciech Szczęsny"
+                age="34"
+                value={0}
+                team="Passes Livres"
+                dataTransfer="1 de Out. de 2024"
+              />
+              <PlayersTransfers
+                arrival={true}
+                numberValue={true}
+                transfer={true}
+                playerTransfer="Dani Olmo"
+                age="26"
+                value={55}
+                team="Leipzig"
+                dataTransfer="8 de Ago. de 2024"
+              />
+              <PlayersTransfers
+                arrival={true}
+                numberValue={true}
+                transfer={true}
+                playerTransfer="Marc Bernal"
+                age="18"
+                value={0}
+                team="Base"
+                dataTransfer="30 de Jun. de 2024"
+              />
+              <PlayersTransfers
+                arrival={true}
+                playerTransfer="Chadi Riad"
+                age="24"
+                endLoan={true}
+                team="Real Betis"
+                dataTransfer="29 de Jun. de 2024"
+              />
+              <PlayersTransfers
+                arrival={true}
+                playerTransfer="Clément Lenglet"
+                age="29"
+                loan="12"
+                team="Atletico de Madrid"
+                dataTransfer="25 de Ago. de 2024"
+              />
             </div>
           )}
           {props.modalType === "exits" && (
-            <div className="titleTransfer">Vendas da Temporada</div>
+            <div>
+              <div className="titleTransfers">Vendas da Temporada</div>
+              <PlayersTransfers
+                arrival={false}
+                numberValue={true}
+                transfer={true}
+                playerTransfer="Mikayil Faye"
+                age="20"
+                value={10.3}
+                team="Stade Rennes"
+                dataTransfer="24 de Ago. de 2024"
+              />
+            </div>
           )}
         </div>
       </div>
     </div>
   );
 }
+
+// ...tranfers.map((transfer)=>{if(transfer.arrival)<playerTransfer/>}) pra quem ta chegando
+// ...tranfers.map((transfer)=>{if(!transfer.arrival)<playerTransfer/>}) pra quem ta saindo

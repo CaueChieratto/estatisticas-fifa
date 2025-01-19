@@ -109,6 +109,7 @@ export default function PageForAllTeams() {
                 <Allteams
                   carrer={carrer}
                   club={carrer.club}
+                  nation={carrer.nation}
                   seasons={carrer.seasons}
                   numberTitles={carrer.numberTitles}
                   numberLeagues={carrer.numberLeagues}

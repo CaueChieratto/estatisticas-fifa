@@ -12,15 +12,41 @@ export default function PageForNewCarrer(props) {
     numberCupsNationals: "",
     numberCupsInternationals: "",
     date: "",
+    nation: "",
+    leagues: [],
     seasons: [],
   });
 
+  const countryLeagues = {
+    Spain: ["La Liga", "La Liga 2", "Copa da Espanha", "Supercopa"],
+    England: ["Premier League", "FA Cup", "Carabao Cup"],
+    Germany: ["Bundesliga", "DFB-Pokal", "Supercup"],
+    Italy: ["Serie A", "Coppa Italia", "Supercoppa"],
+    France: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
+  };
+
+  const globalLeagues = [
+    "Champions League",
+    "Europa League",
+    "Conference League",
+    "UEFA Supercup",
+  ];
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCarrerData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    setCarrerData((prevData) => {
+      const updatedData = { ...prevData, [name]: value };
+
+      if (name === "nation") {
+        updatedData.leagues = [
+          ...(countryLeagues[value] || []),
+          ...globalLeagues,
+        ];
+      }
+
+      return updatedData;
+    });
   };
 
   const saveCarrer = () => {
@@ -31,6 +57,7 @@ export default function PageForNewCarrer(props) {
     fifaData.carrers.push({ ...carrerData, uuid: newId });
     localStorage.setItem("fifaData", JSON.stringify(fifaData));
     props.closeNewCarrer();
+    console.log(fifaData);
   };
 
   return (
@@ -46,6 +73,24 @@ export default function PageForNewCarrer(props) {
               value={carrerData.club}
               onChange={handleChange}
             />
+          </div>
+          <div className="allInputs">
+            <div className="titleInput">Pais</div>
+            <select
+              className="inputs"
+              name="nation"
+              value={carrerData.nation}
+              onChange={handleChange}
+            >
+              <option value="" disabled>
+                Selecione um país
+              </option>
+              <option value="Spain">Espanha</option>
+              <option value="England">Inglaterra</option>
+              <option value="Germany">Alemanha</option>
+              <option value="Italy">Itália</option>
+              <option value="France">França</option>
+            </select>
           </div>
           <div className="allInputs">
             <div className="titleInput">Titulos</div>

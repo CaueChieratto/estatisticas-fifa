@@ -52,8 +52,9 @@ export default function PageForTeams() {
   const addSeason = () => {
     const newSeason = {
       id: uuidv4(),
-      season: seasons.length + 1,
+      season: seasons.length - 1 + 1,
       players: [],
+      transfer: [],
     };
     const updatedSeasons = [...seasons, newSeason];
     setSeasons(updatedSeasons);
@@ -74,7 +75,6 @@ export default function PageForTeams() {
   const [season, setSeason] = useState({});
 
   const showStats = (player, season) => {
-    console.log(season);
     setSeason(season);
     setPlayer(player);
     setOpenStats(true);
@@ -172,14 +172,11 @@ export default function PageForTeams() {
         ),
       };
       localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    } else {
-      console.error(`Temporada ${seasonNumber} não encontrada.`);
     }
   };
 
   const saveEditedPlayer = (editedPlayer, seasonNumber) => {
     const updatedSeasons = [...seasons];
-    console.log(updatedSeasons);
 
     const seasonIndex = updatedSeasons.findIndex((season) => {
       if (season.season === seasonNumber) {
@@ -300,6 +297,7 @@ export default function PageForTeams() {
                         goals={player.goals}
                         assists={player.assists}
                         rating={player.rating}
+                        nation={carrer.nation}
                         overall={player.overall}
                         balonDors={player.balonDors}
                         cleanSheets={player.cleanSheets}

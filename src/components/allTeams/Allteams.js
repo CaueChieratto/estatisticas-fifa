@@ -31,6 +31,9 @@ export default function Allteams(props) {
           {isListOpen && (
             <div className="containerList">
               <span className="list">
+                Pais <div className="numbers">{props.nation}</div>
+              </span>
+              <span className="list">
                 Titulos <div className="numbers">{props.numberTitles}</div>
               </span>
               <span className="list">

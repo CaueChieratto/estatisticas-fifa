@@ -17,28 +17,21 @@ export default function NewStatsLeagues(props) {
   const handleLeagueChange = (event) => {
     const selectedLeague = event.target.value;
 
-    let leagueImage = "";
-
-    if (selectedLeague === "La Liga") {
-      leagueImage = "./laliga.png";
-    } else if (selectedLeague === "La Liga 2") {
-      leagueImage = "./laliga2.png";
-    } else if (selectedLeague === "Copa do Rey") {
-      leagueImage = "./copaRey.png";
-    } else if (selectedLeague === "Supercopa") {
-      leagueImage = "./superCopaEspanha.png";
-    } else if (selectedLeague === "Champions League") {
-      leagueImage = "./champions.png";
-    } else if (selectedLeague === "Europa League") {
-      leagueImage = "./europaLeague.png";
-    } else if (selectedLeague === "Conference League") {
-      leagueImage = "./conferenceLeague.png";
-    }
+    const leagueImages = {
+      "La Liga": "./laliga.png",
+      "La Liga 2": "./laliga2.png",
+      "Copa da Espanha": "./copaRey.png",
+      "Supercopa da Espanha": "./superCopaEspanha.png",
+      "Champions League": "./champions.png",
+      "Europa League": "./europaLeague.png",
+      "Conference League": "./conferenceLeague.png",
+      "UEFA Supercup": "./UEFAsupercopa.png",
+    };
 
     setEditedLeague((prev) => ({
       ...prev,
       league: selectedLeague,
-      leagueImage: leagueImage,
+      leagueImage: leagueImages[selectedLeague] || "",
     }));
   };
 
@@ -56,6 +49,8 @@ export default function NewStatsLeagues(props) {
     props.closeModal();
   };
 
+  const availableLeagues = props.carrer.leagues || [];
+
   return (
     <div className="containerSelectLeague">
       <div className="selects">
@@ -68,13 +63,11 @@ export default function NewStatsLeagues(props) {
           <option value="" disabled>
             Selecione uma liga
           </option>
-          <option value="La Liga">La Liga</option>
-          <option value="La Liga 2">La Liga 2</option>
-          <option value="Copa do Rey">Copa do Rey</option>
-          <option value="Supercopa">Supercopa da Espanha</option>
-          <option value="Champions League">Champions League</option>
-          <option value="Europa League">Europa League</option>
-          <option value="Conference League">Conference League</option>
+          {availableLeagues.map((league, index) => (
+            <option key={index} value={league}>
+              {league}
+            </option>
+          ))}
         </select>
       </div>
 

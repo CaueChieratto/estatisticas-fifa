@@ -12,7 +12,7 @@
 }
 
 .infosPlayer{
-    width: 175px;
+    width: 230px;
     height: 38px;
     display: flex;
     flex-direction: column;
@@ -21,6 +21,7 @@
 
 .infosTransfer{
     height: 38px;
+    width: 130px;
     text-align: end;
     display: flex;
     flex-direction: column;
@@ -29,16 +30,22 @@
 
 .infosTitles{
     font-size: 14px;
-    color: rgb(55, 55, 55)
+    color: #373737
 }
 
 .infos{
     font-size: 12px;
-    color: rgba(34, 34, 38, 0.45);
+    color: #22222673;
+}
+
+.infoValues{
+    display: flex;
+    align-items: center;
 }
 
 .number{
     font-size: 14px;
-    color: #c81419
+    /* color: #c81419 */
     /* color: #0bb32a */
+    color: #373737
 }

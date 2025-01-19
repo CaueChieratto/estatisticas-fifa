@@ -1,0 +1,81 @@
+.containerNewTransfer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 999;
+    overflow-y: auto;
+    right: -100vw; 
+    transition: right 0.3s ease-in-out; 
+}
+  
+.containerNewTransfer.open {
+    right: 0; 
+}
+
+.addPlayer{
+    cursor: pointer;
+    width: 100vw;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeNewTransfer{
+    width: fit-content;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+
+.iconCloseNewTransfer{
+    font-size: 16px;
+    height: 16px;
+    margin-left: 3px;
+}
+
+.containerButtonsTransfers{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5%;
+    height: 50px;
+}
+
+.buttonNewTransfer{
+    background-color: white;
+    color: #01CE64;
+    border: 1px solid  #01CE64;
+    height: 30px;
+    width: 115px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.selectedTransfer{
+    background-color:  #01CE64;
+    color: white;
+}
+
+.containerSelectsTransfers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.selectTransfer{
+    width: 150px;
+    height: 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    outline: none;
+    color: #01CE64;
+    border: 1px solid #01CE64;
+}

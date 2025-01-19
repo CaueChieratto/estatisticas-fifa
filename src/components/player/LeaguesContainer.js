@@ -138,6 +138,7 @@ export default function LeaguesContainer(props) {
         <NewStatsLeagues
           addLeagueToPlayer={addLeagueToPlayer}
           playerPosition={props.playerPosition}
+          carrer={props.carrer}
           closeModal={closeModal}
         />
       )}

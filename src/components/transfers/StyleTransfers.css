@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 5%;
+    padding: 10% 0 5%;
 }
 
 .titleTransfer{
@@ -11,17 +11,9 @@
     margin-bottom: 5px;
 }
 
-.addPlayer{
-    cursor: pointer;
-    width: 100vw;
-    text-align: center;
-    height: 30px;
-}
-
 .containerTransferInfos{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: center;
 }
@@ -51,5 +43,8 @@
     display: flex;
     justify-content: center;
     font-size: 18px;
-    margin-top: 2%;
+    margin-top: 10%;
+}
+.noPlayersAdded{
+    text-align: center;
 }
