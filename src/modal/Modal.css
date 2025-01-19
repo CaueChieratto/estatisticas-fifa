@@ -202,6 +202,10 @@ border: 1px solid #01CE64;
   flex-direction: column;
 }
 
+.inputs{
+  text-align: center;
+}
+
 @media(min-width:600px){
   .cardModal{
     min-width: 60%;

@@ -18,8 +18,8 @@ export default function PageForNewCarrer(props) {
   });
 
   const countryLeagues = {
-    Spain: ["La Liga", "La Liga 2", "Copa da Espanha", "Supercopa"],
-    England: ["Premier League", "FA Cup", "Carabao Cup"],
+    Espanha: ["La Liga", "La Liga 2", "Copa da Espanha", "Supercopa"],
+    Inglaterra: ["Premier League", "FA Cup", "Carabao Cup"],
     Germany: ["Bundesliga", "DFB-Pokal", "Supercup"],
     Italy: ["Serie A", "Coppa Italia", "Supercoppa"],
     France: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
@@ -73,6 +73,24 @@ export default function PageForNewCarrer(props) {
       >
         <div className="containerCreateCarrer">
           <div className="allInputs">
+            <div className="titleInput">Pais</div>
+            <select
+              className="inputs"
+              name="nation"
+              value={carrerData.nation}
+              onChange={handleChange}
+            >
+              <option value="" disabled>
+                Selecione um país
+              </option>
+              <option value="Espanha">Espanha</option>
+              <option value="Inglaterra">Inglaterra</option>
+              <option value="Germany">Alemanha</option>
+              <option value="Italy">Itália</option>
+              <option value="France">França</option>
+            </select>
+          </div>
+          <div className="allInputs">
             <div className="titleInput">Clube</div>
             <input
               className="inputs"
@@ -82,7 +100,6 @@ export default function PageForNewCarrer(props) {
               onChange={handleChange}
             />
           </div>
-
           <div className="allInputs">
             <div className="titleInput">Titulos</div>
             <input
@@ -122,24 +139,6 @@ export default function PageForNewCarrer(props) {
               value={carrerData.numberCupsInternationals}
               onChange={handleChange}
             />
-          </div>
-          <div className="allInputs">
-            <div className="titleInput">Pais</div>
-            <select
-              className="inputs"
-              name="nation"
-              value={carrerData.nation}
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                Selecione um país
-              </option>
-              <option value="Spain">Espanha</option>
-              <option value="England">Inglaterra</option>
-              <option value="Germany">Alemanha</option>
-              <option value="Italy">Itália</option>
-              <option value="France">França</option>
-            </select>
           </div>
           <div className="allInputs">
             <div className="titleInput">Data</div>
