@@ -50,6 +50,11 @@ export default function PageForNewCarrer(props) {
   };
 
   const saveCarrer = () => {
+    if (!carrerData.nation) {
+      alert("Por favor, selecione um país antes de salvar.");
+      return;
+    }
+
     const newId = uuidv4();
     const fifaData = JSON.parse(localStorage.getItem("fifaData")) || {
       carrers: [],
@@ -61,9 +66,12 @@ export default function PageForNewCarrer(props) {
   };
 
   return (
-    <div onClick={props.closeNewCarrer} className="containerModal">
-      <div className="cardModal" onClick={(e) => e.stopPropagation()}>
-        <div className="container">
+    <div onClick={props.closeNewCarrer} className="containerModalCreateCarrer">
+      <div
+        className="cardModalCreateCarrer"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="containerCreateCarrer">
           <div className="allInputs">
             <div className="titleInput">Clube</div>
             <input
@@ -74,24 +82,7 @@ export default function PageForNewCarrer(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Pais</div>
-            <select
-              className="inputs"
-              name="nation"
-              value={carrerData.nation}
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                Selecione um país
-              </option>
-              <option value="Spain">Espanha</option>
-              <option value="England">Inglaterra</option>
-              <option value="Germany">Alemanha</option>
-              <option value="Italy">Itália</option>
-              <option value="France">França</option>
-            </select>
-          </div>
+
           <div className="allInputs">
             <div className="titleInput">Titulos</div>
             <input
@@ -131,6 +122,24 @@ export default function PageForNewCarrer(props) {
               value={carrerData.numberCupsInternationals}
               onChange={handleChange}
             />
+          </div>
+          <div className="allInputs">
+            <div className="titleInput">Pais</div>
+            <select
+              className="inputs"
+              name="nation"
+              value={carrerData.nation}
+              onChange={handleChange}
+            >
+              <option value="" disabled>
+                Selecione um país
+              </option>
+              <option value="Spain">Espanha</option>
+              <option value="England">Inglaterra</option>
+              <option value="Germany">Alemanha</option>
+              <option value="Italy">Itália</option>
+              <option value="France">França</option>
+            </select>
           </div>
           <div className="allInputs">
             <div className="titleInput">Data</div>
