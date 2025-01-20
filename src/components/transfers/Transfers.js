@@ -34,9 +34,23 @@ export default function Transfers(props) {
     document.body.style.overflowY = "auto";
   };
 
-  const exit = 10.3;
-  const arrival = 55;
-  const totalProfits = exit - arrival;
+  const transfers = props.season.transfer || [];
+
+  const arrivals = transfers.filter((transfer) => transfer.arrival);
+  const exits = transfers.filter((transfer) => !transfer.arrival);
+
+  const totalArrivalsValue = arrivals
+    .filter((transfer) => !isNaN(parseFloat(transfer.value)))
+    .reduce((acc, transfer) => acc + transfer.value, 0);
+
+  const totalExitsValue = exits
+    .filter((transfer) => !isNaN(parseFloat(transfer.value)))
+    .reduce((acc, transfer) => acc + transfer.value, 0);
+
+  const totalArrivalsCount = arrivals.length;
+  const totalExitsCount = exits.length;
+
+  const totalProfits = totalExitsValue - totalArrivalsValue;
 
   return (
     <>
@@ -63,7 +77,7 @@ export default function Transfers(props) {
             <span className="iconInfoTransfer">
               <IoMdInformationCircleOutline />
             </span>
-            Chegadas: 1
+            Chegadas: {totalArrivalsCount}
           </div>
           <div
             className="infosTranfers"
@@ -73,13 +87,13 @@ export default function Transfers(props) {
             <span className="iconInfoTransfer">
               <IoMdInformationCircleOutline />
             </span>
-            Saídas: 1
+            Saídas: {totalExitsCount}
           </div>
           <div className="moneyMoved" style={colorArrivals}>
-            Gastos: €{arrival}M
+            Gastos: €{totalArrivalsValue}M
           </div>
           <div className="moneyMoved" style={colorExits}>
-            Vendas: €{exit}M
+            Vendas: €{totalExitsValue}M
           </div>
         </div>
         <div

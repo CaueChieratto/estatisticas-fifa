@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./StyleModalTransfers.css";
 import { AiOutlineClose } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
 import PlayersTransfers from "../../playerTransfer/PlayersTransfers.js";
 
 export default function TransfersPlayers(props) {
