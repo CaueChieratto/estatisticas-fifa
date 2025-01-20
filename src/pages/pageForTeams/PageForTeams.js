@@ -338,7 +338,13 @@ export default function PageForTeams() {
                 openSeasons.includes(season.id) ? "visible" : "hidden"
               }`}
             >
-              <Transfers />
+              <Transfers
+                updatePage={updatePage}
+                carrer={carrer}
+                seasons={seasons}
+                season={season}
+                setSeasons={setSeasons}
+              />
             </div>
           </div>
         ))}

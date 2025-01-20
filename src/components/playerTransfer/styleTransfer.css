@@ -4,11 +4,17 @@
 }
 
 .containerInfos{
-    margin: 0 16px;
-    padding: 8px 0;
+    padding: 8px 16px;
     height: 40px;
+    position: relative;
     display: flex;
     justify-content: space-between;
+}
+
+.deletePlayerInTransfer{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
 }
 
 .infosPlayer{
@@ -40,12 +46,11 @@
 
 .infoValues{
     display: flex;
+    gap: 2%;
     align-items: center;
 }
 
 .number{
     font-size: 14px;
-    /* color: #c81419 */
-    /* color: #0bb32a */
     color: #373737
 }

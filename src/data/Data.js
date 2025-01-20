@@ -26,7 +26,7 @@
 //               age: "20",
 //               value: 10.3,
 //               team: "Stade Rennes",
-//               dataTransfer: "2e de Ago. de 2024",
+//               dataTransfer: "2 de Ago. de 2024",
 //             },
 //           ],
 //           players: [

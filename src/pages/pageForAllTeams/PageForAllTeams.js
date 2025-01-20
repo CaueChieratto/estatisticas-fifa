@@ -34,16 +34,16 @@ export default function PageForAllTeams() {
   const showNewCarrer = () => {
     setNewCarrer();
     setCreateNewCarrer(true);
-    document.body.style.overflowY = "hidden";
   };
+
   const closeNewCarrer = () => {
     const storedData = localStorage.getItem("fifaData");
     if (storedData) {
       setFifaData(JSON.parse(storedData));
     }
     setCreateNewCarrer(false);
-    document.body.style.overflowY = "auto";
   };
+
   const showEditCarrer = (carrer) => {
     setCarrer(carrer);
     setEditCarrer(true);

@@ -4,6 +4,7 @@ import "./Modal.css";
 import { v4 as uuidv4 } from "uuid";
 
 export default function PageForNewCarrer(props) {
+  const [animationClass, setAnimationClass] = useState("slide-in-left");
   const [carrerData, setCarrerData] = useState({
     uuid: "",
     club: "",
@@ -61,12 +62,22 @@ export default function PageForNewCarrer(props) {
     };
     fifaData.carrers.push({ ...carrerData, uuid: newId });
     localStorage.setItem("fifaData", JSON.stringify(fifaData));
-    props.closeNewCarrer();
-    console.log(fifaData);
+    handleCloseModal();
+  };
+
+  const handleCloseModal = () => {
+    setAnimationClass("slide-out-left");
+    setTimeout(() => {
+      props.closeNewCarrer();
+    }, 500);
   };
 
   return (
-    <div onClick={props.closeNewCarrer} className="containerModalCreateCarrer">
+    <div
+      onClick={handleCloseModal}
+      className={`containerModalCreateCarrer ${animationClass}`}
+    >
+      <div onClick={handleCloseModal}>fechar</div>
       <div
         className="cardModalCreateCarrer"
         onClick={(e) => e.stopPropagation()}

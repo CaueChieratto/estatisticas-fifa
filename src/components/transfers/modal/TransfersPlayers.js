@@ -107,67 +107,55 @@ export default function TransfersPlayers(props) {
           {props.modalType === "arrivals" && (
             <div>
               <div className="titleTransfers">Contratações da Temporada</div>
-              <PlayersTransfers
-                arrival={true}
-                transfer={true}
-                numberValue={true}
-                playerTransfer="Wojciech Szczęsny"
-                age="34"
-                value={0}
-                team="Passes Livres"
-                dataTransfer="1 de Out. de 2024"
-              />
-              <PlayersTransfers
-                arrival={true}
-                numberValue={true}
-                transfer={true}
-                playerTransfer="Dani Olmo"
-                age="26"
-                value={55}
-                team="Leipzig"
-                dataTransfer="8 de Ago. de 2024"
-              />
-              <PlayersTransfers
-                arrival={true}
-                numberValue={true}
-                transfer={true}
-                playerTransfer="Marc Bernal"
-                age="18"
-                value={0}
-                team="Base"
-                dataTransfer="30 de Jun. de 2024"
-              />
-              <PlayersTransfers
-                arrival={true}
-                playerTransfer="Chadi Riad"
-                age="24"
-                endLoan={true}
-                team="Real Betis"
-                dataTransfer="29 de Jun. de 2024"
-              />
-              <PlayersTransfers
-                arrival={true}
-                playerTransfer="Clément Lenglet"
-                age="29"
-                loan="12"
-                team="Atletico de Madrid"
-                dataTransfer="25 de Ago. de 2024"
-              />
+
+              {props.season.transfer
+                ?.filter((transfer) => transfer.arrival == true)
+                .map((transfer, index) => (
+                  <PlayersTransfers
+                    key={index}
+                    arrival={true}
+                    numberValue={transfer.value != undefined}
+                    transfer={
+                      transfer.value != undefined && transfer.value != "endLoan"
+                    }
+                    loan={transfer.value == undefined}
+                    endLoan={transfer.value == "endLoan"}
+                    playerTransfer={transfer.playerTransfer}
+                    age={transfer.age}
+                    value={
+                      transfer.value != undefined
+                        ? transfer.value
+                        : transfer.loan
+                    }
+                    team={transfer.team}
+                    dataTransfer={transfer.dataTransfer}
+                  />
+                ))}
             </div>
           )}
           {props.modalType === "exits" && (
             <div>
               <div className="titleTransfers">Vendas da Temporada</div>
-              <PlayersTransfers
-                arrival={false}
-                numberValue={true}
-                transfer={true}
-                playerTransfer="Mikayil Faye"
-                age="20"
-                value={10.3}
-                team="Stade Rennes"
-                dataTransfer="24 de Ago. de 2024"
-              />
+              {props.season.transfer
+                ?.filter((transfer) => transfer.arrival == false)
+                .map((transfer, index) => (
+                  <PlayersTransfers
+                    key={index}
+                    arrival={false}
+                    numberValue={transfer.value != undefined}
+                    transfer={transfer.value != undefined}
+                    loan={transfer.value == undefined}
+                    playerTransfer={transfer.playerTransfer}
+                    age={transfer.age}
+                    value={
+                      transfer.value != undefined
+                        ? transfer.value
+                        : transfer.loan
+                    }
+                    team={transfer.team}
+                    dataTransfer={transfer.dataTransfer}
+                  />
+                ))}
             </div>
           )}
         </div>
@@ -175,6 +163,3 @@ export default function TransfersPlayers(props) {
     </div>
   );
 }
-
-// ...tranfers.map((transfer)=>{if(transfer.arrival)<playerTransfer/>}) pra quem ta chegando
-// ...tranfers.map((transfer)=>{if(!transfer.arrival)<playerTransfer/>}) pra quem ta saindo

@@ -13,11 +13,7 @@
 }
 
 .containerModalCreateCarrer{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: white;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -26,18 +22,47 @@
   z-index: 999;
 }
 
-.cardModalCreateCarrer{
+.cardModalCreateCarrer {
   background-color: white;
-  border-radius: 20px;
-  min-width: 80%;
-  max-height: 80%;
-  padding: 5px 0 20px;
+  min-width: 100%;
+  max-height: 85%;
   display: flex;
   flex-direction: column;
-  animation: grow 0.8s ease forwards; 
+  animation: grow 0.8s ease forwards;
   overflow-y: auto;
   z-index: 999;
 }
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.5s ease forwards;
+}
+
+.slide-out-left {
+  animation: slide-out-left 0.5s ease forwards;
+}
+
 
 .cardModal{
   background-color: white;

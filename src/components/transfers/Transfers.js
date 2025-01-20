@@ -4,11 +4,24 @@ import "./StyleTransfers.css";
 import TransfersPlayers from "./modal/TransfersPlayers.js";
 import NewTransfersPlayers from "./addPlayer/NewTransfersPlayers.js";
 
-export default function Transfers() {
+export default function Transfers(props) {
   const colorExits = { color: "#0bb32a" };
   const colorArrivals = { color: "#c81419" };
   const [openModalTransfers, setOpenModalTransfers] = useState(false);
   const [modalType, setModalType] = useState("");
+
+  const [newTransferPlayer, setNewTransferPlayer] = useState({
+    arrival: 0,
+    transfer: Boolean,
+    numberValue: Boolean,
+    endLoan: Boolean,
+    loan: Boolean,
+    playerTransfer: "",
+    age: "",
+    value: "",
+    team: "",
+    dataTransfer: "",
+  });
 
   const showModalTransfers = (type) => {
     setModalType(type);
@@ -30,7 +43,15 @@ export default function Transfers() {
       <div className="containerTitle">
         <div className="titleTransfer">Tranferências da Temporada</div>
 
-        <NewTransfersPlayers />
+        <NewTransfersPlayers
+          updatePage={props.updatePage}
+          newTransferPlayer={newTransferPlayer}
+          setNewTransferPlayer={setNewTransferPlayer}
+          carrer={props.carrer}
+          seasons={props.seasons}
+          season={props.season}
+          setSeasons={props.setSeasons}
+        />
       </div>
       <>
         <div className="containerTransferInfos">
@@ -71,6 +92,11 @@ export default function Transfers() {
 
       {openModalTransfers && (
         <TransfersPlayers
+          newTransferPlayer={newTransferPlayer}
+          setNewTransferPlayer={setNewTransferPlayer}
+          carrer={props.carrer}
+          seasons={props.seasons}
+          season={props.season}
           closeModal={closeModalTransfers}
           modalType={modalType}
         />

@@ -4,7 +4,18 @@ import "./NewTransfer.css";
 import InputsForTransfers from "../../inputs/InputsForTransfers";
 
 export default function NewTransfersPlayers(props) {
-  const handleOpen = () => setIsOpen(true);
+  const handleOpen = () => {
+    setPlayerTransfer({
+      arrival: "",
+      playerTransfer: "",
+      age: "",
+      value: 0,
+      team: "",
+      dataTransfer: "",
+    });
+    setIsOpen(true);
+  };
+
   const handleClose = () => setIsOpen(false);
 
   const [negotiationType, setNegotiationType] = useState(0);
@@ -23,6 +34,46 @@ export default function NewTransfersPlayers(props) {
   const inputValue = (e) => {
     setTransferType(e.target.value);
   };
+
+  function addPlayerToTransfer({
+    carrer,
+    seasons,
+    seasonId,
+    negotiationType,
+    transferType,
+    newPlayer,
+  }) {
+    const updatedSeasons = seasons.map((season) => {
+      if (season.id === seasonId) {
+        const updatedTransfer = [
+          ...season.transfer,
+          {
+            arrival: negotiationType === 0,
+            playerTransfer: newPlayer.playerTransfer,
+            age: newPlayer.age,
+            value:
+              transferType === "Transferência"
+                ? newPlayer.value
+                : transferType == "Empréstimo"
+                ? undefined
+                : "endLoan",
+            loan:
+              transferType === "Empréstimo"
+                ? newPlayer.value + " meses"
+                : undefined,
+            team: newPlayer.team,
+            dataTransfer: newPlayer.dataTransfer,
+          },
+        ];
+        return { ...season, transfer: updatedTransfer };
+      }
+      return season;
+    });
+
+    carrer.seasons = updatedSeasons;
+
+    return carrer;
+  }
 
   return (
     <>
@@ -74,6 +125,11 @@ export default function NewTransfersPlayers(props) {
           </select>
         </div>
         <InputsForTransfers
+          updatePage={props.updatePage}
+          carrer={props.carrer}
+          addPlayerToTransfer={addPlayerToTransfer}
+          seasons={props.seasons}
+          season={props.season}
           negotiationType={negotiationType}
           transferType={transferType}
           closeAddPlayer={handleClose}
