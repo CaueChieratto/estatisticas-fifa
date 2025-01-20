@@ -17,11 +17,11 @@ export default function Arrivals(props) {
     <>
       <div className="containerTransfers">
         <div className="containerInfos">
-          {/* <div className="deletePlayerInTransfer">
+          <div className="deletePlayerInTransfer">
             <div className="iconDelete">
               <MdDelete />
             </div>
-          </div> */}
+          </div>
           <div className="infosPlayer">
             <div className="infosTitles">
               {props.playerTransfer}

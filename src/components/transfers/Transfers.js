@@ -3,6 +3,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import "./StyleTransfers.css";
 import TransfersPlayers from "./modal/TransfersPlayers.js";
 import NewTransfersPlayers from "./addPlayer/NewTransfersPlayers.js";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Transfers(props) {
   const colorExits = { color: "#0bb32a" };
@@ -52,12 +53,54 @@ export default function Transfers(props) {
 
   const totalProfits = totalExitsValue - totalArrivalsValue;
 
+  function addPlayerToTransfer({
+    carrer,
+    seasons,
+    seasonId,
+    negotiationType,
+    transferType,
+    newPlayer,
+  }) {
+    const updatedSeasons = seasons.map((season) => {
+      if (season.id === seasonId) {
+        const updatedTransfer = [
+          ...season.transfer,
+          {
+            id: uuidv4(),
+            arrival: negotiationType === 0,
+            playerTransfer: newPlayer.playerTransfer,
+            age: newPlayer.age,
+            value:
+              transferType === "Transferência"
+                ? newPlayer.value
+                : transferType == "Empréstimo"
+                ? undefined
+                : "endLoan",
+            loan:
+              transferType === "Empréstimo"
+                ? newPlayer.value + " meses"
+                : undefined,
+            team: newPlayer.team,
+            dataTransfer: newPlayer.dataTransfer,
+          },
+        ];
+        return { ...season, transfer: updatedTransfer };
+      }
+      return season;
+    });
+
+    carrer.seasons = updatedSeasons;
+
+    return carrer;
+  }
+
   return (
     <>
       <div className="containerTitle">
         <div className="titleTransfer">Tranferências da Temporada</div>
 
         <NewTransfersPlayers
+          addPlayerToTransfer={addPlayerToTransfer}
           updatePage={props.updatePage}
           newTransferPlayer={newTransferPlayer}
           setNewTransferPlayer={setNewTransferPlayer}

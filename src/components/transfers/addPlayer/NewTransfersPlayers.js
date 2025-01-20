@@ -35,46 +35,6 @@ export default function NewTransfersPlayers(props) {
     setTransferType(e.target.value);
   };
 
-  function addPlayerToTransfer({
-    carrer,
-    seasons,
-    seasonId,
-    negotiationType,
-    transferType,
-    newPlayer,
-  }) {
-    const updatedSeasons = seasons.map((season) => {
-      if (season.id === seasonId) {
-        const updatedTransfer = [
-          ...season.transfer,
-          {
-            arrival: negotiationType === 0,
-            playerTransfer: newPlayer.playerTransfer,
-            age: newPlayer.age,
-            value:
-              transferType === "Transferência"
-                ? newPlayer.value
-                : transferType == "Empréstimo"
-                ? undefined
-                : "endLoan",
-            loan:
-              transferType === "Empréstimo"
-                ? newPlayer.value + " meses"
-                : undefined,
-            team: newPlayer.team,
-            dataTransfer: newPlayer.dataTransfer,
-          },
-        ];
-        return { ...season, transfer: updatedTransfer };
-      }
-      return season;
-    });
-
-    carrer.seasons = updatedSeasons;
-
-    return carrer;
-  }
-
   return (
     <>
       <div className={`containerNewTransfer ${isOpen ? "open" : ""}`}>
@@ -127,7 +87,7 @@ export default function NewTransfersPlayers(props) {
         <InputsForTransfers
           updatePage={props.updatePage}
           carrer={props.carrer}
-          addPlayerToTransfer={addPlayerToTransfer}
+          addPlayerToTransfer={props.addPlayerToTransfer}
           seasons={props.seasons}
           season={props.season}
           negotiationType={negotiationType}
