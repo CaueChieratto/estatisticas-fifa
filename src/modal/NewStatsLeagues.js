@@ -26,6 +26,7 @@ export default function NewStatsLeagues(props) {
       "Europa League": "./europaLeague.png",
       "Conference League": "./conferenceLeague.png",
       "UEFA Supercup": "./UEFAsupercopa.png",
+      "Lendas do clube": "./icon.png",
     };
 
     setEditedLeague((prev) => ({

@@ -31,6 +31,7 @@ export default function PageForNewCarrer(props) {
     "Europa League",
     "Conference League",
     "UEFA Supercup",
+    "Lendas do clube",
   ];
 
   const handleChange = (event) => {
