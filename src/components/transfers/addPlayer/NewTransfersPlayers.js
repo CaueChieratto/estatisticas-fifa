@@ -14,9 +14,13 @@ export default function NewTransfersPlayers(props) {
       dataTransfer: "",
     });
     setIsOpen(true);
+    document.body.style.overflowY = "hidden";
   };
 
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+    document.body.style.overflowY = "auto";
+  };
 
   const [negotiationType, setNegotiationType] = useState(0);
   const [transferType, setTransferType] = useState("");
