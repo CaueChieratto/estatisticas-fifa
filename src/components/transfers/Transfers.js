@@ -151,7 +151,7 @@ export default function Transfers(props) {
             className="seasonProfit"
             style={totalProfits >= 0 ? colorExits : colorArrivals}
           >
-            Total: €{Math.abs(totalProfits)}M
+            Total: €{Math.abs(totalProfits).toFixed(2)}M
           </div>
         </>
       )}
