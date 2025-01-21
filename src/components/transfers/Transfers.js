@@ -7,11 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 export default function Transfers(props) {
-  const [isHidden, setIsHidden] = useState(true);
   const colorExits = { color: "#0bb32a" };
   const colorArrivals = { color: "#c81419" };
   const [openModalTransfers, setOpenModalTransfers] = useState(false);
   const [modalType, setModalType] = useState("");
+  const [isHidden, setIsHidden] = useState(false);
 
   const [newTransferPlayer, setNewTransferPlayer] = useState({
     arrival: 0,
@@ -122,58 +122,51 @@ export default function Transfers(props) {
           <div className="containerTransferInfos">
             <div
               className="infosTranfers"
-              style={{ color: "#c81419" }}
-              onClick={() => setOpenModalTransfers(true)}
+              style={colorArrivals}
+              onClick={() => showModalTransfers("arrivals")}
             >
               <span className="iconInfoTransfer">
                 <IoMdInformationCircleOutline />
               </span>
-              Chegadas: {props.season.transfer.filter((t) => t.arrival).length}
+              Chegadas: {totalArrivalsCount}
             </div>
             <div
               className="infosTranfers"
-              style={{ color: "#0bb32a" }}
-              onClick={() => setOpenModalTransfers(true)}
+              style={colorExits}
+              onClick={() => showModalTransfers("exits")}
             >
               <span className="iconInfoTransfer">
                 <IoMdInformationCircleOutline />
               </span>
-              Saídas: {props.season.transfer.filter((t) => !t.arrival).length}
+              Saídas: {totalExitsCount}
             </div>
-            <div className="moneyMoved" style={{ color: "#c81419" }}>
-              Gastos: €
-              {props.season.transfer.reduce(
-                (acc, t) => acc + (t.value || 0),
-                0
-              )}
-              M
+            <div className="moneyMoved" style={colorArrivals}>
+              Gastos: €{totalArrivalsValue}M
             </div>
-            <div className="moneyMoved" style={{ color: "#0bb32a" }}>
-              Vendas: €
-              {props.season.transfer.reduce(
-                (acc, t) => acc - (t.value || 0),
-                0
-              )}
-              M
+            <div className="moneyMoved" style={colorExits}>
+              Vendas: €{totalExitsValue}M
             </div>
           </div>
           <div
             className="seasonProfit"
-            style={
-              props.season.transfer.reduce(
-                (acc, t) => acc + (t.value || 0),
-                0
-              ) >= 0
-                ? { color: "#0bb32a" }
-                : { color: "#c81419" }
-            }
+            style={totalProfits >= 0 ? colorExits : colorArrivals}
           >
-            Total: €
-            {Math.abs(
-              props.season.transfer.reduce((acc, t) => acc + (t.value || 0), 0)
-            )}
+            Total: €{Math.abs(totalProfits)}M
           </div>
         </>
+      )}
+
+      {openModalTransfers && (
+        <TransfersPlayers
+          deletePlayerFromTransfer={props.deletePlayerFromTransfer}
+          newTransferPlayer={newTransferPlayer}
+          setNewTransferPlayer={setNewTransferPlayer}
+          carrer={props.carrer}
+          seasons={props.seasons}
+          season={props.season}
+          closeModal={closeModalTransfers}
+          modalType={modalType}
+        />
       )}
     </>
   );
