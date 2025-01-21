@@ -4,8 +4,10 @@ import "./StyleTransfers.css";
 import TransfersPlayers from "./modal/TransfersPlayers.js";
 import NewTransfersPlayers from "./addPlayer/NewTransfersPlayers.js";
 import { v4 as uuidv4 } from "uuid";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 export default function Transfers(props) {
+  const [isHidden, setIsHidden] = useState(false);
   const colorExits = { color: "#0bb32a" };
   const colorArrivals = { color: "#c81419" };
   const [openModalTransfers, setOpenModalTransfers] = useState(false);
@@ -98,7 +100,6 @@ export default function Transfers(props) {
     <>
       <div className="containerTitle">
         <div className="titleTransfer">Tranferências da Temporada</div>
-
         <NewTransfersPlayers
           addPlayerToTransfer={addPlayerToTransfer}
           updatePage={props.updatePage}
@@ -109,55 +110,70 @@ export default function Transfers(props) {
           season={props.season}
           setSeasons={props.setSeasons}
         />
-      </div>
-      <>
-        <div className="containerTransferInfos">
-          <div
-            className="infosTranfers"
-            style={colorArrivals}
-            onClick={() => showModalTransfers("arrivals")}
-          >
-            <span className="iconInfoTransfer">
-              <IoMdInformationCircleOutline />
-            </span>
-            Chegadas: {totalArrivalsCount}
-          </div>
-          <div
-            className="infosTranfers"
-            style={colorExits}
-            onClick={() => showModalTransfers("exits")}
-          >
-            <span className="iconInfoTransfer">
-              <IoMdInformationCircleOutline />
-            </span>
-            Saídas: {totalExitsCount}
-          </div>
-          <div className="moneyMoved" style={colorArrivals}>
-            Gastos: €{totalArrivalsValue}M
-          </div>
-          <div className="moneyMoved" style={colorExits}>
-            Vendas: €{totalExitsValue}M
-          </div>
-        </div>
         <div
-          className="seasonProfit"
-          style={totalProfits >= 0 ? colorExits : colorArrivals}
+          onClick={() => setIsHidden(!isHidden)}
+          style={{ cursor: "pointer" }}
         >
-          Total: €{Math.abs(totalProfits)}M
+          {isHidden ? <IoMdArrowDropdown /> : <IoMdArrowDropup />}
         </div>
-      </>
-
-      {openModalTransfers && (
-        <TransfersPlayers
-          deletePlayerFromTransfer={props.deletePlayerFromTransfer}
-          newTransferPlayer={newTransferPlayer}
-          setNewTransferPlayer={setNewTransferPlayer}
-          carrer={props.carrer}
-          seasons={props.seasons}
-          season={props.season}
-          closeModal={closeModalTransfers}
-          modalType={modalType}
-        />
+      </div>
+      {!isHidden && (
+        <>
+          <div className="containerTransferInfos">
+            <div
+              className="infosTranfers"
+              style={{ color: "#c81419" }}
+              onClick={() => setOpenModalTransfers(true)}
+            >
+              <span className="iconInfoTransfer">
+                <IoMdInformationCircleOutline />
+              </span>
+              Chegadas: {props.season.transfer.filter((t) => t.arrival).length}
+            </div>
+            <div
+              className="infosTranfers"
+              style={{ color: "#0bb32a" }}
+              onClick={() => setOpenModalTransfers(true)}
+            >
+              <span className="iconInfoTransfer">
+                <IoMdInformationCircleOutline />
+              </span>
+              Saídas: {props.season.transfer.filter((t) => !t.arrival).length}
+            </div>
+            <div className="moneyMoved" style={{ color: "#c81419" }}>
+              Gastos: €
+              {props.season.transfer.reduce(
+                (acc, t) => acc + (t.value || 0),
+                0
+              )}
+              M
+            </div>
+            <div className="moneyMoved" style={{ color: "#0bb32a" }}>
+              Vendas: €
+              {props.season.transfer.reduce(
+                (acc, t) => acc - (t.value || 0),
+                0
+              )}
+              M
+            </div>
+          </div>
+          <div
+            className="seasonProfit"
+            style={
+              props.season.transfer.reduce(
+                (acc, t) => acc + (t.value || 0),
+                0
+              ) >= 0
+                ? { color: "#0bb32a" }
+                : { color: "#c81419" }
+            }
+          >
+            Total: €
+            {Math.abs(
+              props.season.transfer.reduce((acc, t) => acc + (t.value || 0), 0)
+            )}
+          </div>
+        </>
       )}
     </>
   );
