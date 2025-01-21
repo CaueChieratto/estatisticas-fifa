@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 export default function Transfers(props) {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   const colorExits = { color: "#0bb32a" };
   const colorArrivals = { color: "#c81419" };
   const [openModalTransfers, setOpenModalTransfers] = useState(false);
