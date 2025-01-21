@@ -77,6 +77,8 @@ export default function InputsForTransfers(props) {
       dataTransfer: "",
     });
 
+    document.body.style.overflowY = "auto";
+
     props.updatePage(updatedFifaData);
     props.closeAddPlayer();
   };

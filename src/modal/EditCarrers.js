@@ -3,12 +3,16 @@ import ButtonGreen from "../components/buttons/ButtonGreen.js";
 import "./Modal.css";
 
 export default function PageForNewCarrer(props) {
-  const [editedCarrer, setEditedCarrer] = useState(props.carrer);
+  const [editedCarrer, setEditedCarrer] = useState({
+    ...props.carrer,
+    numberLeagues: props.carrer?.numberLeagues || "",
+    numberCupsNationals: props.carrer?.numberCupsNationals || "",
+    numberCupsInternationals: props.carrer?.numberCupsInternationals || "",
+  });
 
   const changeValueCarrer = (event, input) => {
-    const newValue = Number(event.target.value);
-
-    const updatedCarrer = { ...editedCarrer, [input]: newValue };
+    const value = event.target.value === "" ? "" : Number(event.target.value);
+    const updatedCarrer = { ...editedCarrer, [input]: value };
 
     updatedCarrer.numberTitles =
       (Number(updatedCarrer.numberLeagues) || 0) +
@@ -19,7 +23,14 @@ export default function PageForNewCarrer(props) {
   };
 
   const saveChanges = () => {
-    props.onSave(editedCarrer);
+    const updatedCarrer = {
+      ...editedCarrer,
+      numberTitles:
+        (Number(editedCarrer.numberLeagues) || 0) +
+        (Number(editedCarrer.numberCupsNationals) || 0) +
+        (Number(editedCarrer.numberCupsInternationals) || 0),
+    };
+    props.onSave(updatedCarrer);
     props.closeEditCarrer();
   };
 
