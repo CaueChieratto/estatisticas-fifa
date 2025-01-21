@@ -149,6 +149,7 @@ export default function Transfers(props) {
 
       {openModalTransfers && (
         <TransfersPlayers
+          deletePlayerFromTransfer={props.deletePlayerFromTransfer}
           newTransferPlayer={newTransferPlayer}
           setNewTransferPlayer={setNewTransferPlayer}
           carrer={props.carrer}

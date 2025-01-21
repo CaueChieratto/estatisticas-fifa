@@ -227,6 +227,27 @@ export default function PageForTeams() {
     });
   };
 
+  const deletePlayerFromTransfer = (playerId) => {
+    const updatedSeasons = seasons.map((season) => {
+      const updatedTransfers = season.transfer.filter(
+        (transfer) => transfer.id !== playerId
+      );
+      return { ...season, transfer: updatedTransfers };
+    });
+
+    setSeasons(updatedSeasons);
+
+    const updatedCarrer = { ...carrer, seasons: updatedSeasons };
+    const fifaData = JSON.parse(localStorage.getItem("fifaData"));
+    const updatedFifaData = {
+      ...fifaData,
+      carrers: fifaData.carrers.map((c) =>
+        c.club === carrer.club ? updatedCarrer : c
+      ),
+    };
+    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -339,6 +360,7 @@ export default function PageForTeams() {
               }`}
             >
               <Transfers
+                deletePlayerFromTransfer={deletePlayerFromTransfer}
                 updatePage={updatePage}
                 carrer={carrer}
                 seasons={seasons}

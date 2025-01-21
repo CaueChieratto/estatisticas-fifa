@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./StyleModalTransfers.css";
 import { AiOutlineClose } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
+import { MdDelete } from "react-icons/md";
 import PlayersTransfers from "../../playerTransfer/PlayersTransfers.js";
 
 export default function TransfersPlayers(props) {
@@ -108,29 +108,40 @@ export default function TransfersPlayers(props) {
           {props.modalType === "arrivals" && (
             <div>
               <div className="titleTransfers">Contratações da Temporada</div>
-
               {props.season.transfer
                 ?.filter((transfer) => transfer.arrival == true)
                 .map((transfer, index) => (
-                  <PlayersTransfers
-                    key={index}
-                    arrival={true}
-                    numberValue={transfer.value != undefined}
-                    transfer={
-                      transfer.value != undefined && transfer.value != "endLoan"
-                    }
-                    loan={transfer.value == undefined}
-                    endLoan={transfer.value == "endLoan"}
-                    playerTransfer={transfer.playerTransfer}
-                    age={transfer.age}
-                    value={
-                      transfer.value != undefined
-                        ? transfer.value
-                        : transfer.loan
-                    }
-                    team={transfer.team}
-                    dataTransfer={transfer.dataTransfer}
-                  />
+                  <div key={index} style={{ position: "relative" }}>
+                    <div
+                      className="deletePlayerInTransfer"
+                      onClick={() =>
+                        props.deletePlayerFromTransfer(transfer.id)
+                      }
+                    >
+                      <div className="iconDelete">
+                        <MdDelete />
+                      </div>
+                    </div>
+                    <PlayersTransfers
+                      arrival={true}
+                      numberValue={transfer.value != undefined}
+                      transfer={
+                        transfer.value != undefined &&
+                        transfer.value != "endLoan"
+                      }
+                      loan={transfer.value == undefined}
+                      endLoan={transfer.value == "endLoan"}
+                      playerTransfer={transfer.playerTransfer}
+                      age={transfer.age}
+                      value={
+                        transfer.value != undefined
+                          ? transfer.value
+                          : transfer.loan
+                      }
+                      team={transfer.team}
+                      dataTransfer={transfer.dataTransfer}
+                    />
+                  </div>
                 ))}
             </div>
           )}
@@ -140,22 +151,37 @@ export default function TransfersPlayers(props) {
               {props.season.transfer
                 ?.filter((transfer) => transfer.arrival == false)
                 .map((transfer, index) => (
-                  <PlayersTransfers
-                    key={index}
-                    arrival={false}
-                    numberValue={transfer.value != undefined}
-                    transfer={transfer.value != undefined}
-                    loan={transfer.value == undefined}
-                    playerTransfer={transfer.playerTransfer}
-                    age={transfer.age}
-                    value={
-                      transfer.value != undefined
-                        ? transfer.value
-                        : transfer.loan
-                    }
-                    team={transfer.team}
-                    dataTransfer={transfer.dataTransfer}
-                  />
+                  <div key={index} style={{ position: "relative" }}>
+                    <div
+                      className="deletePlayerInTransfer"
+                      onClick={() =>
+                        props.deletePlayerFromTransfer(transfer.id)
+                      }
+                    >
+                      <div className="iconDelete">
+                        <MdDelete />
+                      </div>
+                    </div>
+                    <PlayersTransfers
+                      arrival={false}
+                      numberValue={transfer.value != undefined}
+                      transfer={
+                        transfer.value != undefined &&
+                        transfer.value != "endLoan"
+                      }
+                      loan={transfer.value == undefined}
+                      endLoan={transfer.value == "endLoan"}
+                      playerTransfer={transfer.playerTransfer}
+                      age={transfer.age}
+                      value={
+                        transfer.value != undefined
+                          ? transfer.value
+                          : transfer.loan
+                      }
+                      team={transfer.team}
+                      dataTransfer={transfer.dataTransfer}
+                    />
+                  </div>
                 ))}
             </div>
           )}

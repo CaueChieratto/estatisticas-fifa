@@ -1,6 +1,5 @@
 import React from "react";
 import "./styleTransfer.css";
-import { MdDelete } from "react-icons/md";
 
 export default function Arrivals(props) {
   const formatarData = (data) => {
@@ -17,11 +16,6 @@ export default function Arrivals(props) {
     <>
       <div className="containerTransfers">
         <div className="containerInfos">
-          <div className="deletePlayerInTransfer">
-            <div className="iconDelete">
-              <MdDelete />
-            </div>
-          </div>
           <div className="infosPlayer">
             <div className="infosTitles">
               {props.playerTransfer}
