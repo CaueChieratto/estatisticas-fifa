@@ -21,7 +21,7 @@ export default function NewStatsLeagues(props) {
       "La Liga": "./laliga.png",
       "La Liga 2": "./laliga2.png",
       "Copa da Espanha": "./copaRey.png",
-      "Supercopa da Espanha": "./superCopaEspanha.png",
+      Supercopa: "./superCopaEspanha.png",
       "Champions League": "./champions.png",
       "Europa League": "./europaLeague.png",
       "Conference League": "./conferenceLeague.png",
