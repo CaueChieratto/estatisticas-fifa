@@ -80,8 +80,10 @@ export default function Total(props) {
               ? player.cleanSheets * 0.4
               : player.goals * 1) +
             player.assists * 0.8 +
-            (player.ratingSum / player.gamesSum || 0) * 0.8) *
-          (player.isLegend ? 1.5 : 1),
+            (player.isLegend
+              ? 0.2
+              : (player.ratingSum / player.gamesSum || 0) * 0.8)) *
+          (player.isLegend ? 1.2 : 1),
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;
