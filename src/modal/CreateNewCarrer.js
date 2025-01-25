@@ -20,7 +20,19 @@ export default function PageForNewCarrer(props) {
 
   const countryLeagues = {
     Espanha: ["La Liga", "La Liga 2", "Copa da Espanha", "Supercopa"],
-    Inglaterra: ["Premier League", "FA Cup", "Carabao Cup"],
+    Inglaterra: [
+      "Premier League",
+      "FA Cup",
+      "Carabao Cup",
+      "EFL Championship",
+      "Community Shield",
+      "League One",
+      "League Two",
+      "BSM Trophy",
+      "Playoff EFL",
+      "Playoff Lg One",
+      "Playoff Lg Two",
+    ],
     Germany: ["Bundesliga", "DFB-Pokal", "Supercup"],
     Italy: ["Serie A", "Coppa Italia", "Supercoppa"],
     France: ["Ligue 1", "Coupe de France", "Trophée des Champions"],

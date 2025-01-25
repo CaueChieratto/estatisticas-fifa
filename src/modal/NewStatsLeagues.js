@@ -27,6 +27,17 @@ export default function NewStatsLeagues(props) {
       "Conference League": "./conferenceLeague.png",
       "UEFA Supercup": "./UEFAsupercopa.png",
       "Lendas do clube": "./icon.png",
+      "FA Cup": "./england/faCup.png",
+      "Carabao Cup": "./england/carabaoCup.png",
+      "League Two": "./england/leagueTwo.png",
+      "Playoff Lg Two": "./england/leagueTwo.png",
+      "BSM Trophy": "./england/BSMtrophy.png",
+      "League One": "./england/leagueOne.png",
+      "Playoff Lg One": "./england/leagueOne.png",
+      "EFL Championship": "./england/championship.png",
+      "Playoff EFL": "./england/championship.png",
+      "Community Shield": "./england/communityShield.png",
+      "Premier League": "./england/premierLeague.png",
     };
 
     setEditedLeague((prev) => ({
