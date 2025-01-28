@@ -62,20 +62,27 @@ export default function Total(props) {
     });
 
     const formattedStats = Object.values(playersStats)
-      .map((player) => ({
-        ...player,
-        rating:
-          player.gamesSum > 0
-            ? (player.ratingSum / player.gamesSum).toFixed(2)
-            : 0,
-        combinedValue:
-          player.games * 0.3 +
-          (player.position === 1
-            ? player.cleanSheets * 0.4
-            : player.goals * 1) +
-          player.assists * 0.8 +
-          (player.ratingSum / player.gamesSum || 0) * 0.8,
-      }))
+      .map((player) => {
+        const isLegendLeague = player.leagues?.some(
+          (league) => league.leagueName === "Lendas do clube"
+        );
+
+        return {
+          ...player,
+          rating:
+            player.gamesSum > 0
+              ? (player.ratingSum / player.gamesSum).toFixed(2)
+              : 0,
+          combinedValue: isLegendLeague
+            ? 0
+            : player.games * 0.15 +
+              (player.position === 1
+                ? player.cleanSheets * 0.2
+                : player.goals * 1) +
+              player.assists * 0.6 +
+              (player.ratingSum / player.gamesSum || 0) * 0.8,
+        };
+      })
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;
         return b.combinedValue - a.combinedValue;
