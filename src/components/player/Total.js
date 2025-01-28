@@ -18,7 +18,6 @@ export default function Total(props) {
     const playersStats = {};
 
     props.seasons.forEach((season) => {
-      const isLegendSeason = season.season === 0;
       season.players.forEach((player) => {
         const { playerName, balonDors, overall } = player;
         if (!playersStats[playerName]) {
@@ -34,12 +33,7 @@ export default function Total(props) {
             cleanSheets: 0,
             position: player.position,
             leagues: player.leagues,
-            isLegend: false,
           };
-        }
-
-        if (isLegendSeason) {
-          playersStats[playerName].isLegend = true;
         }
 
         playersStats[playerName].balonDors += Number(balonDors);
@@ -75,15 +69,12 @@ export default function Total(props) {
             ? (player.ratingSum / player.gamesSum).toFixed(2)
             : 0,
         combinedValue:
-          (player.games * 0.3 +
-            (player.position === 1
-              ? player.cleanSheets * 0.4
-              : player.goals * 1) +
-            player.assists * 0.8 +
-            (player.isLegend
-              ? 0.2
-              : (player.ratingSum / player.gamesSum || 0) * 0.8)) *
-          (player.isLegend ? 1.2 : 1),
+          player.games * 0.3 +
+          (player.position === 1
+            ? player.cleanSheets * 0.4
+            : player.goals * 1) +
+          player.assists * 0.8 +
+          (player.ratingSum / player.gamesSum || 0) * 0.8,
       }))
       .sort((a, b) => {
         if (b.balonDors !== a.balonDors) return b.balonDors - a.balonDors;

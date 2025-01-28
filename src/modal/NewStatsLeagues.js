@@ -27,6 +27,7 @@ export default function NewStatsLeagues(props) {
       "Conference League": "./conferenceLeague.png",
       "UEFA Supercup": "./UEFAsupercopa.png",
       "Lendas do clube": "./icon.png",
+      "Historico do Jogador": "./historico.png",
       "FA Cup": "./england/faCup.png",
       "Carabao Cup": "./england/carabaoCup.png",
       "League Two": "./england/leagueTwo.png",

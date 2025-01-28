@@ -44,6 +44,7 @@ export default function PageForNewCarrer(props) {
     "Conference League",
     "UEFA Supercup",
     "Lendas do clube",
+    "Historico do Jogador",
   ];
 
   const handleChange = (event) => {
