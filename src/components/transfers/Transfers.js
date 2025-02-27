@@ -42,13 +42,19 @@ export default function Transfers(props) {
   const arrivals = transfers.filter((transfer) => transfer.arrival);
   const exits = transfers.filter((transfer) => !transfer.arrival);
 
-  const totalArrivalsValue = arrivals
-    .filter((transfer) => !isNaN(parseFloat(transfer.value)))
-    .reduce((acc, transfer) => acc + transfer.value, 0);
+  const totalArrivalsValue = parseFloat(
+    arrivals
+      .filter((transfer) => !isNaN(parseFloat(transfer.value)))
+      .reduce((acc, transfer) => acc + transfer.value, 0)
+      .toFixed(2)
+  );
 
-  const totalExitsValue = exits
-    .filter((transfer) => !isNaN(parseFloat(transfer.value)))
-    .reduce((acc, transfer) => acc + transfer.value, 0);
+  const totalExitsValue = parseFloat(
+    exits
+      .filter((transfer) => !isNaN(parseFloat(transfer.value)))
+      .reduce((acc, transfer) => acc + transfer.value, 0)
+      .toFixed(2)
+  );
 
   const totalArrivalsCount = arrivals.length;
   const totalExitsCount = exits.length;
