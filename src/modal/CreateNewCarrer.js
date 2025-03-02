@@ -33,9 +33,10 @@ export default function PageForNewCarrer(props) {
       "Playoff Lg One",
       "Playoff Lg Two",
     ],
-    Germany: ["Bundesliga", "DFB-Pokal", "Supercup"],
-    Italy: ["Serie A", "Coppa Italia", "Supercoppa"],
-    France: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
+    Alemanha: ["Bundesliga", "DFB-Pokal", "Supercup"],
+    Italia: ["Serie A", "Coppa Italia", "Supercoppa"],
+    Franca: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
+    Arabia: ["Saudi Pro League", "Champions Asiatica"],
   };
 
   const globalLeagues = [
@@ -110,9 +111,10 @@ export default function PageForNewCarrer(props) {
               </option>
               <option value="Espanha">Espanha</option>
               <option value="Inglaterra">Inglaterra</option>
-              <option value="Germany">Alemanha</option>
-              <option value="Italy">Itália</option>
-              <option value="France">França</option>
+              <option value="Alemanha">Alemanha</option>
+              <option value="Italia">Itália</option>
+              <option value="Franca">França</option>
+              <option value="Arabia">Arábia Saudita</option>
             </select>
           </div>
           <div className="allInputs">

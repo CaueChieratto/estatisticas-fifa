@@ -39,6 +39,8 @@ export default function NewStatsLeagues(props) {
       "Playoff EFL": "./england/championship.png",
       "Community Shield": "./england/communityShield.png",
       "Premier League": "./england/premierLeague.png",
+      "Saudi Pro League": "./arabia/ligaArabia.png",
+      "Champions Asiatica": "./arabia/championsArabia.png",
     };
 
     setEditedLeague((prev) => ({
