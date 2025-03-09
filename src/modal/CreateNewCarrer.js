@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import ButtonGreen from "../components/buttons/ButtonGreen.js";
 import "./Modal.css";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../firebase/firebase.js";
+import { collection, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export default function PageForNewCarrer(props) {
   const [animationClass, setAnimationClass] = useState("slide-in-left");
@@ -65,19 +68,64 @@ export default function PageForNewCarrer(props) {
     });
   };
 
-  const saveCarrer = () => {
+  const saveCarrer = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user ? user.uid : null;
+
+    if (!uid) {
+      alert("Usuário não está logado.");
+      return;
+    }
+
     if (!carrerData.nation) {
       alert("Por favor, selecione um país antes de salvar.");
       return;
     }
 
-    const newId = uuidv4();
-    const fifaData = JSON.parse(localStorage.getItem("fifaData")) || {
-      carrers: [],
-    };
-    fifaData.carrers.push({ ...carrerData, uuid: newId });
-    localStorage.setItem("fifaData", JSON.stringify(fifaData));
-    handleCloseModal();
+    if (!carrerData.club) {
+      alert("Por favor, forneça o nome do clube.");
+      return;
+    }
+
+    try {
+      // Salva a carreira dentro da coleção específica do usuário
+      const docRef = await addDoc(collection(db, `users/${uid}/fifaData`), {
+        ...carrerData,
+        uuid: uuidv4(),
+      });
+
+      const clubName = carrerData.club;
+
+      if (!clubName) {
+        console.error("Nome do clube está indefinido.");
+        return;
+      }
+
+      const newDocRef = doc(db, `users/${uid}/fifaData`, clubName);
+
+      await setDoc(newDocRef, {
+        club: carrerData.club,
+        date: carrerData.date,
+        nation: carrerData.nation,
+        numberCupsInternationals: carrerData.numberCupsInternationals,
+        numberCupsNationals: carrerData.numberCupsNationals,
+        numberLeagues: carrerData.numberLeagues,
+        numberTitles: carrerData.numberTitles,
+        leagues: carrerData.leagues,
+        seasons: carrerData.seasons,
+        uuid: uuidv4(),
+      });
+
+      // Deleta o documento antigo
+      await deleteDoc(docRef);
+
+      setCarrerData({ ...carrerData, id: clubName });
+
+      handleCloseModal();
+    } catch (error) {
+      console.error("Erro ao salvar carreira:", error);
+    }
   };
 
   const handleCloseModal = () => {

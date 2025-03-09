@@ -7,6 +7,9 @@ import { TbShieldCancel } from "react-icons/tb";
 import { GiSoccerBall } from "react-icons/gi";
 import { RiCloseCircleLine } from "react-icons/ri";
 import DeleteSeason from "../../modal/DeleteSeason";
+import { db } from "../../firebase/firebase.js";
+import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export default function Infos(props) {
   const [openDelete, setOpenDelete] = useState(false);
@@ -23,37 +26,49 @@ export default function Infos(props) {
     document.body.style.overflowY = "auto";
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (!props.season || !props.season.players) {
       console.error("A temporada ou os jogadores não estão definidos.");
       return;
     }
 
-    const updatedPlayers = props.season.players.filter(
-      (player) => player.playerName !== props.playerName
-    );
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
 
-    const updatedSeason = {
-      ...props.season,
-      players: updatedPlayers,
-    };
+      if (!user?.uid) {
+        console.error("Usuário não autenticado.");
+        return;
+      }
 
-    const updatedSeasons = props.seasons.map((season) =>
-      season.id === updatedSeason.id ? updatedSeason : season
-    );
+      const carrerRef = doc(db, "users", user.uid, "fifaData", props.carrer.id);
+      const carrerSnap = await getDoc(carrerRef);
 
-    props.setSeasons(updatedSeasons);
+      if (carrerSnap.exists()) {
+        const carrerData = carrerSnap.data();
 
-    const updatedCarrer = { ...props.carrer, seasons: updatedSeasons };
-    const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-    const updatedFifaData = {
-      ...fifaData,
-      carrers: fifaData.carrers.map((c) =>
-        c.club === props.carrer.club ? updatedCarrer : c
-      ),
-    };
+        const updatedPlayers = props.season.players.filter(
+          (player) => player.playerName !== props.playerName
+        );
 
-    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
+        const updatedSeason = {
+          ...props.season,
+          players: updatedPlayers,
+        };
+
+        const updatedSeasons = carrerData.seasons.map((season) =>
+          season.id === updatedSeason.id ? updatedSeason : season
+        );
+
+        await updateDoc(carrerRef, { seasons: updatedSeasons });
+
+        props.setSeasons(updatedSeasons);
+      } else {
+        console.log("Documento do usuário não encontrado.");
+      }
+    } catch (error) {
+      console.error("Erro ao deletar jogador: ", error);
+    }
   };
 
   return (

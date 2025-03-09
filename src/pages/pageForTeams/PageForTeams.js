@@ -17,57 +17,73 @@ import { FaArrowUp } from "react-icons/fa";
 import Infos from "../../components/player/Infos.js";
 import { CgCloseR } from "react-icons/cg";
 import Transfers from "../../components/transfers/Transfers.js";
+import { db } from "../../firebase/firebase.js";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 
 export default function PageForTeams() {
   const location = useLocation();
   const { carrer } = location.state || {};
   const navigate = useNavigate();
-
   const [seasons, setSeasons] = useState(carrer.seasons || []);
-  const [historicPlayers, setHistoricPlayers] = useState([]);
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const uid = user?.uid;
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("fifaData"));
-    if (storedData) {
-      const currentCarrer = storedData.carrers.find(
-        (c) => c.club === carrer.club
-      );
-      if (currentCarrer) setSeasons(currentCarrer.seasons);
-    }
-  }, [carrer.club]);
+    const auth = getAuth();
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      if (!user?.uid || !carrer?.id) return;
+
+      const carrerRef = doc(db, "users", user.uid, "fifaData", carrer.id);
+
+      const unsubscribeFirestore = onSnapshot(carrerRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setSeasons(docSnap.data().seasons);
+        }
+      });
+
+      return () => unsubscribeFirestore();
+    });
+
+    return () => unsubscribeAuth();
+  }, [carrer?.id]);
 
   function Save() {
-    const updatedCarrer = { ...carrer, seasons };
-    const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-    const updatedFifaData = {
-      ...fifaData,
-      carrers: fifaData.carrers.map((c) =>
-        c.club === carrer.club ? updatedCarrer : c
-      ),
-    };
-    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    navigate("/");
+    navigate("/PageForAllTeams");
   }
 
-  const addSeason = () => {
+  const addSeason = async () => {
+    if (!user?.uid || !carrer || !carrer.seasons) {
+      console.error(
+        "Erro: 'user', 'carrer' ou 'carrer.seasons' não está definido."
+      );
+      return;
+    }
+
     const newSeason = {
       id: uuidv4(),
-      season: seasons.length - 1 + 1,
+      season: seasons.length + 1,
       players: [],
       transfer: [],
     };
-    const updatedSeasons = [...seasons, newSeason];
-    setSeasons(updatedSeasons);
 
-    const updatedCarrer = { ...carrer, seasons: updatedSeasons };
-    const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-    const updatedFifaData = {
-      ...fifaData,
-      carrers: fifaData.carrers.map((c) =>
-        c.club === carrer.club ? updatedCarrer : c
-      ),
-    };
-    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
+    setSeasons((prevSeasons) => [...prevSeasons, newSeason]);
+
+    try {
+      const carrerRef = doc(db, "users", user.uid, "fifaData", carrer.id);
+      const carrerSnap = await getDoc(carrerRef);
+
+      if (carrerSnap.exists()) {
+        const updatedSeasons = [...carrerSnap.data().seasons, newSeason];
+
+        await updateDoc(carrerRef, { seasons: updatedSeasons });
+      } else {
+        console.log("Documento do usuário não encontrado.");
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar temporada: ", error);
+    }
   };
 
   const [openStats, setOpenStats] = useState(false);
@@ -85,7 +101,6 @@ export default function PageForTeams() {
     document.body.style.overflowY = "auto";
   };
 
-  const [newPlayer, setNewPlayer] = useState({});
   const [openNewStats, setOpenNewStats] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState(null);
 
@@ -117,94 +132,105 @@ export default function PageForTeams() {
     document.body.style.overflowY = "auto";
   };
 
-  const deleteSeason = () => {
-    if (seasonToDelete) {
-      const updatedSeasons = seasons.filter(
-        (season) => season.season !== seasonToDelete.season
-      );
+  const deleteSeason = async () => {
+    if (!user?.uid || !seasonToDelete) return;
 
-      setSeasons(updatedSeasons);
-      const updatedCarrer = { ...carrer, seasons: updatedSeasons };
-      const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-      const updatedFifaData = {
-        ...fifaData,
-        carrers: fifaData.carrers.map((c) =>
-          c.club === carrer.club ? updatedCarrer : c
-        ),
-      };
-      localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
+    try {
+      const carrerRef = doc(db, "users", user.uid, "fifaData", carrer.id);
+      const carrerSnap = await getDoc(carrerRef);
 
-      closeModalDelete();
-    }
-  };
+      if (carrerSnap.exists()) {
+        const updatedSeasons = carrerSnap
+          .data()
+          .seasons.filter((season) => season.season !== seasonToDelete.season);
 
-  const addPlayerToSeason = (newPlayer, seasonNumber) => {
-    const playerWithId = { ...newPlayer, id: uuidv4() };
-    const updatedSeasons = [...seasons];
-    const seasonIndex = updatedSeasons.findIndex(
-      (season) => season.season === seasonNumber
-    );
+        await updateDoc(carrerRef, { seasons: updatedSeasons });
 
-    if (seasonIndex !== -1) {
-      const playerExists = updatedSeasons[seasonIndex].players.some(
-        (player) => player.playerName === newPlayer.playerName
-      );
-
-      if (playerExists) {
-        alert("Este jogador já existe na temporada.");
-        return;
+        setSeasons(updatedSeasons);
+      } else {
+        console.log("Documento do usuário não encontrado.");
       }
+    } catch (error) {
+      console.error("Erro ao deletar temporada: ", error);
+    }
 
-      updatedSeasons[seasonIndex].players.push(newPlayer);
-      setSeasons(updatedSeasons);
+    closeModalDelete();
+  };
 
-      const updatedHistoric = historicPlayers.filter(
-        (player) => player.id !== playerWithId.id
-      );
-      setHistoricPlayers(updatedHistoric);
+  const addPlayerToSeason = async (seasonId, newPlayer) => {
+    if (!user?.uid || !carrer || !carrer.id) {
+      console.error("Erro: 'user' ou 'carrer' não está definido.");
+      return;
+    }
 
-      const updatedCarrer = { ...carrer, seasons: updatedSeasons };
-      const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-      const updatedFifaData = {
-        ...fifaData,
-        carrers: fifaData.carrers.map((c) =>
-          c.club === carrer.club ? updatedCarrer : c
-        ),
-      };
-      localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
+    try {
+      const carrerRef = doc(db, "users", user.uid, "fifaData", carrer.id);
+      const carrerSnap = await getDoc(carrerRef);
+
+      if (carrerSnap.exists()) {
+        const carrerData = carrerSnap.data();
+
+        const seasonIndex = carrerData.seasons.findIndex(
+          (season) => season.season === Number(seasonId)
+        );
+
+        if (seasonIndex === -1) {
+          console.error("Erro: Temporada não encontrada.");
+          return;
+        }
+
+        const updatedSeasons = [...carrerData.seasons];
+        updatedSeasons[seasonIndex] = {
+          ...updatedSeasons[seasonIndex],
+          players: [...updatedSeasons[seasonIndex].players, newPlayer],
+        };
+
+        await updateDoc(carrerRef, { seasons: updatedSeasons });
+      } else {
+        console.log("Documento do usuário não encontrado.");
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar jogador: ", error);
     }
   };
 
-  const saveEditedPlayer = (editedPlayer, seasonNumber) => {
-    const updatedSeasons = [...seasons];
+  const saveEditedPlayer = async (editedPlayer, seasonNumber) => {
+    if (!user?.uid || !carrer || !carrer.id) {
+      console.error("Erro: 'user' ou 'carrer' não está definido.");
+      return;
+    }
 
-    const seasonIndex = updatedSeasons.findIndex((season) => {
-      if (season.season === seasonNumber) {
-        return season.players.some(
+    try {
+      const carrerRef = doc(db, "users", user.uid, "fifaData", carrer.id);
+      const carrerSnap = await getDoc(carrerRef);
+
+      if (carrerSnap.exists()) {
+        const carrerData = carrerSnap.data();
+
+        const seasonIndex = carrerData.seasons.findIndex(
+          (season) => season.season === seasonNumber
+        );
+
+        if (seasonIndex === -1) {
+          console.error("Erro: Temporada não encontrada.");
+          return;
+        }
+
+        const updatedSeasons = [...carrerData.seasons];
+        const playerIndex = updatedSeasons[seasonIndex].players.findIndex(
           (p) => p.playerName === editedPlayer.playerName
         );
+
+        if (playerIndex !== -1) {
+          updatedSeasons[seasonIndex].players[playerIndex] = editedPlayer;
+
+          await updateDoc(carrerRef, { seasons: updatedSeasons });
+        }
+      } else {
+        console.log("Documento do usuário não encontrado.");
       }
-    });
-
-    if (seasonIndex !== -1) {
-      const playerIndex = updatedSeasons[seasonIndex].players.findIndex(
-        (p) => p.playerName === editedPlayer.playerName
-      );
-
-      if (playerIndex !== -1) {
-        updatedSeasons[seasonIndex].players[playerIndex] = editedPlayer;
-        setSeasons(updatedSeasons);
-
-        const updatedCarrer = { ...carrer, seasons: updatedSeasons };
-        const fifaData = JSON.parse(localStorage.getItem("fifaData"));
-        const updatedFifaData = {
-          ...fifaData,
-          carrers: fifaData.carrers.map((c) =>
-            c.club === carrer.club ? updatedCarrer : c
-          ),
-        };
-        localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-      }
+    } catch (error) {
+      console.error("Erro ao salvar jogador editado: ", error);
     }
   };
 
@@ -347,14 +373,14 @@ export default function PageForTeams() {
                 {openNewStats && (
                   <NewPlayerModal
                     addPlayerToSeason={(player) =>
-                      addPlayerToSeason(player, selectedSeason)
+                      addPlayerToSeason(selectedSeason, player)
                     }
                     closeNewPlayer={closeNewPlayer}
                   />
                 )}
               </div>
             </div>
-            <div
+            {/* <div
               className={`hiddenText ${
                 openSeasons.includes(season.id) ? "visible" : "hidden"
               }`}
@@ -367,7 +393,7 @@ export default function PageForTeams() {
                 season={season}
                 setSeasons={setSeasons}
               />
-            </div>
+            </div> */}
           </div>
         ))}
 
@@ -393,6 +419,7 @@ export default function PageForTeams() {
 
       {openDelete && (
         <DeleteSeason
+          textDelete="apagar temporada"
           closeModalDelete={closeModalDelete}
           delete={deleteSeason}
         ></DeleteSeason>

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./PlayerContainer.css";
 import { FcAddDatabase } from "react-icons/fc";
 import { CgCloseR } from "react-icons/cg";
-
+import { db } from "../../firebase/firebase.js";
+import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import NewStatsLeagues from "../../modal/NewStatsLeagues";
 import DeleteSeason from "../../modal/DeleteSeason";
+import { getAuth } from "firebase/auth";
 import { FcFullTrash } from "react-icons/fc";
 
 export default function LeaguesContainer(props) {
@@ -31,50 +33,123 @@ export default function LeaguesContainer(props) {
     setDeleteLeague(false);
   };
 
-  const updateFifaData = () => {
-    const fifaData = JSON.parse(localStorage.getItem("fifaData"));
+  const updateFifaData = async () => {
+    const fifaDocRef = doc(db, "fifaData", props.carrer.id);
+    const fifaDoc = await getDoc(fifaDocRef);
 
-    const updatedFifaData = {
-      ...fifaData,
-      carrers: fifaData.carrers.map((carrer) =>
-        carrer.club === props.carrer.club
-          ? {
-              ...carrer,
-              seasons: carrer.seasons.map((season) =>
-                season.season === props.season.season
-                  ? {
-                      ...season,
-                      players: season.players.map((player) =>
-                        player.playerName === props.player.playerName
-                          ? { ...props.player }
-                          : player
-                      ),
-                    }
-                  : season
-              ),
-            }
-          : carrer
-      ),
-    };
-
-    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    props.updatePage(updatedFifaData);
-  };
-
-  const addLeagueToPlayer = (league) => {
-    if (!props.player.leagues) {
-      props.player.leagues = [];
+    if (!fifaDoc.exists()) {
+      return;
     }
-    props.player.leagues.push(league);
-    updateFifaData();
+
+    const fifaData = fifaDoc.data();
+
+    const updatedSeasons = fifaData.seasons.map((season) =>
+      season.id === props.season.id
+        ? {
+            ...season,
+            players: season.players.map((player) =>
+              player.playerName === props.player.playerName
+                ? { ...props.player }
+                : player
+            ),
+          }
+        : season
+    );
+
+    await updateDoc(fifaDocRef, { seasons: updatedSeasons });
+    props.updatePage({ ...fifaData, seasons: updatedSeasons });
   };
 
-  const deleteLeagueFromPlayer = () => {
+  const addLeagueToPlayer = async (league) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user?.uid) {
+      console.error("Usuário não autenticado.");
+      return;
+    }
+
+    const fifaDocRef = doc(db, "users", user.uid, "fifaData", props.carrer.id);
+    const fifaDoc = await getDoc(fifaDocRef);
+
+    if (!fifaDoc.exists()) {
+      return;
+    }
+
+    const fifaData = fifaDoc.data();
+
+    const updatedSeasons = fifaData.seasons.map((season) =>
+      season.id === props.season.id
+        ? {
+            ...season,
+            players: season.players.map((player) =>
+              player.playerName === props.player.playerName
+                ? {
+                    ...player,
+                    leagues: [...(player.leagues || []), league],
+                  }
+                : player
+            ),
+          }
+        : season
+    );
+
+    await updateDoc(fifaDocRef, { seasons: updatedSeasons });
+  };
+
+  const deleteLeagueFromPlayer = async () => {
     if (leagueToDelete !== null) {
-      const updatedLeagues = [...props.player.leagues];
-      updatedLeagues.splice(leagueToDelete, 1);
-      props.player.leagues = updatedLeagues;
-      updateFifaData();
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        if (!user?.uid) {
+          console.error("Usuário não autenticado.");
+          return;
+        }
+
+        const fifaDocRef = doc(
+          db,
+          "users",
+          user.uid,
+          "fifaData",
+          props.carrer.id
+        );
+        const fifaDoc = await getDoc(fifaDocRef);
+
+        if (!fifaDoc.exists()) {
+          return;
+        }
+
+        const fifaData = fifaDoc.data();
+
+        const updatedSeasons = fifaData.seasons.map((season) =>
+          season.id === props.season.id
+            ? {
+                ...season,
+                players: season.players.map((player) =>
+                  player.playerName === props.player.playerName
+                    ? {
+                        ...player,
+                        leagues: player.leagues.filter(
+                          (league, index) => index !== leagueToDelete
+                        ),
+                      }
+                    : player
+                ),
+              }
+            : season
+        );
+
+        await updateDoc(fifaDocRef, { seasons: updatedSeasons });
+
+        if (typeof props.setSeasons === "function") {
+          props.setSeasons(updatedSeasons);
+        }
+      } catch (error) {
+        console.error("Erro ao deletar liga do jogador: ", error);
+      }
+
       closeModalDelete();
     }
   };

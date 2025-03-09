@@ -8,13 +8,41 @@ import { GoPencil } from "react-icons/go";
 import DeleteSeason from "../../modal/DeleteSeason.js";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase/firebase.js";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  updateDoc,
+  onSnapshot,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function PageForAllTeams() {
+  const [fifaData, setFifaData] = useState({ carrers: [] });
+
   useEffect(() => {
-    const storedData = localStorage.getItem("fifaData");
-    if (storedData) {
-      setFifaData(JSON.parse(storedData));
-    }
+    const auth = getAuth();
+    const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const uid = currentUser.uid;
+        const unsubscribeFirestore = onSnapshot(
+          collection(db, `users/${uid}/fifaData`),
+          (querySnapshot) => {
+            const data = querySnapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setFifaData({ carrers: data });
+          }
+        );
+
+        return () => unsubscribeFirestore();
+      }
+    });
+
+    return () => unsubscribeAuth();
   }, []);
 
   const navigate = useNavigate();
@@ -29,18 +57,15 @@ export default function PageForAllTeams() {
   const [editCarrer, setEditCarrer] = useState(false);
   const [carrer, setCarrer] = useState({});
 
-  const [fifaData, setFifaData] = useState({});
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteCarrerModal, setDeleteCarrer] = useState({});
 
   const showNewCarrer = () => {
-    setNewCarrer();
+    setNewCarrer({});
     setCreateNewCarrer(true);
   };
 
   const closeNewCarrer = () => {
-    const storedData = localStorage.getItem("fifaData");
-    if (storedData) {
-      setFifaData(JSON.parse(storedData));
-    }
     setCreateNewCarrer(false);
   };
 
@@ -49,13 +74,11 @@ export default function PageForAllTeams() {
     setEditCarrer(true);
     document.body.style.overflowY = "hidden";
   };
+
   const closeEditCarrer = () => {
     setEditCarrer(false);
     document.body.style.overflowY = "auto";
   };
-
-  const [openDelete, setOpenDelete] = useState(false);
-  const [deleteCarrerModal, setDeleteCarrer] = useState({});
 
   const showModalDeleteClub = (carrer) => {
     setDeleteCarrer(carrer);
@@ -64,37 +87,45 @@ export default function PageForAllTeams() {
   };
 
   const closeModalDeleteClub = () => {
-    const storedData = localStorage.getItem("fifaData");
-    if (storedData) {
-      setFifaData(JSON.parse(storedData));
-    }
     setOpenDelete(false);
     document.body.style.overflowY = "auto";
   };
 
-  const deleteCarrer = () => {
-    var newFifaDataCarrers = fifaData.carrers.filter(
-      (x) => x.uuid != deleteCarrerModal.uuid
-    );
-    var newFifaData = { carrers: newFifaDataCarrers };
-    localStorage.setItem("fifaData", JSON.stringify(newFifaData));
-    closeModalDeleteClub();
+  const deleteCarrer = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user ? user.uid : null;
+
+    if (uid) {
+      await deleteDoc(doc(db, `users/${uid}/fifaData`, deleteCarrerModal.id)); // Usando o uid do usuário logado
+      setFifaData((prev) => ({
+        carrers: prev.carrers.filter((x) => x.id !== deleteCarrerModal.id),
+      }));
+      closeModalDeleteClub();
+    }
   };
 
-  const saveEditedCarrer = (editedCarrer) => {
-    const updatedCarrers = fifaData.carrers.map((c) =>
-      c.uuid === editedCarrer.uuid ? editedCarrer : c
-    );
-    const updatedFifaData = { carrers: updatedCarrers };
-    localStorage.setItem("fifaData", JSON.stringify(updatedFifaData));
-    setFifaData(updatedFifaData);
-    closeEditCarrer();
+  const saveEditedCarrer = async (editedCarrer) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user ? user.uid : null;
+
+    if (uid) {
+      const carrerRef = doc(db, `users/${uid}/fifaData`, editedCarrer.id); // Usando o uid do usuário logado
+      await updateDoc(carrerRef, editedCarrer);
+
+      setFifaData((prev) => ({
+        carrers: prev.carrers.map((c) =>
+          c.id === editedCarrer.id ? editedCarrer : c
+        ),
+      }));
+      closeEditCarrer();
+    }
   };
 
   return (
     <>
-      {fifaData &&
-        fifaData.carrers &&
+      {fifaData.carrers &&
         fifaData.carrers.length > 0 &&
         fifaData.carrers.map((carrer, index) => (
           <div className="container" key={carrer.club + index}>
@@ -116,7 +147,7 @@ export default function PageForAllTeams() {
                   numberCupsNationals={carrer.numberCupsNationals}
                   numberCupsInternationals={carrer.numberCupsInternationals}
                   data={carrer.date}
-                ></Allteams>
+                />
               </div>
               <div
                 className="editCarrer"
@@ -137,7 +168,7 @@ export default function PageForAllTeams() {
         ))}
       <div className="containerButton">
         <div onClick={showNewCarrer} style={{ width: "fit-content" }}>
-          <ButtonGreen nameButtonNewCarrer="nova carreira"></ButtonGreen>
+          <ButtonGreen nameButtonNewCarrer="nova carreira" />
         </div>
       </div>
 
@@ -146,19 +177,17 @@ export default function PageForAllTeams() {
           onSave={saveEditedCarrer}
           carrer={carrer}
           closeEditCarrer={closeEditCarrer}
-        ></EditCarrers>
+        />
       )}
 
-      {createNewCarrer && (
-        <CreateNewCarrer closeNewCarrer={closeNewCarrer}></CreateNewCarrer>
-      )}
+      {createNewCarrer && <CreateNewCarrer closeNewCarrer={closeNewCarrer} />}
 
       {openDelete && (
         <DeleteSeason
           delete={deleteCarrer}
           textDelete="apagar a carreira"
           closeModalDelete={closeModalDeleteClub}
-        ></DeleteSeason>
+        />
       )}
     </>
   );

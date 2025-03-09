@@ -53,14 +53,13 @@ export default function NewStatsLeagues(props) {
   const editLeague = (player) => {
     setEditedLeague(player);
   };
-
-  const statsLeague = () => {
+  const statsLeague = async () => {
     if (editedLeague.league === "") {
       alert("Selecione uma opção");
       return;
     }
 
-    props.addLeagueToPlayer(editedLeague);
+    await props.addLeagueToPlayer(editedLeague);
     props.closeModal();
   };
 
