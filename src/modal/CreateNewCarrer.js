@@ -40,6 +40,7 @@ export default function PageForNewCarrer(props) {
     Italia: ["Serie A", "Coppa Italia", "Supercoppa"],
     Franca: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
     Arabia: ["Saudi Pro League", "Champions Asiatica"],
+    Holanda: ["Eredivisie", "Oranje Beker"],
   };
 
   const globalLeagues = [
@@ -162,6 +163,7 @@ export default function PageForNewCarrer(props) {
               <option value="Alemanha">Alemanha</option>
               <option value="Italia">Itália</option>
               <option value="Franca">França</option>
+              <option value="Holanda">Holanda</option>
               <option value="Arabia">Arábia Saudita</option>
             </select>
           </div>
