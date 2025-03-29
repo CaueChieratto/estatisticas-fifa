@@ -43,6 +43,9 @@ export default function NewStatsLeagues(props) {
       "Champions Asiatica": "./arabia/championsArabia.png",
       Eredivisie: "./netherlands/eredivisie.png",
       "Oranje Beker": "./netherlands/oranjeBeker.png",
+      "Ligue 1": "./france/ligueOne.png",
+      "Coupe de France": "./france/coupeDeFrance.png",
+      "Super Cup": "./france/tropheeDesChampions.png",
     };
 
     setEditedLeague((prev) => ({

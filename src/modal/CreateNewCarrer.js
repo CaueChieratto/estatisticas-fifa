@@ -38,7 +38,7 @@ export default function PageForNewCarrer(props) {
     ],
     Alemanha: ["Bundesliga", "DFB-Pokal", "Supercup"],
     Italia: ["Serie A", "Coppa Italia", "Supercoppa"],
-    Franca: ["Ligue 1", "Coupe de France", "Trophée des Champions"],
+    Franca: ["Ligue 1", "Coupe de France", "Super Cup"],
     Arabia: ["Saudi Pro League", "Champions Asiatica"],
     Holanda: ["Eredivisie", "Oranje Beker"],
   };
