@@ -6,11 +6,20 @@ import "./login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("loggedIn")) {
+    const storedEmail = localStorage.getItem("rememberedEmail");
+    const storedKeepLoggedIn = localStorage.getItem("keepLoggedIn") === "true";
+
+    if (storedKeepLoggedIn) {
       navigate("/PageForAllTeams");
+    }
+
+    if (storedEmail && storedKeepLoggedIn) {
+      setEmail(storedEmail);
+      setKeepLoggedIn(true);
     }
   }, [navigate]);
 
@@ -23,6 +32,15 @@ export default function Login() {
     try {
       await login(email, password);
       localStorage.setItem("loggedIn", "true");
+
+      if (keepLoggedIn) {
+        localStorage.setItem("rememberedEmail", email);
+        localStorage.setItem("keepLoggedIn", "true");
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.setItem("keepLoggedIn", "false");
+      }
+
       navigate("/PageForAllTeams");
     } catch (error) {
       console.error(error);
@@ -47,20 +65,39 @@ export default function Login() {
   };
 
   return (
-    <div className="containerLogin">
-      <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Entrar</button>
-      <button onClick={handleRegister}>Criar Conta</button>
+    <div className="bodyLogin">
+      <div className="containerLogin">
+        <h2>Faça seu Login</h2>
+        <input
+          className="inputField"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="inputField"
+          type="password"
+          placeholder="Senha"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="buttonLogin" onClick={handleLogin}>
+          Entrar
+        </button>
+        <button className="buttonRegister" onClick={handleRegister}>
+          Criar Conta
+        </button>
+        <div className="checkboxContainer">
+          <input
+            type="checkbox"
+            className="checkboxInput"
+            id="keepLoggedIn"
+            checked={keepLoggedIn}
+            onChange={() => setKeepLoggedIn(!keepLoggedIn)}
+          />
+          <label htmlFor="keepLoggedIn">Manter logado</label>
+        </div>
+      </div>
     </div>
   );
 }
