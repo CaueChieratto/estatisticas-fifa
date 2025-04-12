@@ -5,6 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase/firebase.js";
 import { collection, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { IoMdClose } from "react-icons/io";
+import { BiWorld } from "react-icons/bi";
+import { PiShieldCheckeredDuotone } from "react-icons/pi";
+import { BiFootball } from "react-icons/bi";
+import { GoTrophy } from "react-icons/go";
+import { GiTrophyCup } from "react-icons/gi";
+import { GrTrophy } from "react-icons/gr";
+import { CiCalendar } from "react-icons/ci";
 
 export default function PageForNewCarrer(props) {
   const [animationClass, setAnimationClass] = useState("slide-in-left");
@@ -90,7 +98,6 @@ export default function PageForNewCarrer(props) {
     }
 
     try {
-      // Salva a carreira dentro da coleção específica do usuário
       const docRef = await addDoc(collection(db, `users/${uid}/fifaData`), {
         ...carrerData,
         uuid: uuidv4(),
@@ -118,7 +125,6 @@ export default function PageForNewCarrer(props) {
         uuid: uuidv4(),
       });
 
-      // Deleta o documento antigo
       await deleteDoc(docRef);
 
       setCarrerData({ ...carrerData, id: clubName });
@@ -141,22 +147,35 @@ export default function PageForNewCarrer(props) {
       onClick={handleCloseModal}
       className={`containerModalCreateCarrer ${animationClass}`}
     >
-      <div onClick={handleCloseModal}>fechar</div>
       <div
         className="cardModalCreateCarrer"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="containerHeader">
+          <div className="addClub">Adicionar Clube</div>
+          <div onClick={handleCloseModal} className="closeModalCreateCarrer">
+            <IoMdClose size={25} />
+          </div>
+        </div>
         <div className="containerCreateCarrer">
-          <div className="allInputs">
-            <div className="titleInput">Pais</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <BiWorld size={15} />
+            </div>
             <select
-              className="inputs"
+              style={{
+                appearance: "none",
+                WebkitAppearance: "none",
+                MozAppearance: "none",
+                marginRight: "4px",
+              }}
+              className="inputsCreateCarrer"
               name="nation"
               value={carrerData.nation}
               onChange={handleChange}
             >
               <option value="" disabled>
-                Selecione um país
+                Selecione um País
               </option>
               <option value="Espanha">Espanha</option>
               <option value="Inglaterra">Inglaterra</option>
@@ -167,68 +186,92 @@ export default function PageForNewCarrer(props) {
               <option value="Arabia">Arábia Saudita</option>
             </select>
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Clube</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <PiShieldCheckeredDuotone size={15} />
+            </div>
             <input
-              className="inputs"
+              placeholder="Clube"
+              className="inputsCreateCarrer"
               type="text"
               name="club"
               value={carrerData.club}
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Titulos</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <GoTrophy size={15} />
+            </div>
             <input
-              className="inputs"
+              placeholder="Títulos"
+              className="inputsCreateCarrer"
               type="text"
               name="numberTitles"
               value={carrerData.numberTitles}
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Ligas</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <BiFootball size={15} />
+            </div>
             <input
-              className="inputs"
+              placeholder="Ligas"
+              className="inputsCreateCarrer"
               type="number"
               name="numberLeagues"
               value={carrerData.numberLeagues}
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Copas Nacionais</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <GrTrophy size={15} />
+            </div>
             <input
-              className="inputs"
+              placeholder="Copas Nacionais"
+              className="inputsCreateCarrer"
               type="number"
               name="numberCupsNationals"
               value={carrerData.numberCupsNationals}
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Copas Internacionais</div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <GiTrophyCup size={15} />
+            </div>
             <input
-              className="inputs"
+              placeholder="Copas Internacionais"
+              className="inputsCreateCarrer"
               type="number"
               name="numberCupsInternationals"
               value={carrerData.numberCupsInternationals}
               onChange={handleChange}
             />
           </div>
-          <div className="allInputs">
-            <div className="titleInput">Data</div>
+          <div
+            className="allInputsCreateCarrer"
+            onClick={() =>
+              document.getElementById("customDateInput").showPicker()
+            }
+          >
+            <div className="iconForInputsCreateCarrer">
+              <CiCalendar size={15} />
+            </div>
             <input
-              className="inputDate"
+              id="customDateInput"
+              className="inputsCreateCarrer"
               type="date"
               name="date"
               value={carrerData.date}
               onChange={handleChange}
+              placeholder="Data"
             />
           </div>
         </div>
-        <ButtonGreen nameButtonSave="Salvar" onClick={saveCarrer} />
+        <ButtonGreen nameButtonSaveCarrer="Salvar" onClick={saveCarrer} />
       </div>
     </div>
   );

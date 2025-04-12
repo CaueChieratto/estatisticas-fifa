@@ -16,6 +16,11 @@ export default function buttonNewCarrer(props) {
           {props.nameButtonSave}
         </div>
       )}
+      {props.nameButtonSaveCarrer && (
+        <button onClick={props.onClick} className="buttonSaveCarrer">
+          {props.nameButtonSaveCarrer}
+        </button>
+      )}
       {props.newPlayer && (
         <div onClick={props.onClick} className="buttonNewCarrer">
           {props.newPlayer}

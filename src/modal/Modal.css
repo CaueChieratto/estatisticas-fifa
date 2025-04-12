@@ -13,24 +13,58 @@
 }
 
 .containerModalCreateCarrer{
-  background-color: white;
+  background-color: rgb(242, 239, 232);
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardModalCreateCarrer {
-  background-color: white;
-  min-width: 100%;
-  max-height: 85%;
+  background-color:#fefefe;
+  width: 65%;
+  max-width: 400px;
+  max-height: 80%;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   animation: grow 0.8s ease forwards;
   overflow-y: auto;
   z-index: 999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: #2b5842;
+  font-weight: 500;
+  margin: auto;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.containerHeader{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.addClub{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.closeModalCreateCarrer{
+  height: 25px;
+  position: absolute;
+  right: 0;
+  color: rgb(99, 127, 115);
 }
 
 @keyframes slide-in-left {
@@ -125,16 +159,57 @@
   }
 }
 
-.inputDate{
-  width: 60%;
-  margin-top: 5%;
+.containerCreateCarrer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.allInputsCreateCarrer{
+  border: 1px solid #b8dbca;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40px;
+  justify-content: center;
+  background-color: #ffffff;
+  position: relative;
+  padding-left: 25px;
+}
+
+.iconForInputsCreateCarrer{
+  position: absolute;
+  left: 2%;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputsCreateCarrer{
   border: none;
-  border-bottom: 2px solid #01CE64;
-  background-color: transparent;
-  color: #333;
-  transition: border-color 0.3s ease;
-  text-align: center;
-  font-size: 18px;
+  outline: none;
+  border-radius: 12px;
+  height: 100%;
+  width: 95%;
+  color: #2b5842;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.inputsCreateCarrer::placeholder{
+  color: rgba(43, 88, 66, 0.8);
+}
+
+.inputsCreateCarrer:-webkit-autofill {
+  font-family: inherit !important;
+  font-weight: bold !important;
+  color: #2b5842 !important;
+  -webkit-text-fill-color: #2b5842 !important;
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
 .containerButtons{
@@ -144,12 +219,12 @@
 }
 
 .selects{
-width: 100%;
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .options{
@@ -227,9 +302,12 @@ border: 1px solid #01CE64;
   flex-direction: column;
 }
 
-.inputs{
-  text-align: center;
+/* Remove o botão de calendário nativo no Chrome */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
 }
+
 
 @media(min-width:600px){
   .cardModal{

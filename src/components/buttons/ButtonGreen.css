@@ -52,6 +52,21 @@
     justify-content: center;
 }
 
+.buttonSaveCarrer{
+  background-color: rgb(82, 163, 131);
+  color: white;
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgb(37, 102, 72);
+  outline: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(42, 167, 76, 0.4);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
 
-
-  
+.buttonSaveCarrer:active{
+  transform: scale(0.98);
+}
