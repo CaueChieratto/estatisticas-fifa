@@ -212,6 +212,10 @@
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
+.inputsCreateCarrer:focus{
+  background-color: #ffffff !important;
+}
+
 .containerButtons{
   display: flex;
   justify-content: space-evenly;
