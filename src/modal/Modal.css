@@ -45,6 +45,7 @@
   margin: auto;
   overflow: hidden;
   gap: 20px;
+  margin-top: 10%;
 }
 
 .containerHeader{
@@ -218,6 +219,12 @@
 
 .inputsCreateCarrer:focus{
   background-color: #ffffff !important;
+}
+
+.inputsCreateCarrer[type="date"] {
+  text-align: left !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .containerButtons{
