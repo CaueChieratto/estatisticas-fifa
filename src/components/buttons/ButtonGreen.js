@@ -38,11 +38,6 @@ export default function buttonNewCarrer(props) {
           {props.nameButtonSaveCarrer}
         </button>
       )}
-      {props.nameButtonSave && (
-        <div onClick={props.onClick} className="buttonSave">
-          {props.nameButtonSave}
-        </div>
-      )}
     </>
   );
 }
