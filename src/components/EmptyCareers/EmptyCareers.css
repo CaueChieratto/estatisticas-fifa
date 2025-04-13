@@ -1,0 +1,64 @@
+.empty-careers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f3f3f3; 
+    color: #333;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.containerEmptyCarrer{
+    position: absolute;
+    top: 15%;
+}
+  
+.empty-icon {
+    font-size: 64px;
+    color: #4caf50;
+    margin-bottom: 16px;
+}
+  
+.empty-careers-container h2 {
+    font-size: 24px;
+    margin: 5px 0;
+}
+  
+.empty-careers-container p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 24px;
+}
+  
+.new-career-btn {
+    border: 1px solid #256648;
+    background-color: #52A383;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.new-career-btn1 {
+    display: flex;
+    align-items: center;
+    border: 1px solid #256648;
+    background-color: #52A383;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}

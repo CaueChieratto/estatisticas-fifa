@@ -1,15 +1,23 @@
 import React from "react";
 import "./ButtonGreen.css";
+import "../EmptyCareers/EmptyCareers.css";
+import { GoPlus } from "react-icons/go";
 
 export default function buttonNewCarrer(props) {
   return (
     <>
       {props.nameButtonNewCarrer && (
-        <div className="buttonBackground">
-          <div onClick={props.onClick} className="textButton">
-            {props.nameButtonNewCarrer}
+        <button onClick={props.onClick} className="new-career-btn">
+          {props.nameButtonNewCarrer}
+        </button>
+      )}
+      {props.nameButtonNewCarrerWithCarrer && (
+        <button onClick={props.onClick} className="new-career-btn1">
+          <div className="plus">
+            <GoPlus size={15} />
           </div>
-        </div>
+          {props.nameButtonNewCarrerWithCarrer}
+        </button>
       )}
       {props.nameButtonSave && (
         <div onClick={props.onClick} className="buttonSave">

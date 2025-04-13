@@ -1,42 +1,79 @@
-#listTitle{
-    font-size: 18px;
-    margin-bottom: 5px;
-    cursor: pointer;
-}
-
-.list{
-    font-size: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 100%;
-    margin-bottom: 5%;
-}
-
-.eye{
-    font-size: 14px;
-}
-
-#listData{
-    font-size: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #61d4d4;
-    font-weight: bold;
-}
-
 .containerAllTeams{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    justify-content: space-around;
+    min-height: 125px;
 }
 
+.listTitle {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+}
 
 .containerList{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    height: 100px;
+}
+
+.containerTitlesCarrer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list{
+    width: fit-content;
+    font-size: 14px;
+    font-weight: normal;
+    display: flex;
     align-items: center;
-    border-bottom: none;    
-    cursor: default;
+    justify-content: center;
+    gap: 2px;
+}
+
+.numbers{
+    font-size: 12px;
+    font-weight: bold;
+    height: 12px;
+}
+
+#listData{
+    font-size: 12px;
+    color: #61d4d4;
+    font-weight: bold;
+}
+
+.containerButtonsCarrer{
+    width: 100%;
+}
+
+.buttonForCarrers{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #52A383;;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 6px 20px;
+    min-width: 70px;
+}
+
+.buttonTwo{
+    background-color: white;
+    border: 1px solid #52A383;
+    color: #52A383;
 }
 
 

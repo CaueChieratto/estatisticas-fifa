@@ -4,9 +4,7 @@ import "./StyleForAllTeams.css";
 import Allteams from "../../components/allTeams/Allteams";
 import EditCarrers from "../../modal/EditCarrers.js";
 import CreateNewCarrer from "../../modal/CreateNewCarrer.js";
-import { GoPencil } from "react-icons/go";
 import DeleteSeason from "../../modal/DeleteSeason.js";
-import { RiCloseCircleLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase/firebase.js";
 import {
@@ -18,6 +16,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import EmptyCareers from "../../components/EmptyCareers/EmptyCareers.js";
 
 export default function PageForAllTeams() {
   const [fifaData, setFifaData] = useState({ carrers: [] });
@@ -125,19 +124,24 @@ export default function PageForAllTeams() {
 
   return (
     <>
-      {fifaData.carrers &&
-        fifaData.carrers.length > 0 &&
-        fifaData.carrers.map((carrer, index) => (
-          <div className="container" key={carrer.club + index}>
-            <div
-              className="deleteButton"
-              onClick={() => showModalDeleteClub(carrer)}
-            >
-              <RiCloseCircleLine />
+      {fifaData.carrers && fifaData.carrers.length > 0 ? (
+        <div className="containerPageOne">
+          <div className="containerHeaderPageOne">
+            <h2 className="tituloPageOne">Minhas Carreiras</h2>
+            <div className="containerButton">
+              <div onClick={showNewCarrer} style={{ width: "fit-content" }}>
+                <ButtonGreen nameButtonNewCarrerWithCarrer="Nova Carreira" />
+              </div>
             </div>
-            <div className="containerAllClubs">
-              <div className="carrers">
+          </div>
+          {[...fifaData.carrers]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map((carrer, index) => (
+              <div className="containerAllClubs" key={carrer.club + index}>
                 <Allteams
+                  showModalDeleteClub={() => showModalDeleteClub(carrer)}
+                  showEditCarrer={() => showEditCarrer(carrer)}
+                  linkTeams={() => linkTeams(carrer)}
                   carrer={carrer}
                   club={carrer.club}
                   nation={carrer.nation}
@@ -149,28 +153,11 @@ export default function PageForAllTeams() {
                   data={carrer.date}
                 />
               </div>
-              <div
-                className="editCarrer"
-                onClick={() => showEditCarrer(carrer)}
-              >
-                <GoPencil />
-              </div>
-              <div className="containerButtonsCarrer">
-                <div
-                  className="buttonForCarrers"
-                  onClick={() => linkTeams(carrer)}
-                >
-                  <div className="button">temporadas</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      <div className="containerButton">
-        <div onClick={showNewCarrer} style={{ width: "fit-content" }}>
-          <ButtonGreen nameButtonNewCarrer="nova carreira" />
+            ))}
         </div>
-      </div>
+      ) : (
+        <EmptyCareers onClick={showNewCarrer} />
+      )}
 
       {editCarrer && (
         <EditCarrers
@@ -179,9 +166,7 @@ export default function PageForAllTeams() {
           closeEditCarrer={closeEditCarrer}
         />
       )}
-
       {createNewCarrer && <CreateNewCarrer closeNewCarrer={closeNewCarrer} />}
-
       {openDelete && (
         <DeleteSeason
           delete={deleteCarrer}
