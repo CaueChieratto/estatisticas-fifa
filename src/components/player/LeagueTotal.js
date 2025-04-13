@@ -73,21 +73,29 @@ export default function LeagueTotal(props) {
         Object.entries(leagueStats).map(([leagueName, league], index) => (
           <div className="wrapperStatsLeagues" key={index}>
             <div className="containerIMGleagues">
-              <img
-                className="leagues"
-                src={league.leagueImage}
-                alt={leagueName}
-              />
-              {leagueName}
+              <div className="containerNameLeague">
+                <img
+                  className="leagues"
+                  src={league.leagueImage}
+                  alt={leagueName}
+                />
+                {leagueName}
+              </div>
             </div>
-            <span className="statsNumber">{league.games}</span>
+            <span className="statsNumber statsNumberSmall">{league.games}</span>
             {props.playerPosition === 0 && (
-              <span className="statsNumber">{league.goals}</span>
+              <span className="statsNumber statsNumberSmall">
+                {league.goals}
+              </span>
             )}
             {props.playerPosition === 1 && (
-              <span className="statsNumber">{league.cleanSheets}</span>
+              <span className="statsNumber statsNumberSmall">
+                {league.cleanSheets}
+              </span>
             )}
-            <span className="statsNumber">{league.assists}</span>
+            <span className="statsNumber statsNumberSmall">
+              {league.assists}
+            </span>
             <span
               className="statsNumber overallSmall"
               style={{

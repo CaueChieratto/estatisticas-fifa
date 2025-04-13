@@ -267,41 +267,41 @@
 .containerButtons{
   display: flex;
   justify-content: space-evenly;
-  margin: 20px;
-}
-
-.selects{
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
 .options{
-width: 150px;
-height: 30px;
-text-align: center;
-outline: #01CE64;
-border-radius: 5px;
-color: #01CE64;
-border: 1px solid #01CE64;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgb(82, 163, 131);
+  color: white;
+  border: 1px solid rgb(37, 102, 72);
+  font-weight: bold;
 }
 
-.buttonsPosition{
- border: #01CE64 1px solid;
- min-width: 120px;
- text-align: center;
- align-content: center;
- height: 30px;
- border-radius: 15px;
- color: #01CE64;
+.teste{
+  background-color: white;
+  color: black;
+}
+
+.buttonsPosition{ 
+ color: rgb(82, 163, 131);
+ border: 1px solid rgb(37, 102, 72);
+ padding: 6px 16px;
+ outline: none;
+ border-radius: 12px;
+ font-size: 16px;
+ font-weight: bold;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
  cursor: pointer;
+ transition: transform 0.1s ease;
+ min-width: 85px;
 }
 
 .selectedPosition{
-  background-color: #01CE64;
+  background-color: rgb(82, 163, 131);
   color: white;
 }
 
@@ -373,6 +373,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .cardModalEditCarrer{
     min-width: 60%;
     min-height: fit-content;
+  }
+  .cardModalEdit{
+    margin-bottom: auto;
   }
   }
 @media(min-width:840px){

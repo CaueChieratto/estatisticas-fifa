@@ -62,3 +62,30 @@
     cursor: pointer;
     transition: 0.3s;
 }
+
+.new-career-btn2 {
+    border: 1px solid #256648;
+    background-color: #52A383;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.new-career-btn3 {
+    border: 1px solid #256648;
+    background-color: #52A383;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./PlayerContainer.css";
 import LeaguesContainer from "./LeaguesContainer";
-import { GoEyeClosed } from "react-icons/go";
-import { GoEye } from "react-icons/go";
+import { GrExpand } from "react-icons/gr";
+import { GrContract } from "react-icons/gr";
 
 export default function PlayerContainer(props) {
   const [openStatsInLeagues, setOpenStatesInLeagues] = useState(false);
@@ -56,8 +56,8 @@ export default function PlayerContainer(props) {
         <div className="infosTitleStats" onClick={showStatsInleagues}>
           {props.total && (
             <span className="total">
-              detalhes
-              {!openStatsInLeagues ? <GoEyeClosed /> : <GoEye />}
+              Expandir
+              {!openStatsInLeagues ? <GrContract /> : <GrExpand size={10} />}
             </span>
           )}
 

@@ -2,6 +2,7 @@ import React from "react";
 import "./ButtonGreen.css";
 import "../EmptyCareers/EmptyCareers.css";
 import { GoPlus } from "react-icons/go";
+import { MdOutlinePostAdd } from "react-icons/md";
 
 export default function buttonNewCarrer(props) {
   return (
@@ -19,19 +20,27 @@ export default function buttonNewCarrer(props) {
           {props.nameButtonNewCarrerWithCarrer}
         </button>
       )}
-      {props.nameButtonSave && (
-        <div onClick={props.onClick} className="buttonSave">
-          {props.nameButtonSave}
-        </div>
+      {props.nameButtonNewSeason && (
+        <button onClick={props.onClick} className="new-career-btn3">
+          <div style={{ height: "20px" }}>
+            <MdOutlinePostAdd size={20} />
+          </div>
+          {props.nameButtonNewSeason}
+        </button>
+      )}
+      {props.nameButtonExit && (
+        <button onClick={props.onClick} className="new-career-btn2">
+          {props.nameButtonExit}
+        </button>
       )}
       {props.nameButtonSaveCarrer && (
         <button onClick={props.onClick} className="buttonSaveCarrer">
           {props.nameButtonSaveCarrer}
         </button>
       )}
-      {props.newPlayer && (
-        <div onClick={props.onClick} className="buttonNewCarrer">
-          {props.newPlayer}
+      {props.nameButtonSave && (
+        <div onClick={props.onClick} className="buttonSave">
+          {props.nameButtonSave}
         </div>
       )}
     </>

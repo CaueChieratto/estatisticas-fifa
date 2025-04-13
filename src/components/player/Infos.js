@@ -75,7 +75,7 @@ export default function Infos(props) {
     <div className="infosTitle">
       <div className="containerName">
         <span className="player">
-          {props.playerName}
+          {props.playerName.charAt(0).toUpperCase() + props.playerName.slice(1)}
           <div
             style={{
               color:
@@ -92,12 +92,13 @@ export default function Infos(props) {
                   : props.overall > 95
                   ? "#00FF00"
                   : "#1E88E5",
+              fontSize: "12px",
             }}
           >
             {props.overall}
           </div>
           {props.show && (
-            <div onClick={showModalDelete}>
+            <div onClick={showModalDelete} style={{ height: "14px" }}>
               <RiCloseCircleLine />
             </div>
           )}

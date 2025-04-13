@@ -3,6 +3,7 @@ import Infos from "./Infos.js";
 import PlayerTotal from "./PlayerTotal.js";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
+import "../../pages/pageForTeams/StyleTeams.css";
 
 export default function Total(props) {
   const [playersStatsTotal, setPlayersStatsTotal] = useState([]);
@@ -102,18 +103,10 @@ export default function Total(props) {
   };
 
   return (
-    <div className="container">
+    <div className="containerAllSeasons">
       <div className="seasons">
-        <div
-          onClick={() => toggleVisibility("total")}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          Total
+        <div onClick={() => toggleVisibility("total")} className="openSeasons">
+          Temporadas Somadas
           {openSeasons.includes("total") ? (
             <span>
               <FaArrowUp />

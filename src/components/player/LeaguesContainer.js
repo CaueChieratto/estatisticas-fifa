@@ -15,10 +15,12 @@ export default function LeaguesContainer(props) {
 
   const openModal = () => {
     setNewPlayerStatsLeagues((prevState) => !prevState);
+    document.body.style.overflowY = "hidden";
   };
 
   const closeModal = () => {
     setNewPlayerStatsLeagues(false);
+    document.body.style.overflowY = "auto";
   };
 
   const [deleteLeague, setDeleteLeague] = useState(false);
@@ -26,11 +28,13 @@ export default function LeaguesContainer(props) {
   const openModalDelete = (leagueIndex) => {
     setLeagueToDelete(leagueIndex);
     setDeleteLeague(true);
+    document.body.style.overflowY = "hidden";
   };
 
   const closeModalDelete = () => {
     setLeagueToDelete(null);
     setDeleteLeague(false);
+    document.body.style.overflowY = "auto";
   };
 
   const updateFifaData = async () => {
@@ -159,21 +163,25 @@ export default function LeaguesContainer(props) {
       {props.player?.leagues?.map((league, leagueIndex) => (
         <div key={leagueIndex} className="wrapperStatsLeagues">
           <div className="containerIMGleagues">
-            <img
-              className="leagues"
-              src={league.leagueImage}
-              alt={league.league}
-            />
-            {league.league}
+            <div className="containerNameLeague">
+              <img
+                className="leagues"
+                src={league.leagueImage}
+                alt={league.league}
+              />
+              {league.league}
+            </div>
           </div>
-          <span className="statsNumber">{league.games}</span>
+          <span className="statsNumber statsNumberSmall">{league.games}</span>
           {props.playerPosition === 0 && (
-            <span className="statsNumber">{league.goals}</span>
+            <span className="statsNumber statsNumberSmall">{league.goals}</span>
           )}
           {props.playerPosition === 1 && (
-            <span className="statsNumber">{league.cleanSheets}</span>
+            <span className="statsNumber statsNumberSmall">
+              {league.cleanSheets}
+            </span>
           )}
-          <span className="statsNumber">{league.assists}</span>
+          <span className="statsNumber statsNumberSmall">{league.assists}</span>
           <span
             className="statsNumber overallSmall"
             style={{
@@ -202,10 +210,8 @@ export default function LeaguesContainer(props) {
       ))}
       <div className="wrapperNewStatsLeagues">
         <div className="addStats" onClick={openModal}>
-          <span className="textNewLeague">
-            {newPlayerStatsLeagues ? "fechar" : "adicionar nova liga"}
-          </span>
-          {newPlayerStatsLeagues ? <CgCloseR /> : <FcAddDatabase />}
+          <span className="textNewLeague">Adicionar Nova Liga</span>
+          <FcAddDatabase />
         </div>
       </div>
 

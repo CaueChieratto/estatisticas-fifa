@@ -1,9 +1,21 @@
 import React from "react";
+import { FaUserCircle } from "react-icons/fa";
+import { TbStars } from "react-icons/tb";
+import { GiSoccerBall } from "react-icons/gi";
+import { TbSoccerField } from "react-icons/tb";
+import { TbShieldCancel } from "react-icons/tb";
+import { MdPeopleOutline } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
+
 import "./Input.css";
 
 export default function Input(props) {
   const changeValue = (event, input) => {
-    const { value } = event.target;
+    const value =
+      input === "playerName"
+        ? event.target.value
+        : Number(event.target.value) || 0;
+
     switch (input) {
       case "playerName":
         props.setEditedPlayer({ ...props.player, playerName: value });
@@ -35,93 +47,117 @@ export default function Input(props) {
   };
 
   return (
-    <div className="cardContainer">
-      <div className="containerCardModal">
-        {!props.showAll && (
-          <>
-            <div className="allInputs">
-              <div className="titleInput">Nome do jogador</div>
-              <input
-                onChange={(event) => changeValue(event, "playerName")}
-                className="inputPlayer"
-                type="text"
-                value={props.player.playerName}
-              />
+    <div className="containerCreateCarrer">
+      {!props.showAll && (
+        <>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <FaUserCircle size={15} />
             </div>
-            <div className="allInputs">
-              <div className="titleInput">overall</div>
-              <input
-                onChange={(event) => changeValue(event, "overall")}
-                className="inputs"
-                type="number"
-                value={props.player.overall}
-              />
+            <input
+              placeholder="Nome do Jogador"
+              onChange={(event) => changeValue(event, "playerName")}
+              className="inputsCreateCarrer"
+              type="text"
+              value={props.player.playerName}
+            />
+          </div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <TbStars size={15} />
             </div>
-            <div className="allInputs">
-              <div className="titleInput">Bolas de Ouro</div>
-              <input
-                onChange={(event) => changeValue(event, "balonDors")}
-                className="inputs"
-                type="number"
-                value={props.player.balonDors}
-              />
+            <input
+              placeholder="Overall"
+              onChange={(event) => changeValue(event, "overall")}
+              className="inputsCreateCarrer"
+              type="number"
+              value={props.player.overall === 0 ? "" : props.player.overall}
+            />
+          </div>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <GiSoccerBall size={15} color="#FFD700" />
             </div>
-          </>
-        )}
-        {props.showAll && (
-          <>
-            <div className="allInputs">
-              <div className="titleInput">Jogos</div>
-              <input
-                onChange={(event) => changeValue(event, "games")}
-                className="inputs"
-                type="number"
-                value={props.player.games}
-              />
+            <input
+              placeholder="Bola de Ouro"
+              onChange={(event) => changeValue(event, "balonDors")}
+              className="inputsCreateCarrer"
+              type="number"
+              value={props.player.balonDors === 0 ? "" : props.player.balonDors}
+            />
+          </div>
+        </>
+      )}
+      {props.showAll && (
+        <>
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <TbSoccerField size={15} />
             </div>
-            {props.playerPosition == 0 && (
-              <div className="allInputs">
-                <div className="titleInput">Gols</div>
-                <input
-                  onChange={(event) => changeValue(event, "goals")}
-                  className="inputs"
-                  type="number"
-                  value={props.player.goals}
-                />
+            <input
+              placeholder="Jogos"
+              onChange={(event) => changeValue(event, "games")}
+              className="inputsCreateCarrer"
+              type="number"
+              value={props.player.games === 0 ? "" : props.player.games}
+            />
+          </div>
+          {props.playerPosition == 0 && (
+            <div className="allInputsCreateCarrer">
+              <div className="iconForInputsCreateCarrer">
+                <GiSoccerBall size={15} />
               </div>
-            )}
-            <div className="allInputs">
-              <div className="titleInput">Assistencias</div>
               <input
-                onChange={(event) => changeValue(event, "assists")}
-                className="inputs"
+                placeholder="Gols"
+                onChange={(event) => changeValue(event, "goals")}
+                className="inputsCreateCarrer"
                 type="number"
-                value={props.player.assists}
+                value={props.player.goals === 0 ? "" : props.player.goals}
               />
             </div>
-            {props.playerPosition == 1 && (
-              <div className="allInputs">
-                <div className="titleInput">Jogos sem sofrer gols</div>
-                <input
-                  onChange={(event) => changeValue(event, "cleanSheets")}
-                  className="inputs"
-                  type="number"
-                  value={props.player.cleanSheets}
-                />
+          )}
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <MdPeopleOutline size={15} />
+            </div>
+            <input
+              placeholder="Assitências"
+              onChange={(event) => changeValue(event, "assists")}
+              className="inputsCreateCarrer"
+              type="number"
+              value={props.player.assists === 0 ? "" : props.player.assists}
+            />
+          </div>
+          {props.playerPosition == 1 && (
+            <div className="allInputsCreateCarrer">
+              <div className="iconForInputsCreateCarrer">
+                <TbShieldCancel size={15} />
               </div>
-            )}
-            <div className="allInputs">
-              <div className="titleInput">nota</div>
               <input
-                onChange={(event) => changeValue(event, "rating")}
-                className="inputs"
+                placeholder="Jogos Sem Sofrer Gols"
+                onChange={(event) => changeValue(event, "cleanSheets")}
+                className="inputsCreateCarrer"
                 type="number"
-                value={props.player.rating}
+                value={
+                  props.player.cleanSheets === 0 ? "" : props.player.cleanSheets
+                }
               />
             </div>
-          </>
-        )}
-      </div>
+          )}
+          <div className="allInputsCreateCarrer">
+            <div className="iconForInputsCreateCarrer">
+              <FaStar size={15} />
+            </div>
+            <input
+              placeholder="Nota"
+              onChange={(event) => changeValue(event, "rating")}
+              className="inputsCreateCarrer"
+              type="number"
+              value={props.player.rating === 0 ? "" : props.player.rating}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

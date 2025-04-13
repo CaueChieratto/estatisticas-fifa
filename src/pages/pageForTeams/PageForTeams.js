@@ -7,7 +7,6 @@ import PlayerContainer from "../../components/player/PlayerContainer";
 import Total from "../../components/player/Total.js";
 import NewPlayerModal from "../../modal/NewPlayerModal.js";
 import DeleteSeason from "../../modal/DeleteSeason.js";
-import { MdOutlinePostAdd } from "react-icons/md";
 import { GoPencil } from "react-icons/go";
 import EditPlayers from "../../modal/EditPlayer.js";
 import { RiCloseCircleLine } from "react-icons/ri";
@@ -112,10 +111,12 @@ export default function PageForTeams() {
       setSelectedSeason(season);
       setOpenNewStats(true);
     }
+    document.body.style.overflowY = "hidden";
   };
 
   const closeNewPlayer = () => {
     setOpenNewStats(false);
+    document.body.style.overflowY = "auto";
   };
 
   const [openDelete, setOpenDelete] = useState(false);
@@ -277,26 +278,37 @@ export default function PageForTeams() {
   return (
     <>
       <div className="wrapper">
+        <div className="containerHeaderPageTwo">
+          <h2 className="tituloPageTwo">Estatísticas da Carreira</h2>
+          <div className="buttonExit" onClick={Save}>
+            <ButtonGreen nameButtonExit="Salvar e Sair" />
+          </div>
+        </div>
         {seasons.map((season) => (
-          <div className="container" key={season.id}>
-            <div
-              className="deleteButton"
-              onClick={() => showModalDelete(season)}
-            >
-              <RiCloseCircleLine />
-            </div>
+          <div className="containerAllSeasons" key={season.id}>
             <div className="seasons">
-              <div
-                className="openSeasons"
-                onClick={() => toggleVisibility(season.id)}
-              >
-                Temporada {season.season}
-                {openSeasons.includes(season.id) ? (
-                  <FaArrowUp />
-                ) : (
-                  <FaArrowDown />
-                )}
+              <div className="openSeasons">
+                <div className="seasonAndDeleteButton">
+                  Temporada {season.season}
+                  <div
+                    className="deleteButton"
+                    onClick={() => showModalDelete(season)}
+                  >
+                    <RiCloseCircleLine />
+                  </div>
+                </div>
+                <div
+                  className="arrows"
+                  onClick={() => toggleVisibility(season.id)}
+                >
+                  {openSeasons.includes(season.id) ? (
+                    <FaArrowUp />
+                  ) : (
+                    <FaArrowDown />
+                  )}
+                </div>
               </div>
+
               <div
                 className={`containerStats ${
                   openSeasons.includes(season.id) ? "visible" : "hidden"
@@ -359,16 +371,8 @@ export default function PageForTeams() {
                   className="wrapperNewPlayer"
                   onClick={() => showNewPlayer(season.season)}
                 >
-                  <div className="newPlayer">
-                    {selectedSeason === season.season && openNewStats
-                      ? "fechar"
-                      : "adicionar jogador"}
-                  </div>
-                  {selectedSeason === season.season && openNewStats ? (
-                    <CgCloseR size={20} />
-                  ) : (
-                    <IoAddCircleOutline size={25} />
-                  )}
+                  <div className="newPlayer">Adicionar Jogador</div>
+                  <IoAddCircleOutline size={25} />
                 </div>
                 {openNewStats && (
                   <NewPlayerModal
@@ -399,13 +403,10 @@ export default function PageForTeams() {
 
         <div className="newSeason">
           <div onClick={addSeason} className="addSeason">
-            <MdOutlinePostAdd size={30} />
+            <ButtonGreen nameButtonNewSeason="Nova Temporada" />
           </div>
         </div>
-      </div>
-      <Total player={player} seasons={seasons}></Total>
-      <div onClick={Save}>
-        <ButtonGreen nameButtonSave="Salvar e Sair" />
+        <Total player={player} seasons={seasons}></Total>
       </div>
 
       {openStats && (
