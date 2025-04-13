@@ -26,7 +26,7 @@ export default function Allteams(props) {
       {props.club && (
         <div className="containerAllTeams">
           <span className="listTitle">
-            {props.club}
+            {props.club.charAt(0).toUpperCase() + props.club.slice(1)}
             <img
               src={
                 countryCodes[props.nation].startsWith("http")
@@ -45,7 +45,7 @@ export default function Allteams(props) {
           <div className="containerList">
             <div className="containerTitlesCarrer">
               <span className="list">
-                Titulos: <div className="numbers">{props.numberTitles}</div>
+                Títulos: <div className="numbers">{props.numberTitles}</div>
               </span>
               <span id="listData" className="list">
                 {props.data ? formatDate(props.data) : "Data não disponível"}
