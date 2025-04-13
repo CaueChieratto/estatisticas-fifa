@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import ButtonGreen from "../components/buttons/ButtonGreen.js";
 import "./Modal.css";
+import { IoMdClose } from "react-icons/io";
+import { BiFootball } from "react-icons/bi";
+import { GiTrophyCup } from "react-icons/gi";
+import { GrTrophy } from "react-icons/gr";
 
 export default function PageForNewCarrer(props) {
   const [editedCarrer, setEditedCarrer] = useState({
@@ -36,41 +40,57 @@ export default function PageForNewCarrer(props) {
 
   return (
     <div onClick={props.closeEditCarrer} className="containerModal">
-      <div className="cardModalEditCarrer" onClick={(e) => e.stopPropagation()}>
-        <div className="container">
-          <div className="allInputs">
-            <div className="titleInput">ligas</div>
-            <input
-              onChange={(event) => changeValueCarrer(event, "numberLeagues")}
-              className="inputs"
-              type="number"
-              value={editedCarrer.numberLeagues}
-            />
-          </div>
-          <div className="allInputs">
-            <div className="titleInput">copas nacionais</div>
-            <input
-              onChange={(event) =>
-                changeValueCarrer(event, "numberCupsNationals")
-              }
-              className="inputs"
-              type="number"
-              value={editedCarrer.numberCupsNationals}
-            />
-          </div>
-          <div className="allInputs">
-            <div className="titleInput">copas internacionais</div>
-            <input
-              onChange={(event) =>
-                changeValueCarrer(event, "numberCupsInternationals")
-              }
-              className="inputs"
-              type="number"
-              value={editedCarrer.numberCupsInternationals}
-            />
+      <div className="cardModalEdit" onClick={(e) => e.stopPropagation()}>
+        <div className="containerHeader">
+          <div className="addClub">Editar Títulos</div>
+          <div
+            onClick={props.closeEditCarrer}
+            className="closeModalCreateCarrer"
+          >
+            <IoMdClose size={25} />
           </div>
         </div>
-        <ButtonGreen nameButtonSave="Salvar" onClick={saveChanges} />
+        <div className="allInputsEditCarrer">
+          <div className="iconForInputsCreateCarrer">
+            <BiFootball size={15} />
+          </div>
+          <input
+            placeholder="Ligas"
+            onChange={(event) => changeValueCarrer(event, "numberLeagues")}
+            className="inputsCreateCarrer"
+            type="number"
+            value={editedCarrer.numberLeagues}
+          />
+        </div>
+        <div className="allInputsEditCarrer">
+          <div className="iconForInputsCreateCarrer">
+            <GrTrophy size={15} />
+          </div>
+          <input
+            placeholder="Copas Nacionais"
+            onChange={(event) =>
+              changeValueCarrer(event, "numberCupsNationals")
+            }
+            className="inputsCreateCarrer"
+            type="number"
+            value={editedCarrer.numberCupsNationals}
+          />
+        </div>
+        <div className="allInputsEditCarrer">
+          <div className="iconForInputsCreateCarrer">
+            <GiTrophyCup size={15} />
+          </div>
+          <input
+            placeholder="Copas Internacionais"
+            onChange={(event) =>
+              changeValueCarrer(event, "numberCupsInternationals")
+            }
+            className="inputsCreateCarrer"
+            type="number"
+            value={editedCarrer.numberCupsInternationals}
+          />
+        </div>
+        <ButtonGreen nameButtonSaveCarrer="Salvar" onClick={saveChanges} />
       </div>
     </div>
   );

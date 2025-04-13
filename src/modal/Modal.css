@@ -180,6 +180,43 @@
   padding-left: 25px;
 }
 
+.allInputsEditCarrer{
+ border: 1px solid #b8dbca;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40px;
+  justify-content: center;
+  background-color: #ffffff;
+  position: relative;
+  padding-left: 25px;
+}
+
+.cardModalEdit{
+  background-color:#fefefe;
+  width: 65%;
+  max-width: 400px;
+  max-height: 80%;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  animation: grow 0.8s ease forwards;
+  overflow-y: auto;
+  z-index: 999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: #2b5842;
+  font-weight: 500;
+  margin: auto;
+  overflow: hidden;
+  gap: 10px;
+  margin-bottom: 50%;
+}
+
 .iconForInputsCreateCarrer{
   position: absolute;
   left: 2%;

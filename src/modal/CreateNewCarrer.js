@@ -206,7 +206,7 @@ export default function PageForNewCarrer(props) {
             <input
               placeholder="Títulos"
               className="inputsCreateCarrer"
-              type="text"
+              type="number"
               name="numberTitles"
               value={carrerData.numberTitles}
               onChange={handleChange}
