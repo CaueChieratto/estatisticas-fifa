@@ -10,6 +10,34 @@ export default function Squad(props) {
     return `${years}a ${months}m`;
   };
 
+  const ordemAttack = ["PE", "PD", "ATA"];
+
+  const atacantesOrdenados = (props.squad?.attackers || [])
+    .slice()
+    .sort(
+      (a, b) =>
+        ordemAttack.indexOf(a.detailPosition) -
+        ordemAttack.indexOf(b.detailPosition)
+    );
+
+  const ordemMid = ["VOL", "ME", "MC", "MEI", "MD"];
+  const meioOrdenado = (props.squad?.midfielders || [])
+    .slice()
+    .sort(
+      (a, b) =>
+        ordemMid.indexOf(a.detailPosition) - ordemMid.indexOf(b.detailPosition)
+    );
+
+  const ordemDef = ["LE", "ZAG", "LD"];
+  const zagaOrdenada = (props.squad?.defenders || [])
+    .slice()
+    .sort(
+      (a, b) =>
+        ordemDef.indexOf(a.detailPosition) - ordemDef.indexOf(b.detailPosition)
+    );
+
+  const goleiros = (props.squad?.goalkeepers || []).slice();
+
   return (
     <div className="containerSquad">
       <div className="cardSquad">
@@ -17,7 +45,7 @@ export default function Squad(props) {
           <div className="positonBarAttack"></div>
           <div className="positionNameAttack">Atacantes</div>
         </div>
-        {(props.squad?.attackers || []).map((jogador, index) => (
+        {atacantesOrdenados.map((jogador, index) => (
           <motion.div
             className="containerGeralPlayer"
             key={index}
@@ -82,7 +110,7 @@ export default function Squad(props) {
           <div className="positonBarMidfield"></div>
           <div className="positionNameMidfield">Meias</div>
         </div>
-        {(props.squad?.midfielders || []).map((jogador, index) => (
+        {meioOrdenado.map((jogador, index) => (
           <motion.div
             className="containerGeralPlayer"
             key={index}
@@ -148,7 +176,7 @@ export default function Squad(props) {
           <div className="positonBarDefense"></div>
           <div className="positionNameDefense">Defensor</div>
         </div>
-        {(props.squad?.defenders || []).map((jogador, index) => (
+        {zagaOrdenada.map((jogador, index) => (
           <motion.div
             className="containerGeralPlayer"
             key={index}
@@ -213,7 +241,7 @@ export default function Squad(props) {
           <div className="positonBarGoalkeeper"></div>
           <div className="positionNameGoalkeeper">Goleiros</div>
         </div>
-        {(props.squad?.goalkeepers || []).map((jogador, index) => (
+        {goleiros.map((jogador, index) => (
           <motion.div
             className="containerGeralPlayer"
             key={index}

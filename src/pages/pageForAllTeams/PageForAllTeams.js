@@ -65,11 +65,13 @@ export default function PageForAllTeams() {
   const openModalTitles = (carrer) => {
     const updatedCarrer = fifaData.carrers.find((c) => c.id === carrer.id);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
     setTitles(updatedCarrer);
   };
 
   const closeModalTitles = () => {
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
     setTitles(null);
   };
 

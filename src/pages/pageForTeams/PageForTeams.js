@@ -152,10 +152,12 @@ export default function PageForTeams() {
     setPlayer(player);
     setOpenStats(true);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
   };
   const closeStats = () => {
     setOpenStats(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
   };
 
   const showNewPlayer = (season) => {
@@ -167,11 +169,13 @@ export default function PageForTeams() {
       setOpenNewStats(true);
     }
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
   };
 
   const closeNewPlayer = () => {
     setOpenNewStats(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
   };
 
   const showModalDelete = (season) => {
@@ -307,6 +311,7 @@ export default function PageForTeams() {
   const abrirBuyPlayers = () => {
     setAbrirModalBuyPlayerSquads(true);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
   };
 
   const fechar = () => {
@@ -314,6 +319,7 @@ export default function PageForTeams() {
     setAbrirModalSquadsButtons(false);
     setModoSelecao(null);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
   };
 
   const abrirModalJogador = (jogador) => {
@@ -321,6 +327,8 @@ export default function PageForTeams() {
     setJogadorSelecionado(jogador);
     setAbrirModalSquadsButtons(true);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const deletarJogador = async (jogador, posicao = modoSelecao) => {
@@ -378,11 +386,13 @@ export default function PageForTeams() {
   const openModalClick = (tipo) => {
     setTipoTransferencia(tipo);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
     setOpenModalTransferGeral(true);
   };
   const closeModalClick = () => {
     setOpenModalTransferGeral(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
   };
 
   return (
