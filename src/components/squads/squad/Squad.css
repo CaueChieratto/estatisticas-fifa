@@ -1,0 +1,122 @@
+.containerSquad {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardSquad {
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 12px 0;
+}
+
+.positions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.positionContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.iconAddPlayerInSquad{
+  padding-bottom: 8px;
+  font-size: 22px;
+  height: 22px;
+  width: 15%;
+  text-align: right;
+}
+
+.positonBarAttack {
+  background-color: #cb1818;
+  height: 48px;
+  width: 4px;
+}
+.positionNameAttack {
+  color: #cb1818;
+  font-weight: bold;
+}
+
+.positionNameMidfield {
+  color: #0bb32a;
+  font-weight: bold;
+}
+.positonBarMidfield {
+  background-color: #0bb32a;
+  height: 48px;
+  width: 4px;
+}
+
+.positionNameDefense {
+  color: #374df5;
+  font-weight: bold;
+}
+.positonBarDefense {
+  background-color: #374df5;
+  height: 48px;
+  width: 4px;
+}
+
+.positionNameGoalkeeper {
+  color: #e59c03;
+  font-weight: bold;
+}
+.positonBarGoalkeeper {
+  background-color: #e59c03;
+  height: 48px;
+  width: 4px;
+}
+
+.containerGeralPlayer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+  color: #222226;
+  border-bottom: 1px solid #cdcdcd;
+  padding: 10px 0;
+  align-items: flex-end;
+}
+
+.containerGeralPlayer:last-child {
+  border: none;
+}
+
+.containerPlayer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+
+.namePlayer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.containerDadoPlayer {
+  display: flex;
+  gap: 8px;
+}
+
+.dadosPlayer {
+  color: #22222673;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.containerValue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 150px;
+  align-items: flex-end;
+  width: 150px;
+}
+

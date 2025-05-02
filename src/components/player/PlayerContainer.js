@@ -82,9 +82,9 @@ export default function PlayerContainer(props) {
                   ? "#FCC419"
                   : averageRating <= 7.5
                   ? "#66A80F"
-                  : averageRating <= 8
-                  ? "#2B8A3E"
                   : averageRating <= 8.5
+                  ? "#2B8A3E"
+                  : averageRating <= 9
                   ? "#1E88E5"
                   : "#00FF00",
             }}

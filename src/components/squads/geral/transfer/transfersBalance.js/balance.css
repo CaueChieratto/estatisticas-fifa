@@ -1,0 +1,22 @@
+.containerInfoSquadGeralTransferBalance{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    color: #22222673;
+    font-size: 12px;
+}
+
+.numberGeralTransfers{
+    color: #222226;
+    font-size: 14px;
+}
+
+.colorDifferent{
+    color: #22222673;
+    font-size: 12px;
+}
+
+.Money{
+    font-size: 20px;
+}

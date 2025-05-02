@@ -1,0 +1,23 @@
+.containerInfoSquadTransfers{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.statsPlayer{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.iconInfoTransfer{
+    font-size: 18px;
+    height: 19px;
+}
+
+.players{
+    min-height: 80px;
+    justify-content: center;
+    gap: 6px;
+    flex-direction: column;
+}

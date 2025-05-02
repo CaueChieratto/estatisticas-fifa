@@ -8,10 +8,6 @@ import { getAuth } from "firebase/auth";
 import { IoMdClose } from "react-icons/io";
 import { BiWorld } from "react-icons/bi";
 import { PiShieldCheckeredDuotone } from "react-icons/pi";
-import { BiFootball } from "react-icons/bi";
-import { GoTrophy } from "react-icons/go";
-import { GiTrophyCup } from "react-icons/gi";
-import { GrTrophy } from "react-icons/gr";
 import { CiCalendar } from "react-icons/ci";
 
 export default function PageForNewCarrer(props) {
@@ -19,14 +15,12 @@ export default function PageForNewCarrer(props) {
   const [carrerData, setCarrerData] = useState({
     uuid: "",
     club: "",
-    numberTitles: "",
-    numberLeagues: "",
-    numberCupsNationals: "",
-    numberCupsInternationals: "",
     date: "",
     nation: "",
-    leagues: [],
     seasons: [],
+    leagues: [],
+    squads: [],
+    trophies: [],
   });
 
   const countryLeagues = {
@@ -116,12 +110,10 @@ export default function PageForNewCarrer(props) {
         club: carrerData.club,
         date: carrerData.date,
         nation: carrerData.nation,
-        numberCupsInternationals: carrerData.numberCupsInternationals,
-        numberCupsNationals: carrerData.numberCupsNationals,
-        numberLeagues: carrerData.numberLeagues,
-        numberTitles: carrerData.numberTitles,
         leagues: carrerData.leagues,
         seasons: carrerData.seasons,
+        squads: carrerData.squads,
+        trophies: carrerData.trophies,
         uuid: uuidv4(),
       });
 
@@ -199,58 +191,7 @@ export default function PageForNewCarrer(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <GoTrophy size={15} />
-            </div>
-            <input
-              placeholder="Títulos"
-              className="inputsCreateCarrer"
-              type="number"
-              name="numberTitles"
-              value={carrerData.numberTitles}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <BiFootball size={15} />
-            </div>
-            <input
-              placeholder="Ligas"
-              className="inputsCreateCarrer"
-              type="number"
-              name="numberLeagues"
-              value={carrerData.numberLeagues}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <GrTrophy size={15} />
-            </div>
-            <input
-              placeholder="Copas Nacionais"
-              className="inputsCreateCarrer"
-              type="number"
-              name="numberCupsNationals"
-              value={carrerData.numberCupsNationals}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <GiTrophyCup size={15} />
-            </div>
-            <input
-              placeholder="Copas Internacionais"
-              className="inputsCreateCarrer"
-              type="number"
-              name="numberCupsInternationals"
-              value={carrerData.numberCupsInternationals}
-              onChange={handleChange}
-            />
-          </div>
+
           <div
             className="allInputsCreateCarrer"
             onClick={() =>

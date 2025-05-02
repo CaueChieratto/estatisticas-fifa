@@ -108,9 +108,9 @@ export default function LeagueTotal(props) {
                     ? "#FCC419"
                     : league.rating <= 7.5
                     ? "#66A80F"
-                    : league.rating <= 8
-                    ? "#2B8A3E"
                     : league.rating <= 8.5
+                    ? "#2B8A3E"
+                    : league.rating <= 9
                     ? "#1E88E5"
                     : "#00FF00",
               }}

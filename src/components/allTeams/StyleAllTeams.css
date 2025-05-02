@@ -1,3 +1,4 @@
+
 .containerAllTeams{
     display: flex;
     flex-direction: column;
@@ -9,43 +10,88 @@
 
 .listTitle {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-size: 18px;
     cursor: pointer;
 }
 
-.containerList{
+.titleCardTeams{
+    display: flex;
+    align-items: center;
+}
+
+.containerDelete1{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.containerList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 10px 0;
+    flex-wrap: wrap;
+}
+
+.containerTitlesCarrer {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 100px;
+    width: 100%;
 }
 
-.containerTitlesCarrer{
-    display: flex;
-    justify-content: space-between;
-}
-
-.list{
-    width: fit-content;
+.list {
     font-size: 14px;
     font-weight: normal;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 2px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.numbers{
-    font-size: 12px;
+.listTitleCard{
+    font-size: 14px;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #f0f0f0; 
+    border-top: 1px solid #e0e0e0;
+}
+
+.border{
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.numbers {
+    font-size: 13px;
     font-weight: bold;
-    height: 12px;
+    color: #333;
+}
+
+.numbers {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+.resume{
+    padding-top: 10px;
+    justify-content: start;
+    gap: 6px;
+
 }
 
 #listData{
+    text-align: center;
     font-size: 12px;
     color: #61d4d4;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .containerButtonsCarrer{

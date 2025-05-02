@@ -43,9 +43,9 @@ export default function PlayerTotal(props) {
                   ? "#FCC419"
                   : props.rating <= 7.5
                   ? "#66A80F"
-                  : props.rating <= 8
-                  ? "#2B8A3E"
                   : props.rating <= 8.5
+                  ? "#2B8A3E"
+                  : props.rating <= 9
                   ? "#1E88E5"
                   : "#00FF00",
             }}

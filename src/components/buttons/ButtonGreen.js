@@ -3,6 +3,7 @@ import "./ButtonGreen.css";
 import "../EmptyCareers/EmptyCareers.css";
 import { GoPlus } from "react-icons/go";
 import { MdOutlinePostAdd } from "react-icons/md";
+import { GiTrophiesShelf } from "react-icons/gi";
 
 export default function buttonNewCarrer(props) {
   return (
@@ -18,6 +19,19 @@ export default function buttonNewCarrer(props) {
             <GoPlus size={15} />
           </div>
           {props.nameButtonNewCarrerWithCarrer}
+        </button>
+      )}
+      {props.nameButtonAddTitle && (
+        <button onClick={props.onClick} className="new-career-btn4">
+          {props.nameButtonAddTitle}
+          <div className="plus">
+            <GiTrophiesShelf size={15} />
+          </div>
+        </button>
+      )}
+      {props.nameButtonAddTitleModal && (
+        <button onClick={props.onClick} className="new-career-btn5">
+          {props.nameButtonAddTitleModal}
         </button>
       )}
       {props.nameButtonNewSeason && (
@@ -36,6 +50,11 @@ export default function buttonNewCarrer(props) {
       {props.nameButtonSaveCarrer && (
         <button onClick={props.onClick} className="buttonSaveCarrer">
           {props.nameButtonSaveCarrer}
+        </button>
+      )}
+      {props.nameButtonSaveCarrerBack && (
+        <button onClick={props.onClick} className="buttonSaveCarrerBack">
+          {props.nameButtonSaveCarrerBack}
         </button>
       )}
     </>

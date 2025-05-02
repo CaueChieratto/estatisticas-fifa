@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import EmptyCareers from "../../components/EmptyCareers/EmptyCareers.js";
+import Titles from "../../components/titles/titles.js";
 
 export default function PageForAllTeams() {
   const [fifaData, setFifaData] = useState({ carrers: [] });
@@ -59,6 +60,19 @@ export default function PageForAllTeams() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteCarrerModal, setDeleteCarrer] = useState({});
 
+  const [titles, setTitles] = useState(null);
+
+  const openModalTitles = (carrer) => {
+    const updatedCarrer = fifaData.carrers.find((c) => c.id === carrer.id);
+    document.body.style.overflowY = "hidden";
+    setTitles(updatedCarrer);
+  };
+
+  const closeModalTitles = () => {
+    document.body.style.overflowY = "auto";
+    setTitles(null);
+  };
+
   const showNewCarrer = () => {
     setNewCarrer({});
     setCreateNewCarrer(true);
@@ -96,7 +110,7 @@ export default function PageForAllTeams() {
     const uid = user ? user.uid : null;
 
     if (uid) {
-      await deleteDoc(doc(db, `users/${uid}/fifaData`, deleteCarrerModal.id)); // Usando o uid do usuário logado
+      await deleteDoc(doc(db, `users/${uid}/fifaData`, deleteCarrerModal.id));
       setFifaData((prev) => ({
         carrers: prev.carrers.filter((x) => x.id !== deleteCarrerModal.id),
       }));
@@ -104,23 +118,37 @@ export default function PageForAllTeams() {
     }
   };
 
-  const saveEditedCarrer = async (editedCarrer) => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user ? user.uid : null;
-
-    if (uid) {
-      const carrerRef = doc(db, `users/${uid}/fifaData`, editedCarrer.id); // Usando o uid do usuário logado
-      await updateDoc(carrerRef, editedCarrer);
-
-      setFifaData((prev) => ({
-        carrers: prev.carrers.map((c) =>
-          c.id === editedCarrer.id ? editedCarrer : c
-        ),
-      }));
-      closeEditCarrer();
-    }
+  const refreshCarrer = (updatedCarrer) => {
+    setFifaData((prev) => ({
+      carrers: prev.carrers.map((c) =>
+        c.id === updatedCarrer.id ? updatedCarrer : c
+      ),
+    }));
+    setTitles(updatedCarrer);
   };
+
+  // const saveEditedCarrer = async (editedCarrer) => {
+  //   const auth = getAuth();
+  //   const user = auth.currentUser;
+  //   const uid = user ? user.uid : null;
+
+  //   if (uid) {
+  //     const updatedCarrer = {
+  //       ...editedCarrer,
+  //       squads: editedCarrer.squads ?? [],
+  //       trophies: editedCarrer.trophies ?? [],
+  //     };
+
+  //     const carrerRef = doc(db, `users/${uid}/fifaData`, editedCarrer.id);
+  //     await updateDoc(carrerRef, updatedCarrer);
+
+  //     setFifaData((prev) => ({
+  //       carrers: prev.carrers.map((c) =>
+  //         c.id === editedCarrer.id ? updatedCarrer : c
+  //       ),
+  //     }));
+  //   }
+  // };
 
   return (
     <>
@@ -139,17 +167,17 @@ export default function PageForAllTeams() {
             .map((carrer, index) => (
               <div className="containerAllClubs" key={carrer.club + index}>
                 <Allteams
+                  squads={carrer.squads}
+                  trophies={carrer.trophies}
+                  openModalTitles={() => openModalTitles(carrer)}
                   showModalDeleteClub={() => showModalDeleteClub(carrer)}
                   showEditCarrer={() => showEditCarrer(carrer)}
                   linkTeams={() => linkTeams(carrer)}
+                  // saveEditedCarrer={saveEditedCarrer}
                   carrer={carrer}
                   club={carrer.club}
                   nation={carrer.nation}
                   seasons={carrer.seasons}
-                  numberTitles={carrer.numberTitles}
-                  numberLeagues={carrer.numberLeagues}
-                  numberCupsNationals={carrer.numberCupsNationals}
-                  numberCupsInternationals={carrer.numberCupsInternationals}
                   data={carrer.date}
                 />
               </div>
@@ -158,14 +186,21 @@ export default function PageForAllTeams() {
       ) : (
         <EmptyCareers onClick={showNewCarrer} />
       )}
+      {titles && (
+        <Titles
+          refreshCarrer={refreshCarrer}
+          carrer={titles}
+          closeModalTitles={closeModalTitles}
+        />
+      )}
 
-      {editCarrer && (
+      {/* {editCarrer && (
         <EditCarrers
           onSave={saveEditedCarrer}
           carrer={carrer}
           closeEditCarrer={closeEditCarrer}
         />
-      )}
+      )} */}
       {createNewCarrer && <CreateNewCarrer closeNewCarrer={closeNewCarrer} />}
       {openDelete && (
         <DeleteSeason

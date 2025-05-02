@@ -4,12 +4,26 @@ import "./styleTransfer.css";
 export default function Arrivals(props) {
   const formatarData = (data) => {
     if (!data) return "";
-    const dataObj = new Date(data);
-    return new Intl.DateTimeFormat("pt-BR", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }).format(dataObj);
+    const [year, month, day] = data.split("-");
+    return `${day} ${abreviarMes(month)} ${year}`;
+  };
+
+  const abreviarMes = (mes) => {
+    const meses = [
+      "jan",
+      "fev",
+      "mar",
+      "abr",
+      "mai",
+      "jun",
+      "jul",
+      "ago",
+      "set",
+      "out",
+      "nov",
+      "dez",
+    ];
+    return meses[parseInt(mes, 10) - 1];
   };
 
   return (
@@ -18,7 +32,7 @@ export default function Arrivals(props) {
         <div className="containerInfos">
           <div className="infosPlayer">
             <div className="infosTitles">
-              {props.playerTransfer}
+              {props.playerName}
               <span className="infos">
                 <span className="number"> / {props.age} anos</span>
               </span>

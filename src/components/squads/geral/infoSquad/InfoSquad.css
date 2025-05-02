@@ -1,0 +1,16 @@
+.containerInfoSquadGeral{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    color: #22222673;
+    font-size: 12px;
+}
+
+.numberGeral{
+    color: #222226;
+    font-size: 14px;
+}
+
+.iconGeral{
+    font-size: 35px;
+}
