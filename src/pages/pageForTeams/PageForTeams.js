@@ -414,7 +414,7 @@ export default function PageForTeams() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             };
 
-            if (offset < -100 || velocity < -500) {
+            if (offset < -150 || velocity < -1000) {
               if (selectedTab === "Wrapper") {
                 setSelectedTab("Elenco");
                 controls.start({ x: -window.innerWidth });
@@ -424,7 +424,7 @@ export default function PageForTeams() {
                 controls.start({ x: -window.innerWidth * 2 });
                 scrollToTop();
               }
-            } else if (offset > 100 || velocity > 500) {
+            } else if (offset > 150 || velocity > 1000) {
               if (selectedTab === "Geral") {
                 setSelectedTab("Elenco");
                 controls.start({ x: -window.innerWidth });
@@ -444,7 +444,6 @@ export default function PageForTeams() {
               if (selectedTab === "Geral") {
                 controls.start({ x: -window.innerWidth * 2 });
               }
-              scrollToTop();
             }
           }}
           animate={controls}

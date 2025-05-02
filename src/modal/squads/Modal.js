@@ -9,6 +9,7 @@ import { FaGlobeEurope } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
 import { TbPigMoney } from "react-icons/tb";
 import { GiPoliceBadge } from "react-icons/gi";
+import { MdAddLocationAlt } from "react-icons/md";
 import { TbCalendarDollar } from "react-icons/tb";
 import { GrDocumentTime } from "react-icons/gr";
 import { getAuth } from "firebase/auth";
@@ -22,6 +23,7 @@ export default function Modal(props) {
     age: "",
     nation: "",
     shirtNumber: "",
+    detailPosition: "",
     value: "",
     valueTransfer: "",
     salary: "",
@@ -43,6 +45,7 @@ export default function Modal(props) {
         age: jogador.age?.toString() || "",
         nation: jogador.nation || "",
         shirtNumber: jogador.shirtNumber?.toString() || "",
+        detailPosition: jogador.detailPosition?.toString() || "",
         value: jogador.value || "",
         valueTransfer: jogador.valueTransfer || "",
         salary: jogador.salary || "",
@@ -130,6 +133,14 @@ export default function Modal(props) {
     setJogadorData({ ...jogadorData, clubArrival });
   };
 
+  const handleDetailPositionChange = (e) => {
+    const detailPosition = e.target.value
+      .toUpperCase()
+      .replace(/[^A-Z]/g, "")
+      .slice(0, 3);
+    setJogadorData({ ...jogadorData, detailPosition });
+  };
+
   const handleClubExitChange = (e) => {
     const clubExit = e.target.value
       .split(" ")
@@ -156,6 +167,7 @@ export default function Modal(props) {
     const novoJogador = {
       playerName: jogadorData.playerName,
       shirtNumber: Number(jogadorData.shirtNumber),
+      detailPosition: jogadorData.detailPosition,
       age: Number(jogadorData.age),
       nation: jogadorData.nation,
       value: jogadorData.value,
@@ -305,6 +317,7 @@ export default function Modal(props) {
               ...jogadorData,
               age: Number(jogadorData.age),
               shirtNumber: Number(jogadorData.shirtNumber),
+              detailPosition: jogadorData.detailPosition,
               value: jogadorData.value,
               salary: jogadorData.salary,
               contract: jogadorData.contract,
@@ -505,6 +518,19 @@ export default function Modal(props) {
                       name="numero da camisa"
                       value={jogadorData.shirtNumber}
                       onChange={handleShirtNumberChange}
+                    />
+                  </div>
+                  <div className="allInputsCreateCarrer">
+                    <div className="iconForInputsCreateCarrer">
+                      <MdAddLocationAlt />
+                    </div>
+                    <input
+                      placeholder="Posição"
+                      className="inputsCreateCarrer"
+                      type="text"
+                      name="posicao"
+                      value={jogadorData.detailPosition}
+                      onChange={handleDetailPositionChange}
                     />
                   </div>
                 </>

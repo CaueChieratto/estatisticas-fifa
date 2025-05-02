@@ -51,6 +51,7 @@ export default function Squad(props) {
             <div className="containerPlayer">
               <div className="namePlayer">
                 {jogador.playerName}
+                <div className="dadosPlayer">{jogador.detailPosition}</div>
                 <div className="dadosPlayer">{jogador.shirtNumber}</div>
               </div>
               <div className="containerDadoPlayer">
