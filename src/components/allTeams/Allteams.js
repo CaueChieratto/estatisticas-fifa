@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./StyleAllTeams.css";
 import { LuEyeClosed } from "react-icons/lu";
 import { LuEye } from "react-icons/lu";
-import { GrUpdate } from "react-icons/gr";
 
 const formatDate = (dateString) => {
   const [year, month, day] = dateString.split("-");
@@ -41,9 +40,10 @@ export default function Allteams(props) {
         }
 
         player.leagues?.forEach((league) => {
-          playerStats[player.playerName].goals += league.goals || 0;
-          playerStats[player.playerName].assists += league.assists || 0;
-          playerStats[player.playerName].games += league.games || 0;
+          playerStats[player.playerName].goals += parseInt(league.goals) || 0;
+          playerStats[player.playerName].assists +=
+            parseInt(league.assists) || 0;
+          playerStats[player.playerName].games += parseInt(league.games) || 0;
         });
       });
     });
@@ -151,12 +151,6 @@ export default function Allteams(props) {
                 }}
               />
             </div>
-
-            {/* {!props.squads && !props.trophies && (
-              <div style={{ height: "18px" }} onClick={props.saveEditedCarrer}>
-                <GrUpdate />
-              </div>
-            )} */}
           </span>
           <span className={`listTitleCard ${!showStats ? "border" : ""}`}>
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>

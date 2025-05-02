@@ -88,11 +88,6 @@ export default function PageForAllTeams() {
     document.body.style.overflowY = "hidden";
   };
 
-  const closeEditCarrer = () => {
-    setEditCarrer(false);
-    document.body.style.overflowY = "auto";
-  };
-
   const showModalDeleteClub = (carrer) => {
     setDeleteCarrer(carrer);
     setOpenDelete(true);
@@ -127,29 +122,6 @@ export default function PageForAllTeams() {
     setTitles(updatedCarrer);
   };
 
-  // const saveEditedCarrer = async (editedCarrer) => {
-  //   const auth = getAuth();
-  //   const user = auth.currentUser;
-  //   const uid = user ? user.uid : null;
-
-  //   if (uid) {
-  //     const updatedCarrer = {
-  //       ...editedCarrer,
-  //       squads: editedCarrer.squads ?? [],
-  //       trophies: editedCarrer.trophies ?? [],
-  //     };
-
-  //     const carrerRef = doc(db, `users/${uid}/fifaData`, editedCarrer.id);
-  //     await updateDoc(carrerRef, updatedCarrer);
-
-  //     setFifaData((prev) => ({
-  //       carrers: prev.carrers.map((c) =>
-  //         c.id === editedCarrer.id ? updatedCarrer : c
-  //       ),
-  //     }));
-  //   }
-  // };
-
   return (
     <>
       {fifaData.carrers && fifaData.carrers.length > 0 ? (
@@ -173,7 +145,6 @@ export default function PageForAllTeams() {
                   showModalDeleteClub={() => showModalDeleteClub(carrer)}
                   showEditCarrer={() => showEditCarrer(carrer)}
                   linkTeams={() => linkTeams(carrer)}
-                  // saveEditedCarrer={saveEditedCarrer}
                   carrer={carrer}
                   club={carrer.club}
                   nation={carrer.nation}
@@ -194,13 +165,6 @@ export default function PageForAllTeams() {
         />
       )}
 
-      {/* {editCarrer && (
-        <EditCarrers
-          onSave={saveEditedCarrer}
-          carrer={carrer}
-          closeEditCarrer={closeEditCarrer}
-        />
-      )} */}
       {createNewCarrer && <CreateNewCarrer closeNewCarrer={closeNewCarrer} />}
       {openDelete && (
         <DeleteSeason
