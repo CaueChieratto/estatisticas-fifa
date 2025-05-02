@@ -312,6 +312,7 @@ export default function PageForTeams() {
     setAbrirModalBuyPlayerSquads(true);
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const fechar = () => {
