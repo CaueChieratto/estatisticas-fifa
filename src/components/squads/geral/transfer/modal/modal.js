@@ -121,12 +121,7 @@ export default function ModalTransferGeral(props) {
                 >
                   <div className="containerInfos">
                     <div className="infosPlayer">
-                      <div className="infosTitles">
-                        {player.playerName}
-                        <span className="infos">
-                          <span className="number"> / {player.age} anos</span>
-                        </span>
-                      </div>
+                      <div className="infosTitles">{player.playerName}</div>
                       <div className="infos infoValues">
                         <div> Transferência: </div>
                         <span className="number" style={{ color: "#c81419" }}>
@@ -165,12 +160,7 @@ export default function ModalTransferGeral(props) {
                 >
                   <div className="containerInfos">
                     <div className="infosPlayer">
-                      <div className="infosTitles">
-                        {player.playerName}
-                        <span className="infos">
-                          <span className="number"> / {player.age} anos</span>
-                        </span>
-                      </div>
+                      <div className="infosTitles">{player.playerName}</div>
                       <div className="infos infoValues">
                         <div> Transferência: </div>
                         <span className="number" style={{ color: "#0bb32a" }}>
