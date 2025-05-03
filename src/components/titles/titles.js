@@ -17,8 +17,6 @@ export default function Titles(props) {
   const abrirModalAddTitles = () => {
     setOpenModalAddTitles(true);
     document.body.style.overflowY = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const fecharModalAddTitles = () => {
