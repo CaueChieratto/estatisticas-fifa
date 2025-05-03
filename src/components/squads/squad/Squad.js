@@ -83,7 +83,9 @@ export default function Squad(props) {
                 <div className="dadosPlayer">{jogador.shirtNumber}</div>
               </div>
               <div className="containerDadoPlayer">
-                <div className="dadosPlayer">{jogador.age} anos</div>
+                <div className="dadosPlayer">
+                  {jogador.ageRenovacao || jogador.age} anos
+                </div>
                 <div className="dadosPlayer">
                   {jogador.nation.toUpperCase()}
                 </div>
@@ -93,7 +95,9 @@ export default function Squad(props) {
               <FaTrashCan size={14} />
             </div>
             <div className="containerValue">
-              <div className="namePlayer">€{jogador.value}M</div>
+              <div className="namePlayer">
+                €{jogador.valueRenovacao || jogador.value}M
+              </div>
               <div className="containerDadoPlayer">
                 <div className="dadosPlayer">€{jogador.salary}mil</div>
                 <div className="dadosPlayer">
@@ -148,7 +152,9 @@ export default function Squad(props) {
                 <div className="dadosPlayer">{jogador.shirtNumber}</div>
               </div>
               <div className="containerDadoPlayer">
-                <div className="dadosPlayer">{jogador.age} anos</div>
+                <div className="dadosPlayer">
+                  {jogador.ageRenovacao || jogador.age} anos
+                </div>
                 <div className="dadosPlayer">
                   {jogador.nation.toUpperCase()}
                 </div>
@@ -159,7 +165,9 @@ export default function Squad(props) {
               <FaTrashCan size={14} />
             </div>
             <div className="containerValue">
-              <div className="namePlayer">€{jogador.value}M</div>
+              <div className="namePlayer">
+                €{jogador.valueRenovacao || jogador.value}M
+              </div>
               <div className="containerDadoPlayer">
                 <div className="dadosPlayer">€{jogador.salary}mil</div>
                 <div className="dadosPlayer">
@@ -214,7 +222,9 @@ export default function Squad(props) {
                 <div className="dadosPlayer">{jogador.shirtNumber}</div>
               </div>
               <div className="containerDadoPlayer">
-                <div className="dadosPlayer">{jogador.age} anos</div>
+                <div className="dadosPlayer">
+                  {jogador.ageRenovacao || jogador.age} anos
+                </div>
                 <div className="dadosPlayer">
                   {jogador.nation.toUpperCase()}
                 </div>
@@ -224,7 +234,9 @@ export default function Squad(props) {
               <FaTrashCan size={14} />
             </div>
             <div className="containerValue">
-              <div className="namePlayer">€{jogador.value}M</div>
+              <div className="namePlayer">
+                €{jogador.valueRenovacao || jogador.value}M
+              </div>
               <div className="containerDadoPlayer">
                 <div className="dadosPlayer">€{jogador.salary}mil</div>
                 <div className="dadosPlayer">
@@ -279,7 +291,9 @@ export default function Squad(props) {
                 <div className="dadosPlayer">{jogador.shirtNumber}</div>
               </div>
               <div className="containerDadoPlayer">
-                <div className="dadosPlayer">{jogador.age} anos</div>
+                <div className="dadosPlayer">
+                  {jogador.ageRenovacao || jogador.age} anos
+                </div>
                 <div className="dadosPlayer">
                   {jogador.nation.toUpperCase()}
                 </div>
@@ -289,7 +303,9 @@ export default function Squad(props) {
               <FaTrashCan size={14} />
             </div>
             <div className="containerValue">
-              <div className="namePlayer">€{jogador.value}M</div>
+              <div className="namePlayer">
+                €{jogador.valueRenovacao || jogador.value}M
+              </div>
               <div className="containerDadoPlayer">
                 <div className="dadosPlayer">€{jogador.salary}mil</div>
                 <div className="dadosPlayer">
