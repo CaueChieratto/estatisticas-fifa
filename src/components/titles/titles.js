@@ -17,11 +17,14 @@ export default function Titles(props) {
   const abrirModalAddTitles = () => {
     setOpenModalAddTitles(true);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const fecharModalAddTitles = () => {
     setOpenModalAddTitles(false);
     setTrophie({ league: "", seasons: [] });
+    document.documentElement.style.overflow = "auto";
     document.body.style.overflowY = "auto";
   };
 
