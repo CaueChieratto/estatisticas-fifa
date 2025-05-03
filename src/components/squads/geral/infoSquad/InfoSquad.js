@@ -16,7 +16,6 @@ export default function InfoSquad(props) {
       midfielders: [],
     };
 
-    // Garantir que os arrays existam e são arrays válidos
     const players = [
       ...(Array.isArray(squad.attackers) ? squad.attackers : []),
       ...(Array.isArray(squad.defenders) ? squad.defenders : []),
@@ -31,10 +30,11 @@ export default function InfoSquad(props) {
 
   const calculateAverageAge = () => {
     if (allPlayers.length === 0) return "0.0";
-    const totalAge = allPlayers.reduce(
-      (acc, player) => acc + (parseInt(player.age) || 0),
-      0
-    );
+    const totalAge = allPlayers.reduce((acc, player) => {
+      const idadeStr = player.ageRenovacao ?? player.age;
+      const idade = parseInt(idadeStr) || 0;
+      return acc + idade;
+    }, 0);
     return (totalAge / allPlayers.length).toFixed(1);
   };
 
@@ -44,15 +44,16 @@ export default function InfoSquad(props) {
       (acc, player) => acc + (parseFloat(player.salary) || 0),
       0
     );
-    return (totalSalary / 1000).toFixed(1); // Em milhões
+    return (totalSalary / 1000).toFixed(1);
   };
 
   const calculateTotalValue = () => {
     if (allPlayers.length === 0) return "0.0";
-    const totalValue = allPlayers.reduce(
-      (acc, player) => acc + (parseFloat(player.value) || 0),
-      0
-    );
+    const totalValue = allPlayers.reduce((acc, player) => {
+      const valorStr = player.valueRenovacao ?? player.value;
+      const valor = parseFloat(valorStr) || 0;
+      return acc + valor;
+    }, 0);
     return totalValue.toFixed(1);
   };
 
