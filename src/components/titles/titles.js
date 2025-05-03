@@ -17,13 +17,14 @@ export default function Titles(props) {
   const abrirModalAddTitles = () => {
     setOpenModalAddTitles(true);
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const fecharModalAddTitles = () => {
     setOpenModalAddTitles(false);
     setTrophie({ league: "", seasons: [] });
-    document.documentElement.style.overflow = "auto";
-    document.body.style.overflowY = "auto";
+    document.querySelector(".containerTitles").style.overflowY = "auto";
   };
 
   const handleMouseDown = (e) => {
@@ -116,79 +117,81 @@ export default function Titles(props) {
   };
 
   return (
-    <div className="backgroundModalTitles" onClick={props.closeModalTitles}>
-      <div
-        ref={cardRef}
-        className={`cardModalTitles ${
-          !isDragging && translateY === 0 ? "open" : ""
-        }`}
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          transform: isDragging ? `translateY(${translateY}px)` : undefined,
-          transition: isDragging ? "none" : undefined,
-          position: "relative",
-        }}
-      >
+    <>
+      {openModalAddTitles && (
+        <ModalAddTrophie
+          atualizarCarrer={atualizarCarrer}
+          trophie={trophie}
+          setTrophie={setTrophie}
+          carrer={props.carrer}
+          fecharModalAddTitles={fecharModalAddTitles}
+        />
+      )}
+      <div className="backgroundModalTitles" onClick={props.closeModalTitles}>
         <div
-          className="containerTopModalTitles"
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleMouseDown}
+          ref={cardRef}
+          className={`cardModalTitles ${
+            !isDragging && translateY === 0 ? "open" : ""
+          }`}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            transform: isDragging ? `translateY(${translateY}px)` : undefined,
+            transition: isDragging ? "none" : undefined,
+            position: "relative",
+          }}
         >
-          <div className="barContainer">
-            <div className="barTitles"></div>
+          <div
+            className="containerTopModalTitles"
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleMouseDown}
+          >
+            <div className="barContainer">
+              <div className="barTitles"></div>
+            </div>
           </div>
-        </div>
-        <div className="buttonAddTitles">
-          <ButtonGreen
-            onClick={abrirModalAddTitles}
-            nameButtonAddTitle="Adicionar"
-          />
-        </div>
-        <div className="containerTitles">
-          {props.carrer.trophies?.map((trophie, index) => (
-            <div className="cardTitles" key={index}>
-              <div className="headline">
-                {trophie.seasons.length}X CAMPEÃO DA{" "}
-                {trophie.league.toUpperCase()}
-              </div>
-              <div className="containerInsideCard">
-                <img
-                  src={trophie.leagueImage}
-                  alt={trophie.league}
-                  className="imageTitle"
-                />
-                <div className="seasonThatWon">
-                  {trophie.seasons.map((season, idx) => (
-                    <span
-                      className="infoSeasonWon"
-                      key={idx}
-                      onClick={() => {
-                        const confirmDelete = window.confirm(
-                          `Deseja remover a temporada ${season} da ${trophie.league}?`
-                        );
-                        if (confirmDelete) {
-                          removeSeasonFromTrophie(trophie.league, season);
-                        }
-                      }}
-                    >
-                      {season}
-                    </span>
-                  ))}
+          <div className="buttonAddTitles">
+            <ButtonGreen
+              onClick={abrirModalAddTitles}
+              nameButtonAddTitle="Adicionar"
+            />
+          </div>
+          <div className="containerTitles">
+            {props.carrer.trophies?.map((trophie, index) => (
+              <div className="cardTitles" key={index}>
+                <div className="headline">
+                  {trophie.seasons.length}X CAMPEÃO DA{" "}
+                  {trophie.league.toUpperCase()}
+                </div>
+                <div className="containerInsideCard">
+                  <img
+                    src={trophie.leagueImage}
+                    alt={trophie.league}
+                    className="imageTitle"
+                  />
+                  <div className="seasonThatWon">
+                    {trophie.seasons.map((season, idx) => (
+                      <span
+                        className="infoSeasonWon"
+                        key={idx}
+                        onClick={() => {
+                          const confirmDelete = window.confirm(
+                            `Deseja remover a temporada ${season} da ${trophie.league}?`
+                          );
+                          if (confirmDelete) {
+                            removeSeasonFromTrophie(trophie.league, season);
+                          }
+                        }}
+                      >
+                        {season}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        {openModalAddTitles && (
-          <ModalAddTrophie
-            atualizarCarrer={atualizarCarrer}
-            trophie={trophie}
-            setTrophie={setTrophie}
-            carrer={props.carrer}
-            fecharModalAddTitles={fecharModalAddTitles}
-          />
-        )}
       </div>
-    </div>
+    </>
   );
 }
