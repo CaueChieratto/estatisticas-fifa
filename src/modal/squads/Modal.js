@@ -21,11 +21,13 @@ export default function Modal(props) {
     position: "",
     playerName: "",
     age: "",
+    ageRenovacao: "",
     nation: "",
     shirtNumber: "",
     detailPosition: "",
     value: "",
     valueTransfer: "",
+    valueRenovacao: "",
     salary: "",
     contract: "",
     buy: false,
@@ -35,6 +37,7 @@ export default function Modal(props) {
     clubArrival: "",
     clubExit: "",
   });
+  const [editouValueRenovacao, setEditouValueRenovacao] = useState(false);
 
   useEffect(() => {
     if (props.modoSelecao === "renovacao" && props.jogadorSelecionado) {
@@ -43,10 +46,12 @@ export default function Modal(props) {
         position: jogador.position || "",
         playerName: jogador.playerName || "",
         age: jogador.age?.toString() || "",
+        ageRenovacao: jogador.ageRenovacao?.toString() || "",
         nation: jogador.nation || "",
         shirtNumber: jogador.shirtNumber?.toString() || "",
         detailPosition: jogador.detailPosition?.toString() || "",
         value: jogador.value || "",
+        valueRenovacao: jogador.valueRenovacao || "",
         valueTransfer: jogador.valueTransfer || "",
         salary: jogador.salary || "",
         contract: jogador.contract || "",
@@ -59,7 +64,7 @@ export default function Modal(props) {
       });
     }
     if (props.modoSelecao === "renovacao") {
-      setBuy(1); // força como elenco
+      setBuy(1);
     }
   }, [props.modoSelecao, props.jogadorSelecionado]);
 
@@ -476,24 +481,51 @@ export default function Modal(props) {
                       }
                     />
                   </div>
-                  <div className="allInputsCreateCarrer">
-                    <div className="iconForInputsCreateCarrer">
-                      <IoCalendarNumberOutline />
+                  {props.modoSelecao !== "renovacao" && (
+                    <div className="allInputsCreateCarrer">
+                      <div className="iconForInputsCreateCarrer">
+                        <IoCalendarNumberOutline />
+                      </div>
+                      <input
+                        placeholder="Idade"
+                        className="inputsCreateCarrer"
+                        type="number"
+                        name="idade"
+                        value={jogadorData.age}
+                        onChange={(e) =>
+                          setJogadorData({
+                            ...jogadorData,
+                            age: e.target.value.slice(0, 2),
+                          })
+                        }
+                      />
                     </div>
-                    <input
-                      placeholder="Idade"
-                      className="inputsCreateCarrer"
-                      type="number"
-                      name="idade"
-                      value={jogadorData.age}
-                      onChange={(e) =>
-                        setJogadorData({
-                          ...jogadorData,
-                          age: e.target.value.slice(0, 2),
-                        })
-                      }
-                    />
-                  </div>
+                  )}
+                  {props.modoSelecao === "renovacao" && (
+                    <div className="allInputsCreateCarrer">
+                      <div className="iconForInputsCreateCarrer">
+                        <IoCalendarNumberOutline />
+                      </div>
+                      <input
+                        placeholder="Idade"
+                        className="inputsCreateCarrer"
+                        type="text"
+                        name="idade"
+                        value={
+                          editouValueRenovacao
+                            ? jogadorData.ageRenovacao
+                            : jogadorData.age || ""
+                        }
+                        onChange={(e) => {
+                          setEditouValueRenovacao(true);
+                          setJogadorData({
+                            ...jogadorData,
+                            ageRenovacao: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                  )}
                   <div className="allInputsCreateCarrer">
                     <div className="iconForInputsCreateCarrer">
                       <FaGlobeEurope />
@@ -585,6 +617,25 @@ export default function Modal(props) {
                     </>
                   )}
                   {buy === 1 && (
+                    <>
+                      {props.modoSelecao !== "renovacao" && (
+                        <div className="allInputsCreateCarrer">
+                          <div className="iconForInputsCreateCarrer">
+                            <GiMoneyStack />
+                          </div>
+                          <input
+                            placeholder="Valor do Jogador"
+                            className="inputsCreateCarrer"
+                            type="text"
+                            name="valor do jogador"
+                            value={jogadorData.value}
+                            onChange={handleValueChange}
+                          />
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {props.modoSelecao === "renovacao" && (
                     <div className="allInputsCreateCarrer">
                       <div className="iconForInputsCreateCarrer">
                         <GiMoneyStack />
@@ -593,12 +644,23 @@ export default function Modal(props) {
                         placeholder="Valor do Jogador"
                         className="inputsCreateCarrer"
                         type="text"
-                        name="valor do jogador"
-                        value={jogadorData.value}
-                        onChange={handleValueChange}
+                        name="valor renovacao"
+                        value={
+                          editouValueRenovacao
+                            ? jogadorData.valueRenovacao
+                            : jogadorData.value || ""
+                        }
+                        onChange={(e) => {
+                          setEditouValueRenovacao(true);
+                          setJogadorData({
+                            ...jogadorData,
+                            valueRenovacao: e.target.value,
+                          });
+                        }}
                       />
                     </div>
                   )}
+
                   <div className="allInputsCreateCarrer">
                     <div className="iconForInputsCreateCarrer">
                       <TbPigMoney />
