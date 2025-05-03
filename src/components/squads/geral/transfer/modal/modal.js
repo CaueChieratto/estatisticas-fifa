@@ -111,45 +111,53 @@ export default function ModalTransferGeral(props) {
         </div>
         <>
           {props.tipoTransferencia === "chegadas" &&
-            jogadoresComprados.map((player, index) => (
-              <div
-                className="containerTransfers"
-                key={`${player.playerName}-${player.club}-${index}`}
-              >
-                <div className="containerInfos">
-                  <div className="infosPlayer">
-                    <div className="infosTitles">
-                      {player.playerName}
-                      <span className="infos">
-                        <span className="number"> / {player.age} anos</span>
-                      </span>
+            jogadoresComprados
+              .slice()
+              .sort((a, b) => parseFloat(b.value) - parseFloat(a.value))
+              .map((player, index) => (
+                <div
+                  className="containerTransfers"
+                  key={`${player.playerName}-${player.club}-${index}`}
+                >
+                  <div className="containerInfos">
+                    <div className="infosPlayer">
+                      <div className="infosTitles">
+                        {player.playerName}
+                        <span className="infos">
+                          <span className="number"> / {player.age} anos</span>
+                        </span>
+                      </div>
+                      <div className="infos infoValues">
+                        <div> Transferência: </div>
+                        <span className="number" style={{ color: "#c81419" }}>
+                          €{player.value}M
+                        </span>
+                      </div>
                     </div>
-                    <div className="infos infoValues">
-                      <div> Transferência: </div>
-                      <span className="number" style={{ color: "#c81419" }}>
-                        €{player.value}M
-                      </span>
+                    <div
+                      className="iconDeletePlayerInTransferModal"
+                      onClick={() => props.deletarJogador(player, "chegadas")}
+                    >
+                      <MdDelete />
                     </div>
-                  </div>
-                  <div
-                    className="iconDeletePlayerInTransferModal"
-                    onClick={() => props.deletarJogador(player, "chegadas")}
-                  >
-                    <MdDelete />
-                  </div>
-                  <div className="infosTransfer">
-                    <div className="infosTitles">{player.clubArrival}</div>
-                    <div className="infos">
-                      {formatarData(player.dataArrival)}
+                    <div className="infosTransfer">
+                      <div className="infosTitles">{player.clubArrival}</div>
+                      <div className="infos">
+                        {formatarData(player.dataArrival)}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
           {props.tipoTransferencia === "saidas" &&
             squadSell
               .filter((player) => player.sell)
+              .slice()
+              .sort(
+                (a, b) =>
+                  parseFloat(b.valueTransfer) - parseFloat(a.valueTransfer)
+              )
               .map((player, index) => (
                 <div
                   className="containerTransfers"

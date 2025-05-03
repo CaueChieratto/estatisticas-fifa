@@ -13,13 +13,13 @@ export default function Transfers(props) {
 
   const ultimasChegadas = allPlayers
     .filter((p) => p.buy === true)
-    .slice(-3)
-    .reverse();
+    .sort((a, b) => parseFloat(b.value) - parseFloat(a.value))
+    .slice(0, 3);
 
   const ultimasSaidas = (props.squad?.transferList || [])
     .filter((p) => p.sell === true)
-    .slice(-3)
-    .reverse();
+    .sort((a, b) => parseFloat(b.valueTransfer) - parseFloat(a.valueTransfer))
+    .slice(0, 3);
 
   return (
     <>

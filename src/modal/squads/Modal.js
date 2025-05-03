@@ -37,7 +37,6 @@ export default function Modal(props) {
     clubArrival: "",
     clubExit: "",
   });
-  const [editouValueRenovacao, setEditouValueRenovacao] = useState(false);
 
   useEffect(() => {
     if (props.modoSelecao === "renovacao" && props.jogadorSelecionado) {
@@ -511,13 +510,8 @@ export default function Modal(props) {
                         className="inputsCreateCarrer"
                         type="text"
                         name="idade"
-                        value={
-                          editouValueRenovacao
-                            ? jogadorData.ageRenovacao
-                            : jogadorData.age || ""
-                        }
+                        value={jogadorData.ageRenovacao}
                         onChange={(e) => {
-                          setEditouValueRenovacao(true);
                           setJogadorData({
                             ...jogadorData,
                             ageRenovacao: e.target.value,
@@ -645,13 +639,8 @@ export default function Modal(props) {
                         className="inputsCreateCarrer"
                         type="text"
                         name="valor renovacao"
-                        value={
-                          editouValueRenovacao
-                            ? jogadorData.valueRenovacao
-                            : jogadorData.value || ""
-                        }
+                        value={jogadorData.valueRenovacao}
                         onChange={(e) => {
-                          setEditouValueRenovacao(true);
                           setJogadorData({
                             ...jogadorData,
                             valueRenovacao: e.target.value,
