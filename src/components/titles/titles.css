@@ -66,6 +66,11 @@
     flex-direction: column;
     gap: 24px;
     min-height: 100vh;
+    position: relative;
+}
+
+.containerModalAnimation{
+    position: sticky;
 }
   
 .cardTitles {
@@ -91,8 +96,8 @@
 .containerInsideCard {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
-    gap: 20px;
+    padding: 12px;
+    gap: 15px;
     align-items: center;
 }
   

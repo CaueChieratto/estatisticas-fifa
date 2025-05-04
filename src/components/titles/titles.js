@@ -149,46 +149,62 @@ export default function Titles(props) {
               <div className="barTitles"></div>
             </div>
           </div>
-          <div className="buttonAddTitles">
-            <ButtonGreen
-              onClick={abrirModalAddTitles}
-              nameButtonAddTitle="Adicionar"
-            />
-          </div>
-          <div className="containerTitles">
-            {props.carrer.trophies?.map((trophie, index) => (
-              <div className="cardTitles" key={index}>
-                <div className="headline">
-                  {trophie.seasons.length}X CAMPEÃO DA{" "}
-                  {trophie.league.toUpperCase()}
-                </div>
-                <div className="containerInsideCard">
-                  <img
-                    src={trophie.leagueImage}
-                    alt={trophie.league}
-                    className="imageTitle"
-                  />
-                  <div className="seasonThatWon">
-                    {trophie.seasons.map((season, idx) => (
-                      <span
-                        className="infoSeasonWon"
-                        key={idx}
-                        onClick={() => {
-                          const confirmDelete = window.confirm(
-                            `Deseja remover a temporada ${season} da ${trophie.league}?`
-                          );
-                          if (confirmDelete) {
-                            removeSeasonFromTrophie(trophie.league, season);
-                          }
-                        }}
-                      >
-                        {season}
-                      </span>
-                    ))}
+          <div className="containerModalAnimation">
+            <div className="buttonAddTitles">
+              <ButtonGreen
+                onClick={abrirModalAddTitles}
+                nameButtonAddTitle="Adicionar"
+              />
+            </div>
+            <div className="containerTitles">
+              {props.carrer.trophies
+                ?.sort((a, b) => b.seasons.length - a.seasons.length)
+                .map((trophie, index) => (
+                  <div className="cardTitles" key={index}>
+                    <div className="headline">
+                      {trophie.seasons.length}X CAMPEÃO DA{" "}
+                      {trophie.league.toUpperCase()}
+                    </div>
+                    <div className="containerInsideCard">
+                      <img
+                        src={trophie.leagueImage}
+                        alt={trophie.league}
+                        className="imageTitle"
+                      />
+                      <div className="seasonThatWon">
+                        {[...trophie.seasons]
+                          .sort((a, b) => {
+                            const aNum = parseInt(a);
+                            const bNum = parseInt(b);
+                            if (!isNaN(aNum) && !isNaN(bNum)) {
+                              return aNum - bNum;
+                            }
+                            return a.localeCompare(b);
+                          })
+                          .map((season, idx) => (
+                            <span
+                              className="infoSeasonWon"
+                              key={idx}
+                              onClick={() => {
+                                const confirmDelete = window.confirm(
+                                  `Deseja remover a temporada ${season} da ${trophie.league}?`
+                                );
+                                if (confirmDelete) {
+                                  removeSeasonFromTrophie(
+                                    trophie.league,
+                                    season
+                                  );
+                                }
+                              }}
+                            >
+                              {season}
+                            </span>
+                          ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
+            </div>
           </div>
         </div>
       </div>

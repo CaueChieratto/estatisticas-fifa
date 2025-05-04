@@ -66,6 +66,7 @@ export default function PageForAllTeams() {
     const updatedCarrer = fifaData.carrers.find((c) => c.id === carrer.id);
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setTitles(updatedCarrer);
   };
 
