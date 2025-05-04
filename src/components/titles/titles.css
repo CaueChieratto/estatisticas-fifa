@@ -25,6 +25,7 @@
     transition: transform 0.3s ease;
     box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.1);
     padding-bottom: 200px;
+    overflow-x: hidden;
 }
   
 .containerTopModalTitles {
@@ -71,6 +72,7 @@
 
 .containerModalAnimation{
     position: sticky;
+    overflow-x: hidden;
 }
   
 .cardTitles {

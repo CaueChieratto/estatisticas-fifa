@@ -13,14 +13,26 @@ export default function ModalAddTrophie(props) {
     const selectedLeague = event.target.value;
 
     const leagueImages = {
-      "La Liga": "./trophies/espanha/laliga.png",
-      "La Liga 2": "./trophies/espanha/laliga2.png",
-      "Copa da Espanha": "./trophies/espanha/copaDoRey.png",
-      Supercopa: "./trophies/espanha/supercopaEspanha.png",
       "Champions League": "./trophies/champions.png",
       "Europa League": "./trophies/europaLeague.png",
       "Conference League": "./trophies/conferenceLeague.png",
       "UEFA Supercup": "./trophies/uefaSupercopa.png",
+
+      // espanha
+      "La Liga": "./trophies/espanha/laliga.png",
+      "La Liga 2": "./trophies/espanha/laliga2.png",
+      "Copa da Espanha": "./trophies/espanha/copaDoRey.png",
+      Supercopa: "./trophies/espanha/supercopaEspanha.png",
+
+      // inglaterra
+      "FA Cup": "./trophies/inglaterra/faCup.png",
+      "Carabao Cup": "./trophies/inglaterra/carabao.png",
+      "League Two": "./trophies/inglaterra/leagueTwo.png",
+      "BSM Trophy": "./trophies/inglaterra/bsm.png",
+      "League One": "./trophies/inglaterra/leagueOne.png",
+      "EFL Championship": "./trophies/inglaterra/championship.png",
+      "Community Shield": "./trophies/inglaterra/supercopa.png",
+      "Premier League": "./trophies/inglaterra/premierLeague.png",
     };
 
     props.setTrophie((prev) => ({
@@ -35,7 +47,11 @@ export default function ModalAddTrophie(props) {
   const filteredLeagues = availableLeagues.filter((league) => {
     const normalized = league.trim().toLowerCase();
     return (
-      normalized !== "lendas do clube" && normalized !== "historico do jogador"
+      normalized !== "lendas do clube" &&
+      normalized !== "historico do jogador" &&
+      league !== "Playoff EFL" &&
+      league !== "Playoff Lg Two" &&
+      league !== "Playoff Lg One"
     );
   });
 
