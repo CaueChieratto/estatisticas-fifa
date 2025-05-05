@@ -32,15 +32,24 @@ export default function ModalTransferGeral(props) {
   };
 
   useEffect(() => {
+    const el = cardRef.current;
+
+    if (el) {
+      el.style.overflow = isDragging ? "hidden" : "auto";
+    }
+
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("touchmove", handleMouseMove);
     document.addEventListener("touchend", handleMouseUp);
+
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("touchmove", handleMouseMove);
       document.removeEventListener("touchend", handleMouseUp);
+
+      if (el) el.style.overflow = "auto";
     };
   }, [isDragging]);
 

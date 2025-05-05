@@ -51,6 +51,16 @@ export default function Titles(props) {
   };
 
   useEffect(() => {
+    const el = cardRef.current;
+
+    if (el) {
+      if (isDragging) {
+        el.style.overflow = "hidden";
+      } else {
+        el.style.overflow = "auto";
+      }
+    }
+
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("touchmove", handleMouseMove);
@@ -60,6 +70,7 @@ export default function Titles(props) {
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("touchmove", handleMouseMove);
       document.removeEventListener("touchend", handleMouseUp);
+      if (el) el.style.overflow = "auto";
     };
   }, [isDragging]);
 
