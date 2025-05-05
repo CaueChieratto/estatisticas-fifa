@@ -1,196 +1,197 @@
 .backgroundModalTitles {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column-reverse;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-}
-  
-.cardModalTitles {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 55%;
-    z-index: 2000;
-    overflow-y: auto;
-    border-radius: 24px 24px 0 0;
-    background: #ffffff;
-    color: #333;
-    transition: transform 0.3s ease;
-    box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.1);
-    padding-bottom: 200px;
-    overflow-x: hidden;
-}
-  
-.containerTopModalTitles {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    border-radius: 24px 24px 0 0;
-    height: 32px;
-    cursor: grab;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    /* background: #ffffff; */
-    background-color: green;
-}
-  
-.barContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: red;
-}
-  
-.barTitles {
-    width: 48px;
-    height: 5px;
-    /* background-color: #ccc; */
-    background-color: blue;
-    border-radius: 10px;
-}
-  
-.buttonAddTitles {
-    padding: 12px 16px;
-}
-  
-.containerTitles {
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    min-height: 100vh;
-    position: relative;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
 }
 
-.containerModalAnimation{
-    position: sticky;
-    overflow-x: hidden;
+.cardModalTitles {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  z-index: 2000;
+  overflow-y: auto;
+  border-radius: 24px 24px 0 0;
+  background: #ffffff;
+  color: #333;
+  transition: transform 0.3s ease;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.1);
+  padding-bottom: 200px;
+  overflow-x: hidden;
 }
-  
+
+.containerTopModalTitles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 24px 24px 0 0;
+  height: 32px;
+  cursor: grab;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.barContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+
+.barTitles {
+  width: 48px;
+  height: 5px;
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.buttonAddTitles {
+  padding: 12px 16px;
+}
+
+.containerTitles {
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.containerModalAnimation {
+  position: sticky;
+  overflow-x: hidden;
+}
+
 .cardTitles {
-    border-radius: 16px;
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    max-width: 700px;
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    transition: all 0.3s ease;
+  border-radius: 16px;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .headline {
-    background: #e3f2fd;
-    color: #1976d2;
-    padding: 16px;
-    font-weight: bold;
-    font-size: 16px;
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 16px;
 }
-  
+
 .containerInsideCard {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 12px;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+  gap: 15px;
+  align-items: center;
 }
-  
+
 .imageTitle {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
-    border-radius: 12px;
-    padding: 10px;
-    background-color: rgb(240, 240, 240);
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
 }
-  
+
 .seasonThatWon {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
-    flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  flex: 1;
 }
-  
+
 .infoSeasonWon {
-    background: #1976d2;
-    color: white;
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-    width: 40px;
-    text-align: center;
-}
-  
-
-.containerTransfers{
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    border-bottom: 1px solid rgb(175, 175, 175);
+  background: #1976d2;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 40px;
+  text-align: center;
 }
 
-.containerInfos{
-    padding: 8px 16px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+.containerTransfers {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  border-bottom: 1px solid rgb(175, 175, 175);
 }
 
-.iconDeletePlayerInTransferModal{
-    height: 16px;
-    position: absolute;
-    bottom: 20%;
-    right: 48%;
+.containerInfos {
+  padding: 8px 16px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
-.infosPlayer{
-    width: 230px;
-    height: 38px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.iconDeletePlayerInTransferModal {
+  height: 16px;
+  position: absolute;
+  bottom: 20%;
+  right: 48%;
 }
 
-.infosTransfer{
-    height: 38px;
-    width: 130px;
-    text-align: end;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.infosPlayer {
+  width: 230px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.infosTitles{
-    font-size: 14px;
-    color: #222226;
-    font-weight: bold;
+.infosTransfer {
+  height: 38px;
+  width: 130px;
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.infos{
-    font-size: 12px;
-    color: #22222673;
+.infosTitles {
+  font-size: 14px;
+  color: #222226;
+  font-weight: bold;
 }
 
-.infoValues{
-    display: flex;
-    gap: 2%;
-    align-items: center;
+.infos {
+  font-size: 12px;
+  color: #22222673;
 }
 
-.number{
-    font-size: 14px;
-    color: #373737;
+.infoValues {
+  display: flex;
+  gap: 2%;
+  align-items: center;
+}
+
+.number {
+  font-size: 14px;
+  color: #373737;
 }

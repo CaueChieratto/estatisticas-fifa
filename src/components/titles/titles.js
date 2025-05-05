@@ -140,12 +140,12 @@ export default function Titles(props) {
             position: "relative",
           }}
         >
-          <div
-            className="containerTopModalTitles"
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleMouseDown}
-          >
-            <div className="barContainer">
+          <div className="containerTopModalTitles">
+            <div
+              className="barContainer"
+              onMouseDown={handleMouseDown}
+              onTouchStart={handleMouseDown}
+            >
               <div className="barTitles"></div>
             </div>
           </div>
