@@ -131,6 +131,7 @@ export default function Titles(props) {
     <>
       {openModalAddTitles && (
         <ModalAddTrophie
+          runWithDelayedLoad={props.runWithDelayedLoad}
           atualizarCarrer={atualizarCarrer}
           trophie={trophie}
           setTrophie={setTrophie}

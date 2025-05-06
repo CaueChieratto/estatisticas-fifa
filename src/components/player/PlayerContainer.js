@@ -24,6 +24,7 @@ export default function PlayerContainer(props) {
     (acc, league) => acc + (parseInt(league.assists) || 0),
     0
   );
+
   const totalCleanSheets =
     props.playerPosition === 1
       ? leagues.reduce(
@@ -97,6 +98,7 @@ export default function PlayerContainer(props) {
         {openStatsInLeagues && (
           <>
             <LeaguesContainer
+              runWithDelayedLoad={props.runWithDelayedLoad}
               updatePage={props.updatePage}
               showNewleagues={true}
               carrer={props.carrer}

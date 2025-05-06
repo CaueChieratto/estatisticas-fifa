@@ -24,6 +24,7 @@ import Buttons from "../../components/squads/buttons/Buttons.js";
 import Modal from "../../modal/squads/Modal.js";
 import Geral from "../../components/squads/geral/Geral.js";
 import ModalTransferGeral from "../../components/squads/geral/transfer/modal/modal.js";
+import Load from "../../components/load/load.js";
 
 export default function PageForTeams() {
   const location = useLocation();
@@ -59,6 +60,7 @@ export default function PageForTeams() {
     goalkeepers: [],
     transferList: [],
   });
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const auth = getAuth();
@@ -396,6 +398,19 @@ export default function PageForTeams() {
     document.documentElement.style.overflow = "auto";
   };
 
+  const runWithDelayedLoad = async (asyncCallback) => {
+    let timeoutId = setTimeout(() => setLoad(true), 1000);
+
+    try {
+      await asyncCallback();
+    } catch (err) {
+      console.error("Erro ao executar função com loading:", err);
+    } finally {
+      clearTimeout(timeoutId);
+      setLoad(false);
+    }
+  };
+
   return (
     <>
       <Header
@@ -528,6 +543,7 @@ export default function PageForTeams() {
                           </div>
                           <div className="pencil">
                             <PlayerContainer
+                              runWithDelayedLoad={runWithDelayedLoad}
                               updatePage={updatePage}
                               total
                               playerPosition={player.position}
@@ -555,6 +571,7 @@ export default function PageForTeams() {
                       </div>
                       {openNewStats && (
                         <NewPlayerModal
+                          runWithDelayedLoad={runWithDelayedLoad}
                           addPlayerToSeason={(player) =>
                             addPlayerToSeason(selectedSeason, player)
                           }
@@ -610,10 +627,16 @@ export default function PageForTeams() {
       </div>
 
       {abrirModalBuyPlayerSquads && (
-        <Modal onSave={refreshSquad} carrer={carrer} fechar={fechar} />
+        <Modal
+          runWithDelayedLoad={runWithDelayedLoad}
+          onSave={refreshSquad}
+          carrer={carrer}
+          fechar={fechar}
+        />
       )}
       {abrirModalSquadsButtons && (
         <Modal
+          runWithDelayedLoad={runWithDelayedLoad}
           onSave={refreshSquad}
           carrer={carrer}
           fechar={fechar}
@@ -640,6 +663,7 @@ export default function PageForTeams() {
       )}
       {openModalTransferGeral && (
         <ModalTransferGeral
+          runWithDelayedLoad={runWithDelayedLoad}
           deletarJogador={deletarJogador}
           squad={squad}
           tipoTransferencia={tipoTransferencia}
@@ -649,6 +673,7 @@ export default function PageForTeams() {
           closeModalClick={closeModalClick}
         />
       )}
+      {load && <Load />}
     </>
   );
 }

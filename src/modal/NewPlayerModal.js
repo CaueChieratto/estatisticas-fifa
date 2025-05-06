@@ -26,10 +26,12 @@ export default function NewPlayerModal(props) {
   };
 
   const savePlayer = () => {
-    const newPlayer = { ...editedPlayer, position: playerPosition };
+    props.runWithDelayedLoad(async () => {
+      const newPlayer = { ...editedPlayer, position: playerPosition };
 
-    props.addPlayerToSeason(newPlayer);
-    props.closeNewPlayer();
+      await props.addPlayerToSeason(newPlayer);
+      props.closeNewPlayer();
+    });
   };
 
   return (

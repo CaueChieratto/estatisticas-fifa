@@ -60,14 +60,16 @@ export default function NewStatsLeagues(props) {
   const editLeague = (player) => {
     setEditedLeague(player);
   };
-  const statsLeague = async () => {
-    if (editedLeague.league === "") {
-      alert("Selecione uma opção");
-      return;
-    }
+  const statsLeague = () => {
+    props.runWithDelayedLoad(async () => {
+      if (editedLeague.league === "") {
+        alert("Selecione uma opção");
+        return;
+      }
 
-    await props.addLeagueToPlayer(editedLeague);
-    props.closeModal();
+      await props.addLeagueToPlayer(editedLeague);
+      props.closeModal();
+    });
   };
 
   const availableLeagues = props.carrer.leagues || [];

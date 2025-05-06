@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Geral.css";
 import InfoSquad from "./infoSquad/InfoSquad.js";
 import Transfers from "./transfer/Transfers.js";

@@ -72,59 +72,61 @@ export default function PageForNewCarrer(props) {
   };
 
   const saveCarrer = async () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user ? user.uid : null;
+    props.runWithDelayedLoad(async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user ? user.uid : null;
 
-    if (!uid) {
-      alert("Usuário não está logado.");
-      return;
-    }
-
-    if (!carrerData.nation) {
-      alert("Por favor, selecione um país antes de salvar.");
-      return;
-    }
-
-    if (!carrerData.club) {
-      alert("Por favor, forneça o nome do clube.");
-      return;
-    }
-
-    try {
-      const docRef = await addDoc(collection(db, `users/${uid}/fifaData`), {
-        ...carrerData,
-        uuid: uuidv4(),
-      });
-
-      const clubName = carrerData.club;
-
-      if (!clubName) {
-        console.error("Nome do clube está indefinido.");
+      if (!uid) {
+        alert("Usuário não está logado.");
         return;
       }
 
-      const newDocRef = doc(db, `users/${uid}/fifaData`, clubName);
+      if (!carrerData.nation) {
+        alert("Por favor, selecione um país antes de salvar.");
+        return;
+      }
 
-      await setDoc(newDocRef, {
-        club: carrerData.club,
-        date: carrerData.date,
-        nation: carrerData.nation,
-        leagues: carrerData.leagues,
-        seasons: carrerData.seasons,
-        squads: carrerData.squads,
-        trophies: carrerData.trophies,
-        uuid: uuidv4(),
-      });
+      if (!carrerData.club) {
+        alert("Por favor, forneça o nome do clube.");
+        return;
+      }
 
-      await deleteDoc(docRef);
+      try {
+        const docRef = await addDoc(collection(db, `users/${uid}/fifaData`), {
+          ...carrerData,
+          uuid: uuidv4(),
+        });
 
-      setCarrerData({ ...carrerData, id: clubName });
+        const clubName = carrerData.club;
 
-      handleCloseModal();
-    } catch (error) {
-      console.error("Erro ao salvar carreira:", error);
-    }
+        if (!clubName) {
+          console.error("Nome do clube está indefinido.");
+          return;
+        }
+
+        const newDocRef = doc(db, `users/${uid}/fifaData`, clubName);
+
+        await setDoc(newDocRef, {
+          club: carrerData.club,
+          date: carrerData.date,
+          nation: carrerData.nation,
+          leagues: carrerData.leagues,
+          seasons: carrerData.seasons,
+          squads: carrerData.squads,
+          trophies: carrerData.trophies,
+          uuid: uuidv4(),
+        });
+
+        await deleteDoc(docRef);
+
+        props.setLoad(true);
+        setCarrerData({ ...carrerData, id: clubName });
+        handleCloseModal();
+      } catch (error) {
+        console.error("Erro ao salvar carreira:", error);
+      }
+    });
   };
 
   const handleCloseModal = () => {
@@ -135,85 +137,87 @@ export default function PageForNewCarrer(props) {
   };
 
   return (
-    <div
-      onClick={handleCloseModal}
-      className={`containerModalCreateCarrer ${animationClass}`}
-    >
+    <>
       <div
-        className="cardModalCreateCarrer"
-        onClick={(e) => e.stopPropagation()}
+        onClick={handleCloseModal}
+        className={`containerModalCreateCarrer ${animationClass}`}
       >
-        <div className="containerHeader">
-          <div className="addClub">Adicionar Clube</div>
-          <div onClick={handleCloseModal} className="closeModalCreateCarrer">
-            <IoMdClose size={25} />
-          </div>
-        </div>
-        <div className="containerCreateCarrer">
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <BiWorld size={15} />
+        <div
+          className="cardModalCreateCarrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="containerHeader">
+            <div className="addClub">Adicionar Clube</div>
+            <div onClick={handleCloseModal} className="closeModalCreateCarrer">
+              <IoMdClose size={25} />
             </div>
-            <select
-              style={{
-                appearance: "none",
-                WebkitAppearance: "none",
-                MozAppearance: "none",
-                marginRight: "4px",
-              }}
-              className="inputsCreateCarrer"
-              name="nation"
-              value={carrerData.nation}
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                Selecione um País
-              </option>
-              <option value="Espanha">Espanha</option>
-              <option value="Inglaterra">Inglaterra</option>
-              <option value="Alemanha">Alemanha</option>
-              <option value="Italia">Itália</option>
-              <option value="Franca">França</option>
-              <option value="Holanda">Holanda</option>
-              <option value="Arabia">Arábia Saudita</option>
-            </select>
           </div>
-          <div className="allInputsCreateCarrer">
-            <div className="iconForInputsCreateCarrer">
-              <PiShieldCheckeredDuotone size={15} />
+          <div className="containerCreateCarrer">
+            <div className="allInputsCreateCarrer">
+              <div className="iconForInputsCreateCarrer">
+                <BiWorld size={15} />
+              </div>
+              <select
+                style={{
+                  appearance: "none",
+                  WebkitAppearance: "none",
+                  MozAppearance: "none",
+                  marginRight: "4px",
+                }}
+                className="inputsCreateCarrer"
+                name="nation"
+                value={carrerData.nation}
+                onChange={handleChange}
+              >
+                <option value="" disabled>
+                  Selecione um País
+                </option>
+                <option value="Espanha">Espanha</option>
+                <option value="Inglaterra">Inglaterra</option>
+                <option value="Alemanha">Alemanha</option>
+                <option value="Italia">Itália</option>
+                <option value="Franca">França</option>
+                <option value="Holanda">Holanda</option>
+                <option value="Arabia">Arábia Saudita</option>
+              </select>
             </div>
-            <input
-              placeholder="Clube"
-              className="inputsCreateCarrer"
-              type="text"
-              name="club"
-              value={carrerData.club}
-              onChange={handleChange}
-            />
-          </div>
+            <div className="allInputsCreateCarrer">
+              <div className="iconForInputsCreateCarrer">
+                <PiShieldCheckeredDuotone size={15} />
+              </div>
+              <input
+                placeholder="Clube"
+                className="inputsCreateCarrer"
+                type="text"
+                name="club"
+                value={carrerData.club}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div
-            className="allInputsCreateCarrer"
-            onClick={() =>
-              document.getElementById("customDateInput").showPicker()
-            }
-          >
-            <div className="iconForInputsCreateCarrer">
-              <CiCalendar size={15} />
+            <div
+              className="allInputsCreateCarrer"
+              onClick={() =>
+                document.getElementById("customDateInput").showPicker()
+              }
+            >
+              <div className="iconForInputsCreateCarrer">
+                <CiCalendar size={15} />
+              </div>
+              <input
+                id="customDateInput"
+                className="inputsCreateCarrer"
+                type="date"
+                name="date"
+                value={carrerData.date}
+                onChange={handleChange}
+                placeholder="Data"
+              />
             </div>
-            <input
-              id="customDateInput"
-              className="inputsCreateCarrer"
-              type="date"
-              name="date"
-              value={carrerData.date}
-              onChange={handleChange}
-              placeholder="Data"
-            />
           </div>
+          <ButtonGreen nameButtonSaveCarrer="Salvar" onClick={saveCarrer} />
         </div>
-        <ButtonGreen nameButtonSaveCarrer="Salvar" onClick={saveCarrer} />
       </div>
-    </div>
+    </>
   );
 }

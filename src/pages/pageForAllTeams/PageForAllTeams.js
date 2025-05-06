@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import ButtonGreen from "../../components/buttons/ButtonGreen";
 import "./StyleForAllTeams.css";
 import Allteams from "../../components/allTeams/Allteams";
-import EditCarrers from "../../modal/EditCarrers.js";
+import Load from "../../components/load/load.js";
 import CreateNewCarrer from "../../modal/CreateNewCarrer.js";
 import DeleteSeason from "../../modal/DeleteSeason.js";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +21,11 @@ import Titles from "../../components/titles/titles.js";
 
 export default function PageForAllTeams() {
   const [fifaData, setFifaData] = useState({ carrers: [] });
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const auth = getAuth();
+    setLoad(true);
     const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const uid = currentUser.uid;
@@ -35,6 +37,7 @@ export default function PageForAllTeams() {
               ...doc.data(),
             }));
             setFifaData({ carrers: data });
+            setLoad(false);
           }
         );
 
@@ -125,6 +128,19 @@ export default function PageForAllTeams() {
     setTitles(updatedCarrer);
   };
 
+  const runWithDelayedLoad = async (asyncCallback) => {
+    let timeoutId = setTimeout(() => setLoad(true), 1000);
+
+    try {
+      await asyncCallback();
+    } catch (err) {
+      console.error("Erro ao executar função com loading:", err);
+    } finally {
+      clearTimeout(timeoutId);
+      setLoad(false);
+    }
+  };
+
   return (
     <>
       {fifaData.carrers && fifaData.carrers.length > 0 ? (
@@ -162,13 +178,23 @@ export default function PageForAllTeams() {
       )}
       {titles && (
         <Titles
+          setLoad={setLoad}
+          load={load}
+          runWithDelayedLoad={runWithDelayedLoad}
           refreshCarrer={refreshCarrer}
           carrer={titles}
           closeModalTitles={closeModalTitles}
         />
       )}
 
-      {createNewCarrer && <CreateNewCarrer closeNewCarrer={closeNewCarrer} />}
+      {createNewCarrer && (
+        <CreateNewCarrer
+          runWithDelayedLoad={runWithDelayedLoad}
+          setLoad={setLoad}
+          load={load}
+          closeNewCarrer={closeNewCarrer}
+        />
+      )}
       {openDelete && (
         <DeleteSeason
           delete={deleteCarrer}
@@ -176,6 +202,7 @@ export default function PageForAllTeams() {
           closeModalDelete={closeModalDeleteClub}
         />
       )}
+      {load && <Load />}
     </>
   );
 }

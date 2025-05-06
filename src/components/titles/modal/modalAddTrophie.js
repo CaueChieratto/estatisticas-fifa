@@ -93,19 +93,21 @@ export default function ModalAddTrophie(props) {
     props.fecharModalAddTitles();
   };
 
-  const save = async () => {
-    if (
-      !props.trophie.league ||
-      !props.trophie.seasons ||
-      props.trophie.seasons.length === 0
-    ) {
-      alert("Preencha todos os campos!");
-      return;
-    }
+  const save = () => {
+    props.runWithDelayedLoad(async () => {
+      if (
+        !props.trophie.league ||
+        !props.trophie.seasons ||
+        props.trophie.seasons.length === 0
+      ) {
+        alert("Preencha todos os campos!");
+        return;
+      }
 
-    await addTrophieToClub(props.trophie);
+      await addTrophieToClub(props.trophie);
 
-    props.fecharModalAddTitles();
+      props.fecharModalAddTitles();
+    });
   };
 
   return (

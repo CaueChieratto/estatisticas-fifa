@@ -217,6 +217,7 @@ export default function LeaguesContainer(props) {
 
       {newPlayerStatsLeagues && (
         <NewStatsLeagues
+          runWithDelayedLoad={props.runWithDelayedLoad}
           addLeagueToPlayer={addLeagueToPlayer}
           playerPosition={props.playerPosition}
           carrer={props.carrer}

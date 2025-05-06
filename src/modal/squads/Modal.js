@@ -153,210 +153,216 @@ export default function Modal(props) {
     setJogadorData({ ...jogadorData, clubExit });
   };
 
-  const salvarJogador = async () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user?.uid;
-    const clubeId = props.carrer.id;
+  const salvarJogador = () => {
+    props.runWithDelayedLoad(async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user?.uid;
+      const clubeId = props.carrer.id;
 
-    if (!uid || !clubeId) return;
+      if (!uid || !clubeId) return;
 
-    const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
-    const docSnap = await getDoc(docRef);
+      const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
+      const docSnap = await getDoc(docRef);
 
-    if (!docSnap.exists()) return;
+      if (!docSnap.exists()) return;
 
-    const data = docSnap.data();
+      const data = docSnap.data();
 
-    const novoJogador = {
-      playerName: jogadorData.playerName,
-      shirtNumber: Number(jogadorData.shirtNumber),
-      detailPosition: jogadorData.detailPosition,
-      age: Number(jogadorData.age),
-      nation: jogadorData.nation,
-      value: jogadorData.value,
-      salary: jogadorData.salary,
-      contract: jogadorData.contract,
-      dataArrival: jogadorData.dataArrival,
-      dataExit: jogadorData.dataExit,
-      clubArrival: jogadorData.clubArrival,
-      clubExit: jogadorData.clubExit,
-      buy: buy === 0,
-      sell: false,
-      position: jogadorData.position,
-    };
+      const novoJogador = {
+        playerName: jogadorData.playerName,
+        shirtNumber: Number(jogadorData.shirtNumber),
+        detailPosition: jogadorData.detailPosition,
+        age: Number(jogadorData.age),
+        nation: jogadorData.nation,
+        value: jogadorData.value,
+        salary: jogadorData.salary,
+        contract: jogadorData.contract,
+        dataArrival: jogadorData.dataArrival,
+        dataExit: jogadorData.dataExit,
+        clubArrival: jogadorData.clubArrival,
+        clubExit: jogadorData.clubExit,
+        buy: buy === 0,
+        sell: false,
+        position: jogadorData.position,
+      };
 
-    const novaSquad = {
-      attackers: [],
-      midfielders: [],
-      defenders: [],
-      goalkeepers: [],
-      ...(data.squads?.[0] || {}),
-    };
+      const novaSquad = {
+        attackers: [],
+        midfielders: [],
+        defenders: [],
+        goalkeepers: [],
+        ...(data.squads?.[0] || {}),
+      };
 
-    switch (jogadorData.position) {
-      case "Atacante":
-        novaSquad.attackers.push(novoJogador);
-        break;
-      case "Meia":
-        novaSquad.midfielders.push(novoJogador);
-        break;
-      case "Defensor":
-        novaSquad.defenders.push(novoJogador);
-        break;
-      case "Goleiro":
-        novaSquad.goalkeepers.push(novoJogador);
-        break;
-      default:
-        return;
-    }
+      switch (jogadorData.position) {
+        case "Atacante":
+          novaSquad.attackers.push(novoJogador);
+          break;
+        case "Meia":
+          novaSquad.midfielders.push(novoJogador);
+          break;
+        case "Defensor":
+          novaSquad.defenders.push(novoJogador);
+          break;
+        case "Goleiro":
+          novaSquad.goalkeepers.push(novoJogador);
+          break;
+        default:
+          return;
+      }
 
-    await updateDoc(docRef, {
-      squads: [novaSquad],
+      await updateDoc(docRef, {
+        squads: [novaSquad],
+      });
+
+      props.onSave?.();
+      props.fechar();
     });
-
-    props.onSave?.();
-    props.fechar();
   };
 
-  const moverParaTransferencia = async () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user?.uid;
-    const clubeId = props.carrer.id;
+  const moverParaTransferencia = () => {
+    props.runWithDelayedLoad(async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user?.uid;
+      const clubeId = props.carrer.id;
 
-    if (!uid || !clubeId) return;
+      if (!uid || !clubeId) return;
 
-    const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) return;
+      const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) return;
 
-    const data = docSnap.data();
-    const jogador = props.jogadorSelecionado;
-    if (!jogador || !jogador.position) return;
+      const data = docSnap.data();
+      const jogador = props.jogadorSelecionado;
+      if (!jogador || !jogador.position) return;
 
-    const squad = {
-      attackers: [],
-      midfielders: [],
-      defenders: [],
-      goalkeepers: [],
-      transferList: [],
-      ...(data.squads?.[0] || {}),
-    };
+      const squad = {
+        attackers: [],
+        midfielders: [],
+        defenders: [],
+        goalkeepers: [],
+        transferList: [],
+        ...(data.squads?.[0] || {}),
+      };
 
-    const removerJogador = (lista) =>
-      lista.filter(
-        (j) =>
-          !(
-            j.playerName === jogador.playerName &&
-            j.shirtNumber === jogador.shirtNumber
-          )
-      );
+      const removerJogador = (lista) =>
+        lista.filter(
+          (j) =>
+            !(
+              j.playerName === jogador.playerName &&
+              j.shirtNumber === jogador.shirtNumber
+            )
+        );
 
-    switch (jogador.position) {
-      case "Atacante":
-        squad.attackers = removerJogador(squad.attackers);
-        break;
-      case "Meia":
-        squad.midfielders = removerJogador(squad.midfielders);
-        break;
-      case "Defensor":
-        squad.defenders = removerJogador(squad.defenders);
-        break;
-      case "Goleiro":
-        squad.goalkeepers = removerJogador(squad.goalkeepers);
-        break;
-      default:
-        return;
-    }
+      switch (jogador.position) {
+        case "Atacante":
+          squad.attackers = removerJogador(squad.attackers);
+          break;
+        case "Meia":
+          squad.midfielders = removerJogador(squad.midfielders);
+          break;
+        case "Defensor":
+          squad.defenders = removerJogador(squad.defenders);
+          break;
+        case "Goleiro":
+          squad.goalkeepers = removerJogador(squad.goalkeepers);
+          break;
+        default:
+          return;
+      }
 
-    const jogadorParaVenda = {
-      ...jogador,
-      valueTransfer: jogadorData.valueTransfer,
-      dataExit: jogadorData.dataExit,
-      clubExit: jogadorData.clubExit,
-      sell: true,
-    };
+      const jogadorParaVenda = {
+        ...jogador,
+        valueTransfer: jogadorData.valueTransfer,
+        dataExit: jogadorData.dataExit,
+        clubExit: jogadorData.clubExit,
+        sell: true,
+      };
 
-    squad.transferList.push(jogadorParaVenda);
+      squad.transferList.push(jogadorParaVenda);
 
-    await updateDoc(docRef, {
-      squads: [squad],
+      await updateDoc(docRef, {
+        squads: [squad],
+      });
+
+      props.onSave?.();
+      props.fechar();
     });
-
-    props.onSave?.();
-    props.fechar();
   };
 
-  const editarJogador = async () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user?.uid;
-    const clubeId = props.carrer.id;
+  const editarJogador = () => {
+    props.runWithDelayedLoad(async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user?.uid;
+      const clubeId = props.carrer.id;
 
-    if (!uid || !clubeId) return;
+      if (!uid || !clubeId) return;
 
-    const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) return;
+      const docRef = doc(db, `users/${uid}/fifaData/${clubeId}`);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) return;
 
-    const data = docSnap.data();
-    const jogador = props.jogadorSelecionado;
-    if (!jogador) return;
+      const data = docSnap.data();
+      const jogador = props.jogadorSelecionado;
+      if (!jogador) return;
 
-    const squad = {
-      attackers: [],
-      midfielders: [],
-      defenders: [],
-      goalkeepers: [],
-      ...(data.squads?.[0] || {}),
-    };
+      const squad = {
+        attackers: [],
+        midfielders: [],
+        defenders: [],
+        goalkeepers: [],
+        ...(data.squads?.[0] || {}),
+      };
 
-    const atualizarJogador = (lista) =>
-      lista.map((j) =>
-        j.playerName === jogador.playerName &&
-        j.shirtNumber === jogador.shirtNumber
-          ? {
-              ...j,
-              ...jogadorData,
-              age: Number(jogadorData.age),
-              shirtNumber: Number(jogadorData.shirtNumber),
-              detailPosition: jogadorData.detailPosition,
-              value: jogadorData.value,
-              salary: jogadorData.salary,
-              contract: jogadorData.contract,
-              dataArrival: jogadorData.dataArrival,
-              dataExit: jogadorData.dataExit,
-              clubArrival: jogadorData.clubArrival,
-              clubExit: jogadorData.clubExit,
-              position: jogadorData.position,
-            }
-          : j
-      );
+      const atualizarJogador = (lista) =>
+        lista.map((j) =>
+          j.playerName === jogador.playerName &&
+          j.shirtNumber === jogador.shirtNumber
+            ? {
+                ...j,
+                ...jogadorData,
+                age: Number(jogadorData.age),
+                shirtNumber: Number(jogadorData.shirtNumber),
+                detailPosition: jogadorData.detailPosition,
+                value: jogadorData.value,
+                salary: jogadorData.salary,
+                contract: jogadorData.contract,
+                dataArrival: jogadorData.dataArrival,
+                dataExit: jogadorData.dataExit,
+                clubArrival: jogadorData.clubArrival,
+                clubExit: jogadorData.clubExit,
+                position: jogadorData.position,
+              }
+            : j
+        );
 
-    switch (jogador.position) {
-      case "Atacante":
-        squad.attackers = atualizarJogador(squad.attackers);
-        break;
-      case "Meia":
-        squad.midfielders = atualizarJogador(squad.midfielders);
-        break;
-      case "Defensor":
-        squad.defenders = atualizarJogador(squad.defenders);
-        break;
-      case "Goleiro":
-        squad.goalkeepers = atualizarJogador(squad.goalkeepers);
-        break;
-      default:
-        return;
-    }
+      switch (jogador.position) {
+        case "Atacante":
+          squad.attackers = atualizarJogador(squad.attackers);
+          break;
+        case "Meia":
+          squad.midfielders = atualizarJogador(squad.midfielders);
+          break;
+        case "Defensor":
+          squad.defenders = atualizarJogador(squad.defenders);
+          break;
+        case "Goleiro":
+          squad.goalkeepers = atualizarJogador(squad.goalkeepers);
+          break;
+        default:
+          return;
+      }
 
-    await updateDoc(docRef, {
-      squads: [squad],
+      await updateDoc(docRef, {
+        squads: [squad],
+      });
+
+      props.onSave?.();
+      props.fechar();
     });
-
-    props.onSave?.();
-    props.fechar();
   };
 
   const [buy, setBuy] = useState(0);
