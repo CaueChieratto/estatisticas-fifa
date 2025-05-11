@@ -43,7 +43,9 @@ export default function Squad(props) {
       <div className="cardSquad">
         <div className="positionContainer">
           <div className="positonBarAttack"></div>
-          <div className="positionNameAttack">Atacantes</div>
+          <div className="positionNameAttack">
+            Atacantes <span>{atacantesOrdenados.length}</span>
+          </div>
         </div>
         {atacantesOrdenados.map((jogador, index) => (
           <motion.div
@@ -112,7 +114,9 @@ export default function Squad(props) {
       <div className="cardSquad">
         <div className="positionContainer">
           <div className="positonBarMidfield"></div>
-          <div className="positionNameMidfield">Meias</div>
+          <div className="positionNameMidfield">
+            Meias <span>{meioOrdenado.length}</span>
+          </div>
         </div>
         {meioOrdenado.map((jogador, index) => (
           <motion.div
@@ -182,7 +186,9 @@ export default function Squad(props) {
       <div className="cardSquad">
         <div className="positionContainer">
           <div className="positonBarDefense"></div>
-          <div className="positionNameDefense">Defensor</div>
+          <div className="positionNameDefense">
+            Defensor <span>{zagaOrdenada.length}</span>
+          </div>
         </div>
         {zagaOrdenada.map((jogador, index) => (
           <motion.div
@@ -251,7 +257,9 @@ export default function Squad(props) {
       <div className="cardSquad">
         <div className="positionContainer">
           <div className="positonBarGoalkeeper"></div>
-          <div className="positionNameGoalkeeper">Goleiros</div>
+          <div className="positionNameGoalkeeper">
+            Goleiros <span>{goleiros.length}</span>
+          </div>
         </div>
         {goleiros.map((jogador, index) => (
           <motion.div

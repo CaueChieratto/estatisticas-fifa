@@ -41,11 +41,19 @@
 .positionNameAttack {
   color: #cb1818;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .positionNameMidfield {
   color: #0bb32a;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .positonBarMidfield {
   background-color: #0bb32a;
@@ -56,6 +64,10 @@
 .positionNameDefense {
   color: #374df5;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .positonBarDefense {
   background-color: #374df5;
@@ -66,6 +78,10 @@
 .positionNameGoalkeeper {
   color: #e59c03;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .positonBarGoalkeeper {
   background-color: #e59c03;
