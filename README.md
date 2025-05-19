@@ -1,5 +1,17 @@
 # Aplicativo de Gerenciamento de Carreira Esportiva
 
+## Demonstração do Projeto
+
+Veja abaixo alguns gifs que mostram a interface e funcionalidades principais do app:
+
+
+
+---
+
+## Descrição  
+(segue o restante do README aqui...)
+
+
 ## Descrição
 Aplicativo completo desenvolvido individualmente para criação e gerenciamento de carreiras esportivas personalizadas. O app permite organizar clubes, elencos, ligas, troféus e temporadas, além de calcular estatísticas detalhadas ao longo do tempo.
 
