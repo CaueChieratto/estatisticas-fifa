@@ -4,6 +4,16 @@
 
 Veja abaixo alguns gifs que mostram a interface e funcionalidades principais do app:
 
+![Image](https://github.com/user-attachments/assets/1885a3d9-c198-47f3-bb2f-d09794f81ed0)
+
+![Image](https://github.com/user-attachments/assets/dddd9af9-5393-4bdc-93e0-c88c0d5569e8)
+
+![Image](https://github.com/user-attachments/assets/18158a13-b9ce-4ee7-a09e-e82301939862)   ![Image](https://github.com/user-attachments/assets/3c1f955d-1081-431b-afeb-e56ec5c31e12)
+
+![Image](https://github.com/user-attachments/assets/7eaaba59-c02e-4e6c-81da-7998ad278f78)   ![Image](https://github.com/user-attachments/assets/fe4c3f68-263f-42e5-9ff7-5e50457a7ae9)
+
+![Image](https://github.com/user-attachments/assets/6e0ae872-521b-43b0-b6ff-fe1004d41e0e)
+
 
 
 ---
