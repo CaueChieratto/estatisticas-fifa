@@ -15,11 +15,7 @@ Veja abaixo alguns gifs que mostram a interface e funcionalidades principais do 
 ![Image](https://github.com/user-attachments/assets/6e0ae872-521b-43b0-b6ff-fe1004d41e0e)
 
 
-
 ---
-
-## Descrição  
-(segue o restante do README aqui...)
 
 
 ## Descrição
