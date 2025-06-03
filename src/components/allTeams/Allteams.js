@@ -127,6 +127,8 @@ export default function Allteams(props) {
     return acc + trophie.seasons.length;
   }, 0);
 
+  const code = countryCodes[props.nation];
+
   return (
     <>
       {props.club && (
@@ -136,11 +138,11 @@ export default function Allteams(props) {
               {props.club.charAt(0).toUpperCase() + props.club.slice(1)}
               <img
                 src={
-                  countryCodes[props.nation].startsWith("http")
-                    ? countryCodes[props.nation]
-                    : `https://flagcdn.com/w40/${
-                        countryCodes[props.nation]
-                      }.png`
+                  code
+                    ? code.startsWith("http")
+                      ? code
+                      : `https://flagcdn.com/w40/${code}.png`
+                    : "https://flagcdn.com/w40/un.png"
                 }
                 alt={props.nation}
                 style={{

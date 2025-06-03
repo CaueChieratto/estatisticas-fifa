@@ -48,6 +48,8 @@ export default function NewStatsLeagues(props) {
       "Ligue 1": "./france/ligueOne.png",
       "Coupe de France": "./france/coupeDeFrance.png",
       "Super Cup": "./france/tropheeDesChampions.png",
+      SUPERLIGA: "./romenia/superliga.png",
+      "Copa Romena": "./romenia/copaRomena.png",
     };
 
     setEditedLeague((prev) => ({

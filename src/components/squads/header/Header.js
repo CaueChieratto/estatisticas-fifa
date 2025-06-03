@@ -12,7 +12,8 @@ export default function Header(props) {
     Arabia: "sa",
     Holanda: "nl",
   };
-
+  const nationCode = props?.carrer?.nation;
+  const flagCode = countryCodes[nationCode];
   return (
     <>
       <div className="containerHeaderSquads">
@@ -22,11 +23,11 @@ export default function Header(props) {
               props.carrer.club.slice(1)}
             <img
               src={
-                countryCodes[props.carrer.nation].startsWith("http")
-                  ? countryCodes[props.carrer.nation]
-                  : `https://flagcdn.com/w80/${
-                      countryCodes[props.carrer.nation]
-                    }.png`
+                flagCode
+                  ? flagCode.startsWith("http")
+                    ? flagCode
+                    : `https://flagcdn.com/w80/${flagCode}.png`
+                  : "https://flagcdn.com/w80/un.png"
               }
               alt={props.carrer.nation}
               className="imageNation"

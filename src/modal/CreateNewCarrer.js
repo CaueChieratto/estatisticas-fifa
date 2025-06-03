@@ -43,6 +43,7 @@ export default function PageForNewCarrer(props) {
     Franca: ["Ligue 1", "Coupe de France", "Super Cup"],
     Arabia: ["Saudi Pro League", "Champions Asiatica"],
     Holanda: ["Eredivisie", "Oranje Beker"],
+    Romênia: ["SUPERLIGA", "Copa Romena"],
   };
 
   const globalLeagues = [
@@ -179,6 +180,7 @@ export default function PageForNewCarrer(props) {
                 <option value="Franca">França</option>
                 <option value="Holanda">Holanda</option>
                 <option value="Arabia">Arábia Saudita</option>
+                <option value="Romênia">Romênia</option>
               </select>
             </div>
             <div className="allInputsCreateCarrer">

@@ -33,6 +33,10 @@ export default function ModalAddTrophie(props) {
       "EFL Championship": "./trophies/inglaterra/championship.png",
       "Community Shield": "./trophies/inglaterra/supercopa.png",
       "Premier League": "./trophies/inglaterra/premierLeague.png",
+
+      // romenia
+      SUPERLIGA: "./trophies/romenia/superliga.png",
+      "Copa Romena": "./trophies/romenia/copaRomena.png",
     };
 
     props.setTrophie((prev) => ({
