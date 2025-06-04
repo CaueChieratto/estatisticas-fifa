@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./PlayerContainer.css";
 import { FcAddDatabase } from "react-icons/fc";
 import { CgCloseR } from "react-icons/cg";
@@ -12,15 +12,21 @@ import { FcFullTrash } from "react-icons/fc";
 export default function LeaguesContainer(props) {
   const [newPlayerStatsLeagues, setNewPlayerStatsLeagues] = useState(false);
   const [leagueToDelete, setLeagueToDelete] = useState(null);
+  const lastScrollRef = useRef(0);
 
   const openModal = () => {
     setNewPlayerStatsLeagues((prevState) => !prevState);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
   };
 
   const closeModal = () => {
     setNewPlayerStatsLeagues(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const [deleteLeague, setDeleteLeague] = useState(false);
@@ -28,13 +34,18 @@ export default function LeaguesContainer(props) {
   const openModalDelete = (leagueIndex) => {
     setLeagueToDelete(leagueIndex);
     setDeleteLeague(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
   };
 
   const closeModalDelete = () => {
     setLeagueToDelete(null);
     setDeleteLeague(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const updateFifaData = async () => {

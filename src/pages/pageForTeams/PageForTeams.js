@@ -405,8 +405,10 @@ export default function PageForTeams() {
 
   const openModalClick = (tipo) => {
     setTipoTransferencia(tipo);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
     setOpenModalTransferGeral(true);
   };
 
