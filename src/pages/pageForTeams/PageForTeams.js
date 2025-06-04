@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./StyleTeams.css";
 import ButtonGreen from "../../components/buttons/ButtonGreen";
@@ -61,6 +61,7 @@ export default function PageForTeams() {
     transferList: [],
   });
   const [load, setLoad] = useState(false);
+  const lastScrollRef = useRef(0);
 
   useEffect(() => {
     const auth = getAuth();
@@ -153,13 +154,17 @@ export default function PageForTeams() {
     setSeason(season);
     setPlayer(player);
     setOpenStats(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
   };
+
   const closeStats = () => {
     setOpenStats(false);
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const showNewPlayer = (season) => {
@@ -170,25 +175,33 @@ export default function PageForTeams() {
       setSelectedSeason(season);
       setOpenNewStats(true);
     }
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
   };
 
   const closeNewPlayer = () => {
     setOpenNewStats(false);
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const showModalDelete = (season) => {
     setSeasonToDelete(season);
     setOpenDelete(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
   };
 
   const closeModalDelete = () => {
     setOpenDelete(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const deleteSeason = async () => {
@@ -312,9 +325,10 @@ export default function PageForTeams() {
 
   const abrirBuyPlayers = () => {
     setAbrirModalBuyPlayerSquads(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   const fechar = () => {
@@ -323,15 +337,17 @@ export default function PageForTeams() {
     setModoSelecao(null);
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const abrirModalJogador = (jogador) => {
     if (!modoSelecao) return;
     setJogadorSelecionado(jogador);
     setAbrirModalSquadsButtons(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   const deletarJogador = async (jogador, posicao = modoSelecao) => {
@@ -386,16 +402,19 @@ export default function PageForTeams() {
   const handleModoSelecao = (modo) => {
     setModoSelecao((prevModo) => (prevModo === modo ? null : modo));
   };
+
   const openModalClick = (tipo) => {
     setTipoTransferencia(tipo);
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
     setOpenModalTransferGeral(true);
   };
+
   const closeModalClick = () => {
     setOpenModalTransferGeral(false);
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const runWithDelayedLoad = async (asyncCallback) => {

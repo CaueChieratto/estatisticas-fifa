@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import ButtonGreen from "../../components/buttons/ButtonGreen";
 import "./StyleForAllTeams.css";
 import Allteams from "../../components/allTeams/Allteams";
@@ -7,14 +7,7 @@ import CreateNewCarrer from "../../modal/CreateNewCarrer.js";
 import DeleteSeason from "../../modal/DeleteSeason.js";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase/firebase.js";
-import {
-  collection,
-  getDocs,
-  doc,
-  deleteDoc,
-  updateDoc,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, doc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import EmptyCareers from "../../components/EmptyCareers/EmptyCareers.js";
 import Titles from "../../components/titles/titles.js";
@@ -64,28 +57,38 @@ export default function PageForAllTeams() {
   const [deleteCarrerModal, setDeleteCarrer] = useState({});
 
   const [titles, setTitles] = useState(null);
+  const lastScrollRef = useRef(0);
 
   const openModalTitles = (carrer) => {
+    lastScrollRef.current = window.scrollY;
     const updatedCarrer = fifaData.carrers.find((c) => c.id === carrer.id);
     document.body.style.overflowY = "hidden";
     document.documentElement.style.overflow = "hidden";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
     setTitles(updatedCarrer);
   };
 
   const closeModalTitles = () => {
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
     setTitles(null);
   };
 
   const showNewCarrer = () => {
+    lastScrollRef.current = window.scrollY;
+    document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
     setNewCarrer({});
     setCreateNewCarrer(true);
   };
 
   const closeNewCarrer = () => {
     setCreateNewCarrer(false);
+    document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const showEditCarrer = (carrer) => {
@@ -97,12 +100,18 @@ export default function PageForAllTeams() {
   const showModalDeleteClub = (carrer) => {
     setDeleteCarrer(carrer);
     setOpenDelete(true);
+    lastScrollRef.current = window.scrollY;
     document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo({ top: 0 });
+    setNewCarrer({});
   };
 
   const closeModalDeleteClub = () => {
     setOpenDelete(false);
     document.body.style.overflowY = "auto";
+    document.documentElement.style.overflow = "auto";
+    window.scrollTo({ top: lastScrollRef.current });
   };
 
   const deleteCarrer = async () => {
