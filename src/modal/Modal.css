@@ -1,4 +1,4 @@
-.containerModal{
+.containerModal {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -12,7 +12,7 @@
   z-index: 999;
 }
 
-.containerModalCreateCarrer{
+.containerModalCreateCarrer {
   background-color: rgb(242, 239, 232);
   width: 100vw;
   height: 100vh;
@@ -26,12 +26,12 @@
 }
 
 .cardModalCreateCarrer {
-  background-color:#fefefe;
+  background-color: #fefefe;
   width: 65%;
   max-width: 400px;
   max-height: 80%;
   padding: 22px;
-  box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -48,14 +48,14 @@
   margin-top: 10%;
   z-index: 2000;
   position: relative;
-  }
+}
 .cardModalCreateCarrerSell {
-  background-color:#fefefe;
+  background-color: #fefefe;
   width: 80%;
   max-width: 400px;
   max-height: 80%;
   padding: 22px;
-  box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@
   position: relative;
 }
 
-.containerHeader{
+.containerHeader {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -82,19 +82,20 @@
   position: relative;
 }
 
-.addClub{
+.addClub {
   font-size: 20px;
   font-weight: bold;
 }
 
-.closeModalCreateCarrer{
+.closeModalCreateCarrer {
   height: 25px;
   position: absolute;
   right: 0;
   color: rgb(99, 127, 115);
+  cursor: pointer;
 }
 
-.closeModalCreateCarrer1{
+.closeModalCreateCarrer1 {
   height: 25px;
   color: rgb(99, 127, 115);
 }
@@ -129,8 +130,7 @@
   animation: slide-out-left 0.5s ease forwards;
 }
 
-
-.cardModal{
+.cardModal {
   background-color: white;
   border-radius: 20px;
   min-width: 80%;
@@ -138,11 +138,11 @@
   flex-direction: column;
   justify-content: center;
   padding: 30px 0;
-  animation: grow 0.8s ease forwards; 
+  animation: grow 0.8s ease forwards;
   z-index: 999;
 }
 
-.cardModalNewPlayer{
+.cardModalNewPlayer {
   background-color: white;
   border-radius: 20px;
   min-width: 95%;
@@ -151,11 +151,11 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px 0 20px;
-  animation: grow 0.8s ease forwards; 
+  animation: grow 0.8s ease forwards;
   z-index: 999;
 }
 
-.cardModalEditCarrer{
+.cardModalEditCarrer {
   background-color: white;
   border-radius: 20px;
   min-width: 80%;
@@ -164,10 +164,10 @@
   flex-direction: column;
   justify-content: center;
   padding: 30px 0;
-  animation: grow 0.8s ease forwards; 
+  animation: grow 0.8s ease forwards;
 }
 
-.cardModalNewSeason{
+.cardModalNewSeason {
   background-color: white;
   border-radius: 20px;
   min-width: 80%;
@@ -176,28 +176,27 @@
   flex-direction: column;
   justify-content: center;
   padding: 30px 0;
-  animation: grow 0.8s ease forwards; 
+  animation: grow 0.8s ease forwards;
 }
-
 
 @keyframes grow {
   from {
-      transform: scale(0.5);
-      opacity: 0;
+    transform: scale(0.5);
+    opacity: 0;
   }
   to {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-.containerCreateCarrer{
+.containerCreateCarrer {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.allInputsCreateCarrer{
+.allInputsCreateCarrer {
   border: 1px solid #b8dbca;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
@@ -211,8 +210,8 @@
   padding-left: 25px;
 }
 
-.allInputsEditCarrer{
- border: 1px solid #b8dbca;
+.allInputsEditCarrer {
+  border: 1px solid #b8dbca;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   display: flex;
@@ -225,13 +224,13 @@
   padding-left: 25px;
 }
 
-.cardModalEdit{
-  background-color:#fefefe;
+.cardModalEdit {
+  background-color: #fefefe;
   width: 65%;
   max-width: 400px;
   max-height: 80%;
   padding: 22px;
-  box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -248,7 +247,7 @@
   margin-bottom: 50%;
 }
 
-.iconForInputsCreateCarrer{
+.iconForInputsCreateCarrer {
   position: absolute;
   left: 2%;
   height: 10px;
@@ -257,7 +256,7 @@
   justify-content: center;
 }
 
-.inputsCreateCarrer{
+.inputsCreateCarrer {
   border: none;
   outline: none;
   border-radius: 12px;
@@ -272,7 +271,7 @@
   background-color: #ffffff !important;
 }
 
-.inputsCreateCarrer::placeholder{
+.inputsCreateCarrer::placeholder {
   color: rgba(43, 88, 66, 0.8);
 }
 
@@ -285,7 +284,7 @@
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
-.inputsCreateCarrer:focus{
+.inputsCreateCarrer:focus {
   background-color: #ffffff !important;
 }
 
@@ -295,7 +294,7 @@
   padding-right: 0 !important;
 }
 
-.allDivCreateCarrer{
+.allDivCreateCarrer {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -305,25 +304,25 @@
   height: 25px;
 }
 
-.divCreateCarrer{
+.divCreateCarrer {
   color: #416b59;
   font-weight: bold;
   font-size: 16px;
   background-color: #ffffff !important;
 }
 
-.containerButtons{
+.containerButtons {
   display: flex;
   justify-content: space-evenly;
 }
 
-.containerButtonsModalBuy{
+.containerButtonsModalBuy {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.buttonsPositionBuy{ 
+.buttonsPositionBuy {
   color: rgb(82, 163, 131);
   border: 1px solid rgb(37, 102, 72);
   padding: 6px 16px;
@@ -338,9 +337,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
- }
+}
 
-.options{
+.options {
   width: 150px;
   height: 30px;
   text-align: center;
@@ -352,46 +351,46 @@
   font-weight: bold;
 }
 
-.teste{
+.teste {
   background-color: white;
   color: black;
 }
 
-.buttonsPosition{ 
- color: rgb(82, 163, 131);
- border: 1px solid rgb(37, 102, 72);
- padding: 6px 16px;
- outline: none;
- border-radius: 12px;
- font-size: 16px;
- font-weight: bold;
- box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
- cursor: pointer;
- transition: transform 0.1s ease;
- min-width: 85px;
+.buttonsPosition {
+  color: rgb(82, 163, 131);
+  border: 1px solid rgb(37, 102, 72);
+  padding: 6px 16px;
+  outline: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  min-width: 85px;
 }
 
-.selectedPosition{
+.selectedPosition {
   background-color: rgb(82, 163, 131);
   color: white;
 }
 
-.delete{
+.delete {
   display: flex;
   justify-content: center;
   align-items: baseline;
   font-size: 26px;
 }
 
-.deleteButton{
+.deleteButton {
   width: fit-content;
 }
 
-.textDelete{
+.textDelete {
   display: flex;
 }
 
-.wrappeDeletedButtons{
+.wrappeDeletedButtons {
   margin-top: 8%;
   display: flex;
   justify-content: center;
@@ -399,26 +398,26 @@
   font-size: 20px;
 }
 
-.textButtonDelete{
+.textButtonDelete {
   display: flex;
   cursor: pointer;
 }
 
-#delete{
+#delete {
   color: red;
 }
 
-.back{
+.back {
   margin-right: 5%;
   margin-top: 1%;
 }
 
-.danger{
+.danger {
   margin-left: 5%;
   margin-top: 1%;
 }
 
-.containerSelectLeague{
+.containerSelectLeague {
   border-top: 1px solid rgb(0, 0, 0);
   height: 510px;
   display: flex;
@@ -431,38 +430,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
 }
 
-
-.containerButtonBackOrSave{
+.containerButtonBackOrSave {
   display: flex;
   gap: 12px;
 }
 
+@media (min-width: 1440px) {
+  .cardModalCreateCarrer {
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 8px;
+  }
+  .addClub {
+    font-size: 30px;
+  }
 
-@media(min-width:600px){
-  .cardModal{
-    min-width: 60%;
-    min-height: fit-content;
+  .allInputsCreateCarrer {
+    border-radius: 6px;
   }
-  .cardModalNewPlayer{
-    min-width: 60%;
-    min-height: fit-content;
-  }
-  .cardModalEditCarrer{
-    min-width: 60%;
-    min-height: fit-content;
-  }
-  .cardModalEdit{
-    margin-bottom: auto;
-  }
-  }
-@media(min-width:840px){
-  .cardModal{
-    min-width: 30%;
-  }
-  .cardModalNewPlayer{
-    min-width: 30%;
-  }
-  .cardModalEditCarrer{
-    min-width: 30%;
+
+  .inputsCreateCarrer {
+    font-size: 20px;
   }
 }

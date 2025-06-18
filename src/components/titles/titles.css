@@ -195,3 +195,51 @@
   font-size: 14px;
   color: #373737;
 }
+
+@media (min-width: 768px) {
+  .seasonThatWon {
+    gap: 20px;
+  }
+
+  .infoSeasonWon {
+    padding: 8px 18px;
+    font-size: 15px;
+  }
+
+  .headline {
+    font-size: 18px;
+  }
+
+  .imageTitle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .containerInsideCard {
+    gap: 55px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .containerTitles {
+    flex-direction: row;
+    gap: 0;
+    min-height: auto;
+    justify-content: space-between;
+  }
+
+  .cardTitles {
+    margin: 0;
+    max-width: 685px;
+  }
+
+  .containerTransfers {
+    width: 80%;
+  }
+
+  .containerTransfersMedia {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+}

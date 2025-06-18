@@ -162,25 +162,27 @@ export default function PageForAllTeams() {
               </div>
             </div>
           </div>
-          {[...fifaData.carrers]
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .map((carrer, index) => (
-              <div className="containerAllClubs" key={carrer.club + index}>
-                <Allteams
-                  squads={carrer.squads}
-                  trophies={carrer.trophies}
-                  openModalTitles={() => openModalTitles(carrer)}
-                  showModalDeleteClub={() => showModalDeleteClub(carrer)}
-                  showEditCarrer={() => showEditCarrer(carrer)}
-                  linkTeams={() => linkTeams(carrer)}
-                  carrer={carrer}
-                  club={carrer.club}
-                  nation={carrer.nation}
-                  seasons={carrer.seasons}
-                  data={carrer.date}
-                />
-              </div>
-            ))}
+          <div className="containerForMedias">
+            {[...fifaData.carrers]
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((carrer, index) => (
+                <div className="containerAllClubs" key={carrer.club + index}>
+                  <Allteams
+                    squads={carrer.squads}
+                    trophies={carrer.trophies}
+                    openModalTitles={() => openModalTitles(carrer)}
+                    showModalDeleteClub={() => showModalDeleteClub(carrer)}
+                    showEditCarrer={() => showEditCarrer(carrer)}
+                    linkTeams={() => linkTeams(carrer)}
+                    carrer={carrer}
+                    club={carrer.club}
+                    nation={carrer.nation}
+                    seasons={carrer.seasons}
+                    data={carrer.date}
+                  />
+                </div>
+              ))}
+          </div>
         </div>
       ) : (
         <EmptyCareers onClick={showNewCarrer} />

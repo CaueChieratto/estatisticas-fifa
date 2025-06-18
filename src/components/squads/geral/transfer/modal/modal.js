@@ -118,7 +118,7 @@ export default function ModalTransferGeral(props) {
             <div className="barTitles"></div>
           </div>
         </div>
-        <>
+        <div className="containerTransfersMedia">
           {props.tipoTransferencia === "chegadas" &&
             jogadoresComprados
               .slice()
@@ -192,7 +192,7 @@ export default function ModalTransferGeral(props) {
                   </div>
                 </div>
               ))}
-        </>
+        </div>
       </div>
     </div>
   );

@@ -83,7 +83,6 @@ export default function Allteams(props) {
     setTopGames(topGamesName.charAt(0).toUpperCase() + topGamesName.slice(1));
     setTotalGames(maxGames);
 
-    // Corrigido: usar props.carrer.squads
     let highestBuyLocal = { playerName: "", value: 0 };
     let highestSellLocal = { playerName: "", value: 0 };
 
@@ -137,6 +136,7 @@ export default function Allteams(props) {
             <div className="titleCardTeams">
               {props.club.charAt(0).toUpperCase() + props.club.slice(1)}
               <img
+                className="imgNationsMedia"
                 src={
                   code
                     ? code.startsWith("http")
