@@ -215,7 +215,7 @@ export default function Allteams(props) {
 
           <div className="buttonForCarrers">
             <div className="button" onClick={props.linkTeams}>
-              Temporadas
+              Carreira
             </div>
             <div className="button buttonTwo" onClick={props.openModalTitles}>
               Títulos
