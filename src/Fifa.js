@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageForAllTeams from "./pages/pageForAllTeams/PageForAllTeams";
 import PageForTeams from "./pages/pageForTeams/PageForTeams";
 import Login from "./pages/login/login";
+import PageForPlayer from "./pages/PageForPlayer/PageForPlayer";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login></Login> },
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/PageForTeams",
     element: <PageForTeams></PageForTeams>,
+  },
+  {
+    path: "/PageForPlayer/:playerName",
+    element: <PageForPlayer></PageForPlayer>,
   },
 ]);
 

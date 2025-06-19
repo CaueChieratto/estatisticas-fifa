@@ -47,7 +47,7 @@
 .seasonAndDeleteButton {
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 200px;
   justify-content: space-evenly;
 }
 

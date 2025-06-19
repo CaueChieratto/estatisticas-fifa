@@ -1,0 +1,140 @@
+.seasonPlayerYear {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 12px;
+}
+
+.containerSeasonPlayerTotal {
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid rgb(205, 205, 205);
+}
+
+.containerTotalStatsPlayer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.containerTotalStatsPlayer:last-of-type {
+  border-bottom: none;
+}
+
+.infoStatsPlayerSeason {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(205, 205, 205);
+}
+
+.containerSeasonAndLeagueImage {
+  min-width: 100px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.seasonLeague {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.leaguesPlayer {
+  width: 20px;
+}
+
+.containerLeagueStatsPlayer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.leagueStats {
+  min-width: 25px;
+  padding: 0 8px;
+}
+
+.containerInfoPlayerStats {
+  display: flex;
+  align-items: center;
+  height: 45px;
+}
+
+.containerInfosYearsAndLeagues {
+  min-width: 100px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.containerInfosYearsAndLeagues span {
+  color: #22222673;
+  font-weight: 700;
+}
+
+.containerIconsStatsPlayer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.iconInfosPlayerStats {
+  display: flex;
+  justify-content: center;
+  min-width: 25px;
+  padding: 0 8px;
+  font-size: 16px;
+}
+
+.containerLeaguesWon {
+  display: flex;
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid rgb(205, 205, 205);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.TitleWonSeason {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  margin-left: 12px;
+}
+
+.TitleWonSeason h2 {
+  margin: 0 auto;
+  padding-right: 35px;
+}
+
+.imageTitleWonSeason {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+.rating {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: white !important;
+  border-radius: 0.175em !important;
+  font-weight: bold !important;
+}

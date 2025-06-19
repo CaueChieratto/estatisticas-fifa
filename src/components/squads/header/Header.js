@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import MenuMovel from "./MenuMovel";
 
 export default function Header(props) {
   const countryCodes = {
@@ -14,59 +15,51 @@ export default function Header(props) {
   };
   const nationCode = props?.carrer?.nation;
   const flagCode = countryCodes[nationCode];
+
   return (
     <>
       <div className="containerHeaderSquads">
         <div className="containerHead">
-          <div className="club">
-            {props.carrer.club.charAt(0).toUpperCase() +
-              props.carrer.club.slice(1)}
-            <img
-              src={
-                flagCode
-                  ? flagCode.startsWith("http")
-                    ? flagCode
-                    : `https://flagcdn.com/w80/${flagCode}.png`
-                  : "https://flagcdn.com/w80/un.png"
-              }
-              alt={props.carrer.nation}
-              className="imageNation"
-            />
-          </div>
+          {props.carrer && (
+            <div className="club">
+              {props.carrer.club.charAt(0).toUpperCase() +
+                props.carrer.club.slice(1)}
+              <img
+                src={
+                  flagCode
+                    ? flagCode.startsWith("http")
+                      ? flagCode
+                      : `https://flagcdn.com/w80/${flagCode}.png`
+                    : "https://flagcdn.com/w80/un.png"
+                }
+                alt={props.carrer.nation}
+                className="imageNation"
+              />
+            </div>
+          )}
+
+          {props.jogador && (
+            <div>
+              <h1>
+                {props.jogador?.playerName} {props.maiorOverall}
+              </h1>
+            </div>
+          )}
           <div className="buttonExitSquad" onClick={props.Back}>
             Voltar
           </div>
         </div>
       </div>
-      <div className="containerMenuSquads">
-        <div className="menuSquads">
-          <div
-            className={`optionsInMenu ${
-              props.selectedTab === "Wrapper" ? "able" : ""
-            }`}
-            onClick={() => props.setSelectedTab("Wrapper")}
-          >
-            Temporadas
-          </div>
-          <div
-            className={`optionsInMenu ${
-              props.selectedTab === "Elenco" ? "able" : ""
-            }`}
-            onClick={() => props.setSelectedTab("Elenco")}
-          >
-            Elenco
-          </div>
-
-          <div
-            className={`optionsInMenu ${
-              props.selectedTab === "Geral" ? "able" : ""
-            }`}
-            onClick={() => props.setSelectedTab("Geral")}
-          >
-            Geral
-          </div>
-        </div>
-      </div>
+      <MenuMovel
+        setSelectedTab={props.setSelectedTab}
+        selectedTab={props.selectedTab}
+        first={props.first}
+        firstStyle={props.firstStyle}
+        second={props.second}
+        secondStyle={props.secondStyle}
+        third={props.third}
+        thirdStyle={props.thirdStyle}
+      />
     </>
   );
 }

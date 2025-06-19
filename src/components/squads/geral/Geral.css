@@ -33,6 +33,12 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.contract {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (min-width: 1440px) {
   .geral {
     width: 700px;

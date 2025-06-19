@@ -8,12 +8,24 @@ import { GiSoccerBall } from "react-icons/gi";
 import { RiCloseCircleLine } from "react-icons/ri";
 import DeleteSeason from "../../modal/DeleteSeason";
 import { db } from "../../firebase/firebase.js";
-import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Infos(props) {
   const [openDelete, setOpenDelete] = useState(false);
   const [seasonToDelete, setSeasonToDelete] = useState(null);
+
+  const navigate = useNavigate();
+
+  function linkPlayer() {
+    navigate(`/PageForPlayer/${encodeURIComponent(props.playerName)}`, {
+      state: {
+        jogador: props.player,
+        carrer: props.carrer,
+      },
+    });
+  }
 
   const showModalDelete = (season) => {
     setSeasonToDelete(season);
@@ -72,7 +84,13 @@ export default function Infos(props) {
   };
 
   return (
-    <div className="infosTitle">
+    <div
+      className="infosTitle"
+      onClick={() => {
+        linkPlayer();
+      }}
+      style={{ cursor: "pointer" }}
+    >
       <div className="containerName">
         <span className="player">
           {props.playerName.charAt(0).toUpperCase() + props.playerName.slice(1)}

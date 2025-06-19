@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Squad.css";
 import { FaTrashCan } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 export default function Squad(props) {
+  const carrerRef = useRef();
+
+  useEffect(() => {
+    carrerRef.current = props.carrer;
+  }, [props.carrer]);
+
   const formatContract = (contract) => {
     const years = contract - 1;
     const months = 11;
@@ -49,9 +55,9 @@ export default function Squad(props) {
         </div>
         {atacantesOrdenados.map((jogador, index) => (
           <motion.div
+            onClick={() => props.abrirModalJogador(jogador)}
             className="containerGeralPlayer"
             key={index}
-            onClick={() => props.abrirModalJogador(jogador)}
             animate={
               props.modoSelecao
                 ? {

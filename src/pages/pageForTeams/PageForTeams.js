@@ -150,6 +150,13 @@ export default function PageForTeams() {
     }
   };
 
+  function formatarTemporada(numero) {
+    const anoInicial = 2024 + (numero - 1);
+    const anoFinal = (anoInicial + 1) % 100;
+
+    return `${anoInicial % 100}/${anoFinal.toString().padStart(2, "0")}`;
+  }
+
   const showStats = (player, season) => {
     setSeason(season);
     setPlayer(player);
@@ -446,6 +453,12 @@ export default function PageForTeams() {
         }}
         selectedTab={selectedTab}
         carrer={carrer}
+        first="Temporada"
+        firstStyle="Wrapper"
+        second="Elenco"
+        secondStyle="Elenco"
+        third="Geral"
+        thirdStyle="Geral"
       />
 
       <div className="carouselSquads">
@@ -504,7 +517,7 @@ export default function PageForTeams() {
                   <div className="seasons">
                     <div className="openSeasons">
                       <div className="seasonAndDeleteButton">
-                        Temporada {season.season}
+                        Temporada {formatarTemporada(Number(season.season))}
                         <div
                           className="deleteButton"
                           onClick={() => showModalDelete(season)}
@@ -616,7 +629,9 @@ export default function PageForTeams() {
           <div className="carouselSlide">
             <div className="containerGeralSquads">
               <Squad
+                player={player}
                 modoSelecao={modoSelecao}
+                carrer={carrer}
                 abrirModalJogador={abrirModalJogador}
                 deletarJogador={deletarJogador}
                 squad={squad}

@@ -223,9 +223,10 @@
 @media (min-width: 1440px) {
   .containerTitles {
     flex-direction: row;
-    gap: 0;
+    gap: 12px;
     min-height: auto;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .cardTitles {
