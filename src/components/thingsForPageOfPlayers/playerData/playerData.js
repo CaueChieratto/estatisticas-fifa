@@ -182,7 +182,7 @@ export default function PlayerData(props) {
       {props.dadosSquad.sell === true && props.dadosSquad.buy === true && (
         <div className="cardGeral">
           <div className="containerCardGeral">
-            <div className="title">Informações do Contrato</div>
+            <div className="title">Lucro com o Jogador</div>
             <div className="containerInfoGeral contract">
               <div className="containerInfoSquadGeral">
                 Valor da Venda
