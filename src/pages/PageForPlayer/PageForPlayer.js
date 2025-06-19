@@ -89,21 +89,28 @@ export default function PageForPlayer() {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/\s+/g, " ")
+        .replace(/\./g, "")
         .trim();
 
     const n1 = normalizar(nome1).split(" ");
     const n2 = normalizar(nome2).split(" ");
 
-    const primeiro1 = n1[0];
     const sobrenome1 = n1[n1.length - 1];
-
-    const primeiro2 = n2[0];
     const sobrenome2 = n2[n2.length - 1];
 
-    const iniciaisIguais =
-      primeiro1[0] === primeiro2[0] || primeiro1 === primeiro2;
+    if (sobrenome1 !== sobrenome2) return false;
 
-    return sobrenome1 === sobrenome2 && iniciaisIguais;
+    const temPrimeiro1 = n1.length > 1;
+    const temPrimeiro2 = n2.length > 1;
+
+    if (!temPrimeiro1 || !temPrimeiro2) {
+      return true;
+    }
+
+    const inicial1 = n1[0].charAt(0);
+    const inicial2 = n2[0].charAt(0);
+
+    return inicial1 === inicial2;
   }
 
   if (loading) return <Load />;

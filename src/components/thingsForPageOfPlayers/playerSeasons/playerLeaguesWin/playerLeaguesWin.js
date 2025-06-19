@@ -7,15 +7,8 @@ export default function PlayerLeaguesWin(props) {
   const titulosDaTemporada =
     props.titulosPorTemporada[temporadaFormatada] || [];
 
-  const getFileName = (path) => {
-    const parts = path.split("/");
-    return parts[parts.length - 1];
-  };
-
   const trofeusDaLiga = titulosDaTemporada.filter((titulo) => {
-    const arquivoTitulo = getFileName(titulo.leagueImage).toLowerCase();
-    const arquivoLiga = getFileName(props.liga.leagueImage).toLowerCase();
-    return arquivoTitulo === arquivoLiga;
+    return titulo.league.toLowerCase() === props.liga.league.toLowerCase();
   });
 
   return (
