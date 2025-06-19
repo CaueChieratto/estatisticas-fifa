@@ -34,7 +34,7 @@
 
 .containerSeasonAndLeagueImage {
   min-width: 100px;
-  height: 35px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,4 +137,6 @@
   color: white !important;
   border-radius: 0.175em !important;
   font-weight: bold !important;
+  min-width: 30px;
+  height: 22px;
 }

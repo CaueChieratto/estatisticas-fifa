@@ -1,199 +1,197 @@
-.infosTitle{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr ;
-    width: 100%;
-    justify-items: center;
-    min-height: 20px; 
-    border-bottom: 1px solid rgb(205,205,205);
-    align-items: center;
+.infosTitle {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  justify-items: center;
+  min-height: 20px;
+  border-bottom: 1px solid rgb(205, 205, 205);
+  height: 30px;
+  align-items: center;
 }
 
 .infosTitle.expanded {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
 }
 
-.infosTitleStats{
-    display: grid;
-    grid-template-columns: 2fr  1fr 1fr 1fr 1fr 1fr ;
-    width: 100%;
-    justify-items: center;
-    min-height: 34px; 
-    align-items: center;
-    cursor: pointer;
-
+.infosTitleStats {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  justify-items: center;
+  min-height: 34px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .infosTitleStats.expanded {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
 }
 
-.stats{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
 }
 
-.infoStats{
-    display: flex;
-    width: 100%;
+.infoStats {
+  display: flex;
+  width: 100%;
 }
 
-.containerName{
-    display: flex;
-    cursor: default;
-    align-items: center;
-    position: relative;
+.containerName {
+  display: flex;
+  cursor: default;
+  align-items: center;
+  position: relative;
 }
 
-.containerNameClick{
-    display: flex;
-    align-items: center;
+.containerNameClick {
+  display: flex;
+  align-items: center;
 }
 
-.player{
-    gap: 5px;
-    font-size: 14px;
-    min-width: 150px;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.player {
+  gap: 5px;
+  font-size: 14px;
+  min-width: 150px;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.total{
-    gap: 3px;
-    font-size: 12px;
-    min-width: 150px;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.total {
+  gap: 3px;
+  font-size: 12px;
+  min-width: 150px;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-
-.overall{
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    color: white !important;
-    width: 35px !important;
-    height: 21px !important;
-    border-radius: .175em !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-weight: bold !important;
+.overall {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: white !important;
+  width: 35px !important;
+  height: 21px !important;
+  border-radius: 0.175em !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
 }
 
-.overallSmall{
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    color: white !important;
-    width: 30px !important;
-    height: 16px !important;
-    border-radius: .175em !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-weight: bold !important;
-    font-size: 12px !important;
+.overallSmall {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: white !important;
+  width: 30px !important;
+  height: 16px !important;
+  border-radius: 0.175em !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
 }
 
-
-.statsNumber{
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    font-family: 'EA Font v1.5 by Ghettoshark', sans-serif;
-    font-weight: normal;
-    justify-content: center;
-    width: fit-content;
+.statsNumber {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-family: "EA Font v1.5 by Ghettoshark", sans-serif;
+  font-weight: normal;
+  justify-content: center;
+  width: fit-content;
 }
 
-.statsNumberSmall{
-    font-size: 12px;
+.statsNumberSmall {
+  font-size: 12px;
 }
 
-.seasonsInClub{
-    position: absolute;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
-    width: 40px;
+.seasonsInClub {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  width: 40px;
 }
 
-.statsName{
-    font-size: 10px;
+.statsName {
+  font-size: 10px;
 }
 
-.borderTotal{
-    border-bottom: 1px solid black;
+.borderTotal {
+  border-bottom: 1px solid black;
 }
 
-.arrowIcon{
-    font-size: 10px;
+.arrowIcon {
+  font-size: 10px;
 }
 
-.wrapperStatsLeagues{
-    border-top: 1px solid rgb(205,205,205);
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
-    width: 100%;
-    justify-items: center;
-    min-height: 18px; 
-    align-items: center;
+.wrapperStatsLeagues {
+  border-top: 1px solid rgb(205, 205, 205);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  justify-items: center;
+  min-height: 18px;
+  align-items: center;
 }
 
-.containerIMGleagues{
-    display: flex;
-    font-size: 10px;
-    font-family: 'EA Font v1.5 by Ghettoshark', sans-serif;
-    font-weight: normal;
-    min-width: 150px;
+.containerIMGleagues {
+  display: flex;
+  font-size: 10px;
+  font-family: "EA Font v1.5 by Ghettoshark", sans-serif;
+  font-weight: normal;
+  min-width: 150px;
 }
 
-.containerNameLeague{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2%;
-    min-width: 120px;
+.containerNameLeague {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  min-width: 120px;
 }
 
-.leagues{
-    width: 15px;
+.leagues {
+  width: 15px;
 }
 
-.wrapperNewStatsLeagues{
-    border-top: 1px solid rgb(205,205,205);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
+.wrapperNewStatsLeagues {
+  border-top: 1px solid rgb(205, 205, 205);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
 }
 
-.addStats{
-    gap: 5px;
-    cursor: pointer;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.addStats {
+  gap: 5px;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.textNewLeague{
-    font-size: 12px;
-    height: 12px;
+.textNewLeague {
+  font-size: 12px;
+  height: 12px;
 }
 
-.close{
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.close {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
