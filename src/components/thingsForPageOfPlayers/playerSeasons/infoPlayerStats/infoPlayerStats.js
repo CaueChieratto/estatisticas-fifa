@@ -12,7 +12,10 @@ export default function InfoPlayerStats(props) {
         {props.formatarTemporada && (
           <span>{props.formatarTemporada(Number(props.temporada.season))}</span>
         )}
-        {!props.formatarTemporada && <span>Total</span>}
+        {!props.formatarTemporada && !props.total && (
+          <span>Total por Liga</span>
+        )}
+        {!props.formatarTemporada && props.total && <span>História</span>}
 
         <span></span>
       </div>
@@ -33,11 +36,8 @@ export default function InfoPlayerStats(props) {
         <span className="iconInfosPlayerStats">
           <MdPeopleOutline />
         </span>
-        <span className="iconInfosPlayerStats">
+        <span className="iconInfosPlayerStats" style={{ minWidth: "30px" }}>
           <FaStar />
-        </span>
-        <span className="iconInfosPlayerStats">
-          <GiSoccerBall color="#FFD700" />
         </span>
       </div>
     </div>

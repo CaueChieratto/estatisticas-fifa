@@ -52,7 +52,6 @@ export default function PlayerStatsTotalData(props) {
         >
           {props.dados.rating}
         </div>
-        <div className="leagueStats">{props.dados.balonDors}</div>
       </div>
     </div>
   );

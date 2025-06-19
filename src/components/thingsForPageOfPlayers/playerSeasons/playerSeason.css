@@ -140,3 +140,21 @@
   min-width: 30px;
   height: 22px;
 }
+
+.containerLeaguesWonTotal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  padding-top: 12px;
+  border-bottom: 1px solid rgb(205, 205, 205);
+}
+
+.TitleWonTotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 165px;
+  margin-bottom: 12px;
+}

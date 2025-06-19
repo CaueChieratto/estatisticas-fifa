@@ -59,7 +59,6 @@ export default function PageForPlayer() {
       const uid = user?.uid;
       if (!uid || !playerName) return;
 
-      // Buscar todos os clubes do usuário
       const clubsSnapshot = await getDocs(
         collection(db, `users/${uid}/fifaData`)
       );
@@ -125,6 +124,7 @@ export default function PageForPlayer() {
         ...(squad.defenders || []),
         ...(squad.midfielders || []),
         ...(squad.attackers || []),
+        ...(squad.transferList || []),
       ];
 
       const jogadorEncontrado = todasAsPosicoes.find((jogadorSquad) =>
@@ -194,7 +194,6 @@ export default function PageForPlayer() {
             total.assistencias += Number(liga.assists) || 0;
             total.cleanSheets += Number(liga.cleanSheets) || 0;
 
-            // Somar rating ponderado por jogos
             if (!isNaN(nota) && jogos > 0) {
               somaRating += nota * jogos;
               totalPartidasComNota += jogos;
@@ -204,7 +203,6 @@ export default function PageForPlayer() {
       }
     });
 
-    // Calcular média ponderada do rating
     if (totalPartidasComNota > 0) {
       total.rating = (somaRating / totalPartidasComNota).toFixed(2);
     }
@@ -219,7 +217,6 @@ export default function PageForPlayer() {
 
     titulos.forEach((titulo) => {
       titulo.seasons.forEach((seasonStr) => {
-        // Verifica se o jogador estava no elenco na temporada correspondente
         const jogadorParticipou = temporadas.some((temporada) => {
           return (
             mapearTemporadaParaAno(temporada.season) === seasonStr &&
@@ -328,7 +325,6 @@ export default function PageForPlayer() {
       }
     });
 
-    // Calcula média
     Object.values(totaisPorLiga).forEach((liga) => {
       liga.rating =
         liga.notasValidas > 0
@@ -418,6 +414,7 @@ export default function PageForPlayer() {
               {dadosSquad && <PlayerData dadosSquad={dadosSquad} />}
             </div>
           </div>
+
           <div className="carouselSlide">
             <div className="containerGeralPlayers">
               {temporadasDoJogador.map((temporada) => {
