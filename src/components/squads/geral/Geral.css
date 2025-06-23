@@ -39,6 +39,13 @@
   align-items: center;
 }
 
+@media (min-width: 768px) {
+  .cardGeral {
+    width: 420px;
+    margin: 0 auto 16px;
+  }
+}
+
 @media (min-width: 1440px) {
   .geral {
     width: 700px;

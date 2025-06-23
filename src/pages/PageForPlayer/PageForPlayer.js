@@ -344,9 +344,49 @@ export default function PageForPlayer() {
 
   const totaisPorLiga = calcularTotaisPorLiga(temporadasDoJogador);
 
+  function calcularTotaisTemporada(temporada, jogadorNome) {
+    const jogador = temporada.players.find((p) =>
+      nomesSaoIguais(p.playerName, jogadorNome)
+    );
+
+    let total = {
+      jogos: 0,
+      gols: 0,
+      assistencias: 0,
+      cleanSheets: 0,
+      rating: 0,
+    };
+
+    if (!jogador?.leagues) return total;
+
+    let somaNota = 0;
+    let jogosComNota = 0;
+
+    jogador.leagues.forEach((liga) => {
+      const jogos = Number(liga.games) || 0;
+      total.jogos += jogos;
+      total.gols += Number(liga.goals) || 0;
+      total.assistencias += Number(liga.assists) || 0;
+      total.cleanSheets += Number(liga.cleanSheets) || 0;
+
+      const nota = parseFloat(liga.rating);
+      if (!isNaN(nota)) {
+        somaNota += nota * jogos;
+        jogosComNota += jogos;
+      }
+    });
+
+    if (jogosComNota > 0) {
+      total.rating = (somaNota / jogosComNota).toFixed(2);
+    }
+
+    return total;
+  }
+
   return (
     <div className="bodyPagePlayer">
       <Header
+        quantidadeTemporadas={temporadasDoJogador.length}
         maiorOverall={maiorOverall}
         Back={() => navigate(-1)}
         jogador={jogador}
@@ -417,13 +457,13 @@ export default function PageForPlayer() {
           initial={{ x: 0 }}
         >
           <div className="carouselSlide">
-            <div className="containerGeralPlayers">
+            <div className="containerGeralPlayers pagePlayers">
               {dadosSquad && <PlayerData dadosSquad={dadosSquad} />}
             </div>
           </div>
 
           <div className="carouselSlide">
-            <div className="containerGeralPlayers">
+            <div className="containerGeralPlayers pagePlayers">
               {temporadasDoJogador.map((temporada) => {
                 const dadosJogador = temporada.players.find((p) =>
                   nomesSaoIguais(p.playerName, jogador.playerName)
@@ -438,6 +478,10 @@ export default function PageForPlayer() {
                     temporada={temporada}
                     titulosPorTemporada={titulosPorTemporada}
                     formatarTemporada={formatarTemporada}
+                    totaisTemporada={calcularTotaisTemporada(
+                      temporada,
+                      jogador.playerName
+                    )}
                   />
                 );
               })}
@@ -445,7 +489,7 @@ export default function PageForPlayer() {
           </div>
 
           <div className="carouselSlide">
-            <div className="containerGeralPlayers">
+            <div className="containerGeralPlayers pagePlayers">
               <PlayerTotal
                 posicao={jogador.position}
                 totais={totais}

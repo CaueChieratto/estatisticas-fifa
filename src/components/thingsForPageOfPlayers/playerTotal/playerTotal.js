@@ -99,30 +99,42 @@ export default function PlayerTotal(props) {
               </div>
             </div>
             {openSeasons.includes("geral") && (
-              <div className="containerLeaguesWonTotal">
-                {Object.entries(trofeus).map(([nome, info]) => (
-                  <div className="TitleWonTotal" key={nome}>
-                    <img
-                      className="imageTitleWonSeason"
-                      src={info.leagueImage.replace(/^\.\//, "/")}
-                      alt={nome}
-                    />
-                    <span className="trophyCount">
-                      {info.quantidade} {nome}
-                    </span>
-                  </div>
-                ))}
-                {statsGerais.balonDors > 0 && (
-                  <div className="TitleWonTotal" key="balonDors">
-                    <img
-                      className="imageTitleWonSeason"
-                      src="/bolaDeOuro.jpeg"
-                      alt="Balon D'Or"
-                    />
-                    <span className="trophyCount">
-                      {statsGerais.balonDors} Bolas de Ouro
-                    </span>
-                  </div>
+              <div
+                className={
+                  Object.entries(trofeus).length === 0
+                    ? "containerLeaguesWon"
+                    : "containerLeaguesWonTotal"
+                }
+              >
+                {Object.entries(trofeus).length === 0 ? (
+                  <h2>Esse jogador não ganhou títulos</h2>
+                ) : (
+                  <>
+                    {Object.entries(trofeus).map(([nome, info]) => (
+                      <div className="TitleWonTotal" key={nome}>
+                        <img
+                          className="imageTitleWonSeason"
+                          src={info.leagueImage.replace(/^\.\//, "/")}
+                          alt={nome}
+                        />
+                        <span className="trophyCount">
+                          {info.quantidade} {nome}
+                        </span>
+                      </div>
+                    ))}
+                    {statsGerais.balonDors > 0 && (
+                      <div className="TitleWonTotal" key="balonDors">
+                        <img
+                          className="imageTitleWonSeason"
+                          src="/bolaDeOuro.jpeg"
+                          alt="Balon D'Or"
+                        />
+                        <span className="trophyCount">
+                          {statsGerais.balonDors} Bolas de Ouro
+                        </span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}

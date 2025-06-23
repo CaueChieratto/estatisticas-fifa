@@ -43,6 +43,10 @@ export default function Header(props) {
               <h1>
                 {props.jogador?.playerName} {props.maiorOverall}
               </h1>
+              <h4 className="playerSeasonsInClub">
+                {props.quantidadeTemporadas} Temporada
+                {props.quantidadeTemporadas === 1 ? "" : "s"} no Clube
+              </h4>
             </div>
           )}
           <div className="buttonExitSquad" onClick={props.Back}>
