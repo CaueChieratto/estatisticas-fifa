@@ -464,7 +464,7 @@ export default function PageForTeams() {
       <div className="carouselSquads">
         <motion.div
           className="carouselTrack"
-          drag="x"
+          drag={openNewStats ? false : "x"}
           dragConstraints={{ left: -window.innerWidth * 2, right: 0 }}
           onDragEnd={(event, info) => {
             const offset = info.offset.x;
