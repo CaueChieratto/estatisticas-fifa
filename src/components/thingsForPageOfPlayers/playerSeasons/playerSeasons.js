@@ -113,21 +113,28 @@ export default function PlayerSeasons(props) {
               const titulos =
                 props.titulosPorTemporada[temporadaFormatada] || [];
 
-              if (titulos.length === 0)
-                return <p>Sem títulos nesta temporada</p>;
-
               return (
-                <div className="containerLeaguesWonTotal">
-                  {titulos.map((titulo, index) => (
-                    <div key={index} className="TitleWonTotal">
-                      <img
-                        src={titulo.leagueImage.replace(/^\.\//, "/")}
-                        alt={titulo.league}
-                        className="imageTitleWonSeason"
-                      />
-                      <span className="trophyCount">{titulo.league}</span>
-                    </div>
-                  ))}
+                <div
+                  className={
+                    titulos.length === 0
+                      ? "containerLeaguesWon"
+                      : "containerLeaguesWonTotal"
+                  }
+                >
+                  {titulos.length === 0 ? (
+                    <h2>Sem títulos nesta temporada</h2>
+                  ) : (
+                    titulos.map((titulo, index) => (
+                      <div key={index} className="TitleWonTotal">
+                        <img
+                          src={titulo.leagueImage.replace(/^\.\//, "/")}
+                          alt={titulo.league}
+                          className="imageTitleWonSeason"
+                        />
+                        <span className="trophyCount">{titulo.league}</span>
+                      </div>
+                    ))
+                  )}
                 </div>
               );
             })()}
