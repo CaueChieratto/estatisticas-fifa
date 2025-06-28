@@ -2,7 +2,8 @@
 
 ## Índice
 
-- [Demonstração do Projeto](#demonstração-do-projeto)
+<!-- - [Demonstração do Projeto](#demonstração-do-projeto) -->
+
 - [Descrição Geral](#descrição-geral)
 - [Funcionalidades Principais](#funcionalidades-principais)
 - [Estrutura de Dados](#estrutura-de-dados)
@@ -15,7 +16,7 @@
 
 ---
 
-## Demonstração do Projeto
+<!-- ## Demonstração do Projeto
 
 Veja abaixo alguns gifs que mostram a interface e funcionalidades principais do app:
 
@@ -27,7 +28,7 @@ Veja abaixo alguns gifs que mostram a interface e funcionalidades principais do 
 ![Image](https://github.com/user-attachments/assets/fe4c3f68-263f-42e5-9ff7-5e50457a7ae9)
 ![Image](https://github.com/user-attachments/assets/6e0ae872-521b-43b0-b6ff-fe1004d41e0e)
 
----
+--- -->
 
 ## Descrição Geral
 
