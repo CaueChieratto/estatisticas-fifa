@@ -6,12 +6,10 @@
 - [Descrição Geral](#descrição-geral)
 - [Funcionalidades Principais](#funcionalidades-principais)
 - [Estrutura de Dados](#estrutura-de-dados)
-- [Arquitetura de Pastas](#arquitetura-de-pastas)
 - [Fluxo de Usuário](#fluxo-de-usuário)
 - [Principais Componentes](#principais-componentes)
 - [Integração com Firebase](#integração-com-firebase)
 - [Como Executar o Projeto](#como-executar-o-projeto)
-- [Possíveis Melhorias Futuras](#possíveis-melhorias-futuras)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Autor](#autor)
 
