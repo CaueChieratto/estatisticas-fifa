@@ -123,6 +123,7 @@ export default function Total(props) {
               playersStatsTotal.map((player, index) => (
                 <div className="borderTotal" key={index}>
                   <Infos
+                    total
                     show={false}
                     overall={player.overall}
                     playerName={player.playerName}

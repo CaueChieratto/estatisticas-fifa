@@ -86,10 +86,8 @@ export default function Infos(props) {
   return (
     <div
       className="infosTitle"
-      onClick={() => {
-        linkPlayer();
-      }}
-      style={{ cursor: "pointer" }}
+      onClick={props.total ? () => linkPlayer() : undefined}
+      style={props.total ? { cursor: "pointer" } : undefined}
     >
       <div className="containerName">
         <span className="player">
