@@ -15,6 +15,33 @@ export default function Total(props) {
     }
   }, [props.seasons]);
 
+  useEffect(() => {
+    const section = localStorage.getItem("openSectionOnReturn");
+    if (section) {
+      setOpenSeasons((prev) =>
+        prev.includes(section) ? prev : [...prev, section]
+      );
+      localStorage.removeItem("openSectionOnReturn");
+    }
+  }, []);
+
+  const toggleVisibility = (seasonId) => {
+    let newSeasons = [];
+    setOpenSeasons((prev) => {
+      const isOpen = prev.includes(seasonId);
+      newSeasons = isOpen
+        ? prev.filter((id) => id !== seasonId)
+        : [...prev, seasonId];
+      return newSeasons;
+    });
+
+    if (props.setOpenedSection) {
+      const sectionValue = newSeasons.includes(seasonId) ? seasonId : "";
+      props.setOpenedSection(sectionValue);
+      localStorage.setItem("openSectionOnReturn", sectionValue);
+    }
+  };
+
   const getTotalPlayers = () => {
     const playersStats = {};
 
@@ -92,21 +119,11 @@ export default function Total(props) {
     setPlayersStatsTotal(formattedStats);
   };
 
-  const toggleVisibility = (seasonId) => {
-    setOpenSeasons((prev) => {
-      if (prev.includes(seasonId)) {
-        return prev.filter((id) => id !== seasonId);
-      } else {
-        return [...prev, seasonId];
-      }
-    });
-  };
-
   return (
     <div className="containerAllSeasons">
       <div className="seasons">
         <div onClick={() => toggleVisibility("total")} className="openSeasons">
-          Temporadas Somadas
+          <div className="seasonsSummed">Temporadas Somadas</div>
           {openSeasons.includes("total") ? (
             <span>
               <FaArrowUp />

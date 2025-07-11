@@ -61,6 +61,8 @@ export default function PageForTeams() {
     transferList: [],
   });
   const [load, setLoad] = useState(false);
+  const [openedSection, setOpenedSection] = useState("total");
+
   const lastScrollRef = useRef(0);
 
   useEffect(() => {
@@ -149,13 +151,6 @@ export default function PageForTeams() {
       console.error("Erro ao adicionar temporada: ", error);
     }
   };
-
-  function formatarTemporada(numero) {
-    const anoInicial = 2024 + (numero - 1);
-    const anoFinal = (anoInicial + 1) % 100;
-
-    return `${anoInicial % 100}/${anoFinal.toString().padStart(2, "0")}`;
-  }
 
   const showStats = (player, season) => {
     setSeason(season);
@@ -344,7 +339,10 @@ export default function PageForTeams() {
     setModoSelecao(null);
     document.body.style.overflowY = "auto";
     document.documentElement.style.overflow = "auto";
-    window.scrollTo({ top: lastScrollRef.current });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "auto",
+    });
   };
 
   const abrirModalJogador = (jogador) => {
@@ -517,7 +515,7 @@ export default function PageForTeams() {
                   <div className="seasons">
                     <div className="openSeasons">
                       <div className="seasonAndDeleteButton">
-                        Temporada {formatarTemporada(Number(season.season))}
+                        Temporada {season.season}
                         <div
                           className="deleteButton"
                           onClick={() => showModalDelete(season)}
@@ -565,6 +563,8 @@ export default function PageForTeams() {
                           </div>
                           <div className="wrapperInfos">
                             <Infos
+                              setOpenedSection={setOpenedSection}
+                              openedSection={openedSection}
                               show={true}
                               overall={player.overall}
                               playerName={player.playerName}
@@ -622,7 +622,12 @@ export default function PageForTeams() {
                   <ButtonGreen nameButtonNewSeason="Nova Temporada" />
                 </div>
               </div>
-              <Total player={player} seasons={seasons}></Total>
+              <Total
+                setOpenedSection={setOpenedSection}
+                openedSection={openedSection}
+                player={player}
+                seasons={seasons}
+              ></Total>
             </div>
           </div>
 

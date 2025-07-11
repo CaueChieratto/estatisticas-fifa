@@ -23,29 +23,87 @@ export default function PlayerTotal(props) {
   const statsGerais = props.totais;
   const trofeus = props.contagemTitulos;
 
+  const leagueLevels = {
+    // Liga nacional
+    "La Liga": 1,
+    "Premier League": 1,
+    Bundesliga: 1,
+    "Serie A": 1,
+    "Ligue 1": 1,
+    "Saudi Pro League": 1,
+    Eredivisie: 1,
+    SUPERLIGA: 1,
+
+    // Campeonato continental principal
+    "Champions League": 2,
+    "Champions Asiatica": 2,
+
+    // Copa nacional
+    "Copa da Espanha": 3,
+    "FA Cup": 3,
+    "DFB-Pokal": 3,
+    "Coppa Italia": 3,
+    "Coupe de France": 3,
+    "Oranje Beker": 3,
+    "Copa Romena": 3,
+
+    // Supercopa nacional
+    Supercopa: 4,
+    Supercup: 4,
+    Supercoppa: 4,
+    "Super Cup": 4,
+
+    // Supercopa europeia
+    "UEFA Supercup": 5,
+
+    // Competições continentais inferiores
+    "Europa League": 6,
+    "Conference League": 7,
+
+    // Copa nacional inferior
+    "Carabao Cup": 7,
+    "Community Shield": 7,
+    "BSM Trophy": 8,
+
+    // Outras divisões
+    "La Liga 2": 7,
+    "EFL Championship": 7,
+    "League One": 8,
+    "League Two": 9,
+    "Playoff EFL": 10,
+    "Playoff Lg One": 11,
+    "Playoff Lg Two": 12,
+  };
+
   return (
     <>
       <div className="temporadaCard">
         <InfoPlayerStats isGoleiro={isGoleiro} />
         <div className="containerSeasonPlayerTotal">
           <div className="containerTotalStatsPlayer">
-            {Object.entries(props.totaisPorLiga).map(([liga, dados], index) => (
-              <React.Fragment key={index}>
-                <PlayerStatsTotalData
-                  toggleVisibility={toggleVisibility}
-                  dados={dados}
-                  liga={liga}
-                  isGoleiro={isGoleiro}
-                  openSeasons={openSeasons}
-                />
-                <PlayerLeagueWonTotal
-                  openSeasons={openSeasons}
-                  liga={liga}
-                  contagemTitulos={props.contagemTitulos}
-                  dados={dados}
-                />
-              </React.Fragment>
-            ))}
+            {Object.entries(props.totaisPorLiga)
+              .sort(([ligaA], [ligaB]) => {
+                const levelA = leagueLevels[ligaA] ?? 100;
+                const levelB = leagueLevels[ligaB] ?? 100;
+                return levelA - levelB;
+              })
+              .map(([liga, dados], index) => (
+                <React.Fragment key={index}>
+                  <PlayerStatsTotalData
+                    toggleVisibility={toggleVisibility}
+                    dados={dados}
+                    liga={liga}
+                    isGoleiro={isGoleiro}
+                    openSeasons={openSeasons}
+                  />
+                  <PlayerLeagueWonTotal
+                    openSeasons={openSeasons}
+                    liga={liga}
+                    contagemTitulos={props.contagemTitulos}
+                    dados={dados}
+                  />
+                </React.Fragment>
+              ))}
           </div>
         </div>
       </div>
@@ -68,6 +126,10 @@ export default function PlayerTotal(props) {
 
               <div className="containerLeagueStatsPlayer">
                 <div className="leagueStats">{statsGerais.jogos}</div>
+                <div className="leagueStats">
+                  {statsGerais.gols + statsGerais.assistencias}
+                </div>
+
                 {!isGoleiro && (
                   <div className="leagueStats">{statsGerais.gols}</div>
                 )}

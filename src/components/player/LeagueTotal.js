@@ -65,12 +65,70 @@ export default function LeagueTotal(props) {
     setLeagueStats(stats);
   };
 
+  const leagueLevels = {
+    // Liga nacional
+    "La Liga": 1,
+    "Premier League": 1,
+    Bundesliga: 1,
+    "Serie A": 1,
+    "Ligue 1": 1,
+    "Saudi Pro League": 1,
+    Eredivisie: 1,
+    SUPERLIGA: 1,
+
+    // Campeonato continental principal
+    "Champions League": 2,
+    "Champions Asiatica": 2,
+
+    // Copa nacional
+    "Copa da Espanha": 3,
+    "FA Cup": 3,
+    "DFB-Pokal": 3,
+    "Coppa Italia": 3,
+    "Coupe de France": 3,
+    "Oranje Beker": 3,
+    "Copa Romena": 3,
+
+    // Supercopa nacional
+    Supercopa: 4,
+    Supercup: 4,
+    Supercoppa: 4,
+    "Super Cup": 4,
+
+    // Supercopa europeia
+    "UEFA Supercup": 5,
+
+    // Competições continentais inferiores
+    "Europa League": 6,
+    "Conference League": 7,
+
+    // Copa nacional inferior
+    "Carabao Cup": 7,
+    "Community Shield": 7,
+    "BSM Trophy": 8,
+
+    // Outras divisões
+    "La Liga 2": 7,
+    "EFL Championship": 7,
+    "League One": 8,
+    "League Two": 9,
+    "Playoff EFL": 10,
+    "Playoff Lg One": 11,
+    "Playoff Lg Two": 12,
+  };
+
+  const sortedLeagues = Object.entries(leagueStats).sort(([aName], [bName]) => {
+    const aLevel = leagueLevels[aName] ?? 50;
+    const bLevel = leagueLevels[bName] ?? 50;
+    return aLevel - bLevel;
+  });
+
   return (
     <div className="containerStatsLeagues">
       {Object.keys(leagueStats).length === 0 ? (
         <div>Nenhuma estatistica disponivel</div>
       ) : (
-        Object.entries(leagueStats).map(([leagueName, league], index) => (
+        sortedLeagues.map(([leagueName, league], index) => (
           <div className="wrapperStatsLeagues" key={index}>
             <div className="containerIMGleagues">
               <div className="containerNameLeague">
@@ -83,6 +141,9 @@ export default function LeagueTotal(props) {
               </div>
             </div>
             <span className="statsNumber statsNumberSmall">{league.games}</span>
+            <span className="statsNumber statsNumberSmall">
+              {league.goals + league.assists}
+            </span>
             {props.playerPosition === 0 && (
               <span className="statsNumber statsNumberSmall">
                 {league.goals}

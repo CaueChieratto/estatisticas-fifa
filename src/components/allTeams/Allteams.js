@@ -29,6 +29,7 @@ export default function Allteams(props) {
   const [highestBuy, setHighestBuy] = useState({ playerName: "", value: 0 });
   const [highestSell, setHighestSell] = useState({ playerName: "", value: 0 });
   const [showStats, setShowStats] = useState(false);
+  const [activeTab, setActiveTab] = useState("carreira");
 
   useEffect(() => {
     const playerStats = {};
@@ -128,6 +129,9 @@ export default function Allteams(props) {
 
   const code = countryCodes[props.nation];
 
+  const getButtonClass = (tabName) =>
+    activeTab === tabName ? "button" : "button buttonTwo";
+
   return (
     <>
       {props.club && (
@@ -214,15 +218,30 @@ export default function Allteams(props) {
           )}
 
           <div className="buttonForCarrers">
-            <div className="button" onClick={props.linkTeams}>
+            <div
+              className={getButtonClass("carreira")}
+              onClick={() => {
+                props.linkTeams();
+                setActiveTab("carreira");
+              }}
+            >
               Carreira
             </div>
-            <div className="button buttonTwo" onClick={props.openModalTitles}>
+            <div
+              className={getButtonClass("titulos")}
+              onClick={() => {
+                props.openModalTitles();
+                setActiveTab("titulos");
+              }}
+            >
               Títulos
             </div>
             <div
-              className="button buttonTwo"
-              onClick={props.showModalDeleteClub}
+              className={getButtonClass("destaques")}
+              onClick={() => {
+                props.showModalDeleteClub();
+                setActiveTab("destaques");
+              }}
             >
               Excluir
             </div>

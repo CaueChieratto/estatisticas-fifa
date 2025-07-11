@@ -23,6 +23,7 @@ export default function PlayerTotal(props) {
           )}
 
           <span className="statsNumber">{props.games}</span>
+          <span className="statsNumber">{props.goals + props.assists}</span>
           {props.playerPosition == 0 && (
             <span className="statsNumber">{props.goals}</span>
           )}

@@ -24,6 +24,9 @@ export default function PlayerStatsData(props) {
       </div>
       <div className="containerLeagueStatsPlayer">
         <div className="leagueStats">{props.liga.games}</div>
+        <div className="leagueStats">
+          {Number(props.liga.goals) + Number(props.liga.assists)}
+        </div>
         {!props.isGoleiro && (
           <div className="leagueStats">{props.liga.goals}</div>
         )}

@@ -24,6 +24,10 @@ export default function PlayerStatsTotalData(props) {
       </div>
       <div className="containerLeagueStatsPlayer">
         <div className="leagueStats">{props.dados.jogos}</div>
+        <div className="leagueStats">
+          {props.dados.gols + props.dados.assistencias}
+        </div>
+
         {!props.isGoleiro && (
           <div className="leagueStats">{props.dados.gols}</div>
         )}

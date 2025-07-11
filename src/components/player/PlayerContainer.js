@@ -63,6 +63,7 @@ export default function PlayerContainer(props) {
           )}
 
           <span className="statsNumber">{totalGames}</span>
+          <span className="statsNumber">{totalGoals + totalAssists}</span>
           {props.playerPosition == 0 && (
             <span className="statsNumber">{totalGoals}</span>
           )}

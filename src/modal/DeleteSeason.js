@@ -27,14 +27,14 @@ export default function DeleteSeason(props) {
                 <div className="back">
                   <TbArrowBack size={22}></TbArrowBack>
                 </div>
-                voltar
+                Voltar
               </div>
               <div
                 onClick={props.delete}
                 id="delete"
                 className="textButtonDelete"
               >
-                apagar
+                Apagar
                 <div className="danger">
                   <CgDanger color="red" size={22}></CgDanger>
                 </div>

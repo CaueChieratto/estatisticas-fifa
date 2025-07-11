@@ -1,6 +1,6 @@
 .infosTitle {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   justify-items: center;
   min-height: 20px;
@@ -16,7 +16,7 @@
 
 .infosTitleStats {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   justify-items: center;
   min-height: 34px;
@@ -55,8 +55,11 @@
 .player {
   gap: 5px;
   font-size: 14px;
-  min-width: 150px;
-  height: 100%;
+  width: 150px;
+  max-width: 150px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  height: 30px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -108,6 +111,86 @@
   font-weight: normal;
   justify-content: center;
   width: fit-content;
+  position: relative;
+}
+
+.explainIcons {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0%) scale(0);
+  width: 110px;
+  min-height: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+  background-color: #303030;
+  color: white;
+  border-radius: 0.5rem;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.explainIcons::before {
+  position: absolute;
+  content: "";
+  height: 0.6em;
+  width: 0.8em;
+  bottom: 3em;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  background-color: #303030;
+  border-bottom-right-radius: 0.175rem;
+}
+
+.statsNumber:hover .explainIcons {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-100%) scale(1);
+}
+.explainIconBallonDor {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 60px;
+  left: -220%;
+  transform: translateX(-50%) translateY(0%) scale(0);
+  width: 110px;
+  min-height: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+  background-color: #303030;
+  color: white;
+  border-radius: 0.5rem;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.explainIconBallonDor::before {
+  position: absolute;
+  content: "";
+  height: 0.6em;
+  width: 0.8em;
+  bottom: 3em;
+  left: 85%;
+  transform: translate(-50%) rotate(45deg);
+  background-color: #303030;
+  border-bottom-right-radius: 0.175rem;
+}
+
+.statsNumber:hover .explainIconBallonDor {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-100%) scale(1);
 }
 
 .statsNumberSmall {
@@ -129,7 +212,11 @@
 }
 
 .borderTotal {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.borderTotal:last-of-type {
+  border-bottom: none;
 }
 
 .arrowIcon {
@@ -139,7 +226,7 @@
 .wrapperStatsLeagues {
   border-top: 1px solid rgb(205, 205, 205);
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   justify-items: center;
   min-height: 18px;

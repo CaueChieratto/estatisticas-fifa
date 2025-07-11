@@ -70,6 +70,10 @@ export default function PlayerSeasons(props) {
             </div>
             <div className="containerLeagueStatsPlayer">
               <div className="leagueStats">{props.totaisTemporada.jogos}</div>
+              <div className="leagueStats">
+                {props.totaisTemporada.gols +
+                  props.totaisTemporada.assistencias}
+              </div>
               {!isGoleiro && (
                 <div className="leagueStats">{props.totaisTemporada.gols}</div>
               )}

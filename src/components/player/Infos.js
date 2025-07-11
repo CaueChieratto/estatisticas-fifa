@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./PlayerContainer.css";
 import { TbSoccerField } from "react-icons/tb";
 import { MdPeopleOutline } from "react-icons/md";
@@ -6,6 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { TbShieldCancel } from "react-icons/tb";
 import { GiSoccerBall } from "react-icons/gi";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { FaRegHandshake } from "react-icons/fa6";
 import DeleteSeason from "../../modal/DeleteSeason";
 import { db } from "../../firebase/firebase.js";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -15,10 +16,30 @@ import { useNavigate } from "react-router-dom";
 export default function Infos(props) {
   const [openDelete, setOpenDelete] = useState(false);
   const [seasonToDelete, setSeasonToDelete] = useState(null);
+  const [lastOpenedSection, setLastOpenedSection] = useState("");
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (props.openedSection) {
+      setLastOpenedSection(props.openedSection);
+    }
+  }, [props.openedSection]);
+
+  useEffect(() => {
+    const savedPosition = localStorage.getItem("scrollPosition");
+    if (savedPosition) {
+      window.scrollTo(0, parseInt(savedPosition, 10));
+      setTimeout(() => {
+        localStorage.removeItem("scrollPosition");
+      }, 2000);
+    }
+  }, []);
+
   function linkPlayer() {
+    localStorage.setItem("scrollPosition", window.scrollY);
+    localStorage.setItem("openSectionOnReturn", "total");
+    console.log("section being saved:", lastOpenedSection);
     navigate(`/PageForPlayer/${encodeURIComponent(props.playerName)}`, {
       state: {
         jogador: props.player,
@@ -121,26 +142,36 @@ export default function Infos(props) {
         </span>
       </div>
       <span className="statsNumber">
+        <div className="explainIcons hidden">Jogos</div>
         <TbSoccerField />
       </span>
 
+      <span className="statsNumber">
+        <div className="explainIcons hidden">Gols + Assistências</div>
+        <FaRegHandshake />
+      </span>
       {props.playerPosition == 0 && (
         <span className="statsNumber">
+          <div className="explainIcons hidden">Gols</div>
           <GiSoccerBall />
         </span>
       )}
       {props.playerPosition == 1 && (
         <span className="statsNumber">
+          <div className="explainIcons hidden">Jogos Sem Sofrer Gols</div>
           <TbShieldCancel />
         </span>
       )}
       <span className="statsNumber">
+        <div className="explainIcons hidden">Assistências</div>
         <MdPeopleOutline />
       </span>
       <span className="statsNumber">
+        <div className="explainIcons hidden">Média</div>
         <FaStar />
       </span>
       <span className="statsNumber">
+        <div className="explainIconBallonDor hidden">Bola de Ouro</div>
         <GiSoccerBall color="#FFD700" />
       </span>
       {openDelete && (
