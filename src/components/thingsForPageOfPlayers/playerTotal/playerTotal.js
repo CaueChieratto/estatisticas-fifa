@@ -56,6 +56,7 @@ export default function PlayerTotal(props) {
           </div>
         </div>
       </div>
+
       <div className="temporadaCard">
         <InfoPlayerStats isGoleiro={isGoleiro} total />
         <div className="containerSeasonPlayerTotal">
@@ -121,18 +122,24 @@ export default function PlayerTotal(props) {
                   <h2>Esse jogador não ganhou títulos</h2>
                 ) : (
                   <>
-                    {Object.entries(trofeus).map(([nome, info]) => (
-                      <div className="TitleWonTotal" key={nome}>
-                        <img
-                          className="imageTitleWonSeason"
-                          src={info.leagueImage.replace(/^\.\//, "/")}
-                          alt={nome}
-                        />
-                        <span className="trophyCount">
-                          {info.quantidade} {nome}
-                        </span>
-                      </div>
-                    ))}
+                    {Object.entries(trofeus)
+                      .sort(([nomeA], [nomeB]) => {
+                        const nivelA = leagueLevels[nomeA] ?? 100;
+                        const nivelB = leagueLevels[nomeB] ?? 100;
+                        return nivelA - nivelB;
+                      })
+                      .map(([nome, info]) => (
+                        <div className="TitleWonTotal" key={nome}>
+                          <img
+                            className="imageTitleWonSeason"
+                            src={info.leagueImage.replace(/^\.\//, "/")}
+                            alt={nome}
+                          />
+                          <span className="trophyCount">
+                            {info.quantidade} {nome}
+                          </span>
+                        </div>
+                      ))}
                     {statsGerais.balonDors > 0 && (
                       <div className="TitleWonTotal" key="balonDors">
                         <img

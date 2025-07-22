@@ -5,6 +5,7 @@ import ModalAddTrophie from "./modal/modalAddTrophie.js";
 import { db } from "../../firebase/firebase.js";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { leagueLevels } from "../../leaguesAndTrophies/leaguesAndTrophies.js";
 
 export default function Titles(props) {
   const cardRef = useRef(null);
@@ -170,7 +171,15 @@ export default function Titles(props) {
             </div>
             <div className="containerTitles">
               {props.carrer.trophies
-                ?.sort((a, b) => b.seasons.length - a.seasons.length)
+                ?.sort((a, b) => {
+                  const diffSeasons = b.seasons.length - a.seasons.length;
+                  if (diffSeasons !== 0) return diffSeasons;
+
+                  const levelA = leagueLevels[a.league] ?? 9999;
+                  const levelB = leagueLevels[b.league] ?? 9999;
+
+                  return levelA - levelB;
+                })
                 .map((trophie, index) => (
                   <div className="cardTitles" key={index}>
                     <div className="headline">

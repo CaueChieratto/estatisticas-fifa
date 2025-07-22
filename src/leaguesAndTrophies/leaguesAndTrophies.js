@@ -154,7 +154,7 @@ export const leagueLevels = {
   // Copa nacional inferior
   "Carabao Cup": 7,
   "Community Shield": 7,
-  "BSM Trophy": 8,
+  "BSM Trophy": 15,
 
   // Outras divisões
   "La Liga 2": 7,

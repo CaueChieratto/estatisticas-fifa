@@ -3,7 +3,7 @@ import "./playerSeason.css";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { FcCalculator } from "react-icons/fc";
-
+import { leagueLevels } from "../../../leaguesAndTrophies/leaguesAndTrophies.js";
 import InfoPlayerStats from "./infoPlayerStats/infoPlayerStats";
 import PlayerStatsData from "./playerStatsData/playerStatsData";
 import PlayerLeaguesWin from "./playerLeaguesWin/playerLeaguesWin";
@@ -31,27 +31,33 @@ export default function PlayerSeasons(props) {
         formatarTemporada={props.formatarTemporada}
       />
       <div className="containerSeasonPlayerTotal">
-        {props.dadosJogador.leagues?.map((liga, index) => (
-          <div key={index} className="containerTotalStatsPlayer">
-            <PlayerStatsData
-              toggleVisibility={toggleVisibility}
-              temporada={props.temporada}
-              formatarTemporada={props.formatarTemporada}
-              liga={liga}
-              openSeasons={openSeasons}
-              isGoleiro={isGoleiro}
-              dadosJogador={props.dadosJogador}
-            />
-            {openSeasons.includes(liga.leagueImage) && (
-              <PlayerLeaguesWin
-                formatarTemporada={props.formatarTemporada}
+        {props.dadosJogador.leagues
+          ?.sort((ligaA, ligaB) => {
+            const levelA = leagueLevels[ligaA.league] ?? 100;
+            const levelB = leagueLevels[ligaB.league] ?? 100;
+            return levelA - levelB;
+          })
+          .map((liga, index) => (
+            <div key={index} className="containerTotalStatsPlayer">
+              <PlayerStatsData
+                toggleVisibility={toggleVisibility}
                 temporada={props.temporada}
-                titulosPorTemporada={props.titulosPorTemporada}
+                formatarTemporada={props.formatarTemporada}
                 liga={liga}
+                openSeasons={openSeasons}
+                isGoleiro={isGoleiro}
+                dadosJogador={props.dadosJogador}
               />
-            )}
-          </div>
-        ))}
+              {openSeasons.includes(liga.leagueImage) && (
+                <PlayerLeaguesWin
+                  formatarTemporada={props.formatarTemporada}
+                  temporada={props.temporada}
+                  titulosPorTemporada={props.titulosPorTemporada}
+                  liga={liga}
+                />
+              )}
+            </div>
+          ))}
 
         <div className="containerTotalStatsPlayer">
           <div

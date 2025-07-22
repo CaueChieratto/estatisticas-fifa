@@ -540,62 +540,85 @@ export default function PageForTeams() {
                         openSeasons.includes(season.id) ? "visible" : "hidden"
                       }`}
                     >
-                      {season.players.map((player) => (
-                        <div
-                          key={
-                            player.id +
-                            player.playerName +
-                            player.position +
-                            player.games +
-                            player.goals +
-                            player.assists +
-                            player.balonDors +
-                            player.cleanSheets
-                          }
-                        >
-                          <div className="classForPencilEdit">
-                            <div
-                              className="edit"
-                              onClick={() => showStats(player, season.season)}
-                            >
-                              <GoPencil />
+                      {[...season.players]
+                        .sort((a, b) => {
+                          const getTotal = (player) => {
+                            return (player.leagues || []).reduce(
+                              (sum, liga) => {
+                                const goals = Number(liga.goals ?? 0);
+                                const assists = Number(liga.assists ?? 0);
+                                const cleanSheets = Number(
+                                  liga.cleanSheets ?? 0
+                                );
+
+                                if (player.position === 1) {
+                                  return sum + cleanSheets * 0.5 + assists;
+                                } else {
+                                  return sum + goals + assists;
+                                }
+                              },
+                              0
+                            );
+                          };
+
+                          return getTotal(b) - getTotal(a);
+                        })
+                        .map((player) => (
+                          <div
+                            key={
+                              player.id +
+                              player.playerName +
+                              player.position +
+                              player.games +
+                              player.goals +
+                              player.assists +
+                              player.balonDors +
+                              player.cleanSheets
+                            }
+                          >
+                            <div className="classForPencilEdit">
+                              <div
+                                className="edit"
+                                onClick={() => showStats(player, season.season)}
+                              >
+                                <GoPencil />
+                              </div>
+                            </div>
+                            <div className="wrapperInfos">
+                              <Infos
+                                setOpenedSection={setOpenedSection}
+                                openedSection={openedSection}
+                                show={true}
+                                overall={player.overall}
+                                playerName={player.playerName}
+                                playerPosition={player.position}
+                                season={season}
+                                seasons={seasons}
+                                setSeasons={setSeasons}
+                                carrer={carrer}
+                              />
+                            </div>
+                            <div className="pencil">
+                              <PlayerContainer
+                                runWithDelayedLoad={runWithDelayedLoad}
+                                updatePage={updatePage}
+                                total
+                                playerPosition={player.position}
+                                games={player.games}
+                                goals={player.goals}
+                                assists={player.assists}
+                                rating={player.rating}
+                                nation={carrer.nation}
+                                overall={player.overall}
+                                balonDors={player.balonDors}
+                                cleanSheets={player.cleanSheets}
+                                carrer={carrer}
+                                season={season}
+                                player={player}
+                              />
                             </div>
                           </div>
-                          <div className="wrapperInfos">
-                            <Infos
-                              setOpenedSection={setOpenedSection}
-                              openedSection={openedSection}
-                              show={true}
-                              overall={player.overall}
-                              playerName={player.playerName}
-                              playerPosition={player.position}
-                              season={season}
-                              seasons={seasons}
-                              setSeasons={setSeasons}
-                              carrer={carrer}
-                            />
-                          </div>
-                          <div className="pencil">
-                            <PlayerContainer
-                              runWithDelayedLoad={runWithDelayedLoad}
-                              updatePage={updatePage}
-                              total
-                              playerPosition={player.position}
-                              games={player.games}
-                              goals={player.goals}
-                              assists={player.assists}
-                              rating={player.rating}
-                              nation={carrer.nation}
-                              overall={player.overall}
-                              balonDors={player.balonDors}
-                              cleanSheets={player.cleanSheets}
-                              carrer={carrer}
-                              season={season}
-                              player={player}
-                            />
-                          </div>
-                        </div>
-                      ))}
+                        ))}
                       <div
                         className="wrapperNewPlayer"
                         onClick={() => showNewPlayer(season.season)}
