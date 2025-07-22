@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Modal.css";
 import Input from "../components/inputs/Input";
 import ButtonGreen from "../components/buttons/ButtonGreen";
+import { leagueImages } from "../leaguesAndTrophies/leaguesAndTrophies.js";
 import { IoMdClose } from "react-icons/io";
 import { HiOutlineSelector } from "react-icons/hi";
 
@@ -18,39 +19,6 @@ export default function NewStatsLeagues(props) {
 
   const handleLeagueChange = (event) => {
     const selectedLeague = event.target.value;
-
-    const leagueImages = {
-      "La Liga": "./laliga.png",
-      "La Liga 2": "./laliga2.png",
-      "Copa da Espanha": "./copaRey.png",
-      Supercopa: "./superCopaEspanha.png",
-      "Champions League": "./champions.png",
-      "Europa League": "./europaLeague.png",
-      "Conference League": "./conferenceLeague.png",
-      "UEFA Supercup": "./UEFAsupercopa.png",
-      "Lendas do clube": "./icon.png",
-      "Historico do Jogador": "./historico.png",
-      "FA Cup": "./england/faCup.png",
-      "Carabao Cup": "./england/carabaoCup.png",
-      "League Two": "./england/leagueTwo.png",
-      "Playoff Lg Two": "./england/leagueTwo.png",
-      "BSM Trophy": "./england/BSMtrophy.png",
-      "League One": "./england/leagueOne.png",
-      "Playoff Lg One": "./england/leagueOne.png",
-      "EFL Championship": "./england/championship.png",
-      "Playoff EFL": "./england/championship.png",
-      "Community Shield": "./england/communityShield.png",
-      "Premier League": "./england/premierLeague.png",
-      "Saudi Pro League": "./arabia/ligaArabia.png",
-      "Champions Asiatica": "./arabia/championsArabia.png",
-      Eredivisie: "./netherlands/eredivisie.png",
-      "Oranje Beker": "./netherlands/oranjeBeker.png",
-      "Ligue 1": "./france/ligueOne.png",
-      "Coupe de France": "./france/coupeDeFrance.png",
-      "Super Cup": "./france/tropheeDesChampions.png",
-      SUPERLIGA: "./romenia/superliga.png",
-      "Copa Romena": "./romenia/copaRomena.png",
-    };
 
     setEditedLeague((prev) => ({
       ...prev,

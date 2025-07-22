@@ -64,6 +64,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.player::-webkit-scrollbar {
+  display: none;
 }
 
 .total {
@@ -133,6 +139,7 @@
   justify-content: center;
   align-items: center;
   font-size: 12px;
+  text-align: center;
 }
 
 .explainIcons::before {

@@ -9,6 +9,10 @@ import { IoMdClose } from "react-icons/io";
 import { BiWorld } from "react-icons/bi";
 import { PiShieldCheckeredDuotone } from "react-icons/pi";
 import { CiCalendar } from "react-icons/ci";
+import {
+  countryLeagues,
+  globalLeagues,
+} from "../leaguesAndTrophies/leaguesAndTrophies.js";
 
 export default function PageForNewCarrer(props) {
   const [animationClass, setAnimationClass] = useState("slide-in-left");
@@ -22,38 +26,6 @@ export default function PageForNewCarrer(props) {
     squads: [],
     trophies: [],
   });
-
-  const countryLeagues = {
-    Espanha: ["La Liga", "La Liga 2", "Copa da Espanha", "Supercopa"],
-    Inglaterra: [
-      "Premier League",
-      "FA Cup",
-      "Carabao Cup",
-      "EFL Championship",
-      "Community Shield",
-      "League One",
-      "League Two",
-      "BSM Trophy",
-      "Playoff EFL",
-      "Playoff Lg One",
-      "Playoff Lg Two",
-    ],
-    Alemanha: ["Bundesliga", "DFB-Pokal", "Supercup"],
-    Italia: ["Serie A", "Coppa Italia", "Supercoppa"],
-    Franca: ["Ligue 1", "Coupe de France", "Super Cup"],
-    Arabia: ["Saudi Pro League", "Champions Asiatica"],
-    Holanda: ["Eredivisie", "Oranje Beker"],
-    Romênia: ["SUPERLIGA", "Copa Romena"],
-  };
-
-  const globalLeagues = [
-    "Champions League",
-    "Europa League",
-    "Conference League",
-    "UEFA Supercup",
-    "Lendas do clube",
-    "Historico do Jogador",
-  ];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -178,6 +150,7 @@ export default function PageForNewCarrer(props) {
                 <option value="Alemanha">Alemanha</option>
                 <option value="Italia">Itália</option>
                 <option value="Franca">França</option>
+                <option value="Brasil">Brasil</option>
                 <option value="Holanda">Holanda</option>
                 <option value="Arabia">Arábia Saudita</option>
                 <option value="Romênia">Romênia</option>

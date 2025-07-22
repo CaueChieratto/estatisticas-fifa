@@ -10,6 +10,7 @@ export default function Header(props) {
     Alemanha: "de",
     Italia: "it",
     Franca: "fr",
+    Brasil: "br",
     Arabia: "sa",
     Holanda: "nl",
   };

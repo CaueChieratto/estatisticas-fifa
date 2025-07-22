@@ -7,42 +7,16 @@ import { HiOutlineSelector } from "react-icons/hi";
 import { db } from "../../../firebase/firebase.js";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { leagueTrophiesImages } from "../../../leaguesAndTrophies/leaguesAndTrophies.js";
 
 export default function ModalAddTrophie(props) {
   const handleLeagueChange = (event) => {
     const selectedLeague = event.target.value;
 
-    const leagueImages = {
-      "Champions League": "./trophies/champions.png",
-      "Europa League": "./trophies/europaLeague.png",
-      "Conference League": "./trophies/conferenceLeague.png",
-      "UEFA Supercup": "./trophies/uefaSupercopa.png",
-
-      // espanha
-      "La Liga": "./trophies/espanha/laliga.png",
-      "La Liga 2": "./trophies/espanha/laliga2.png",
-      "Copa da Espanha": "./trophies/espanha/copaDoRey.png",
-      Supercopa: "./trophies/espanha/supercopaEspanha.png",
-
-      // inglaterra
-      "FA Cup": "./trophies/inglaterra/faCup.png",
-      "Carabao Cup": "./trophies/inglaterra/carabao.png",
-      "League Two": "./trophies/inglaterra/leagueTwo.png",
-      "BSM Trophy": "./trophies/inglaterra/bsm.png",
-      "League One": "./trophies/inglaterra/leagueOne.png",
-      "EFL Championship": "./trophies/inglaterra/championship.png",
-      "Community Shield": "./trophies/inglaterra/supercopa.png",
-      "Premier League": "./trophies/inglaterra/premierLeague.png",
-
-      // romenia
-      SUPERLIGA: "./trophies/romenia/superliga.png",
-      "Copa Romena": "./trophies/romenia/copaRomena.png",
-    };
-
     props.setTrophie((prev) => ({
       ...prev,
       league: selectedLeague,
-      leagueImage: leagueImages[selectedLeague] || "",
+      leagueImage: leagueTrophiesImages[selectedLeague] || "",
     }));
   };
 

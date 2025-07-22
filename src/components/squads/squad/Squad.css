@@ -110,6 +110,12 @@
   width: 150px;
   max-width: 150px;
   overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.containerPlayer::-webkit-scrollbar {
+  display: none;
 }
 
 .namePlayer {
@@ -138,6 +144,12 @@
   width: 150px;
   max-width: 150px;
   overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.containerValue::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 1440px) {
