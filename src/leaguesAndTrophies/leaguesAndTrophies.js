@@ -99,6 +99,17 @@ export const globalLeagues = [
   "UEFA Supercup",
 ];
 
+export const europeanCountries = [
+  "Espanha",
+  "Inglaterra",
+  "França",
+  "Alemanha",
+  "Itália",
+  "Holanda",
+  "Romênia",
+  "Portugal",
+];
+
 export const leagueLevels = {
   // Liga nacional
   "La Liga": 1,

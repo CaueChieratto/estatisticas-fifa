@@ -12,6 +12,7 @@ import { CiCalendar } from "react-icons/ci";
 import {
   countryLeagues,
   globalLeagues,
+  europeanCountries,
 } from "../leaguesAndTrophies/leaguesAndTrophies.js";
 
 export default function PageForNewCarrer(props) {
@@ -34,10 +35,12 @@ export default function PageForNewCarrer(props) {
       const updatedData = { ...prevData, [name]: value };
 
       if (name === "nation") {
-        updatedData.leagues = [
-          ...(countryLeagues[value] || []),
-          ...globalLeagues,
-        ];
+        const baseLeagues = countryLeagues[value] || [];
+        const isEurope = europeanCountries.includes(value);
+
+        updatedData.leagues = isEurope
+          ? [...baseLeagues, ...globalLeagues]
+          : baseLeagues;
       }
 
       return updatedData;
