@@ -515,8 +515,6 @@ export default function Modal(props) {
                         placeholder="Idade"
                         className="inputsCreateCarrer"
                         type="text"
-                        inputMode="text"
-                        autoComplete="off"
                         name="idade"
                         value={jogadorData.ageRenovacao}
                         onChange={(e) => {
@@ -585,8 +583,6 @@ export default function Modal(props) {
                           placeholder="Valor da Compra"
                           className="inputsCreateCarrer"
                           type="text"
-                          inputMode="text"
-                          autoComplete="off"
                           name="valor da compra"
                           value={jogadorData.value}
                           onChange={handleValueChange}
@@ -613,8 +609,6 @@ export default function Modal(props) {
                           placeholder="Data da Contratação"
                           className="inputsCreateCarrer"
                           type="text"
-                          inputMode="text"
-                          autoComplete="off"
                           name="data da contratacao"
                           value={jogadorData.dataArrival}
                           onChange={handleDataArrivalChange}
@@ -633,8 +627,6 @@ export default function Modal(props) {
                             placeholder="Valor do Jogador"
                             className="inputsCreateCarrer"
                             type="text"
-                            inputMode="text"
-                            autoComplete="off"
                             name="valor do jogador"
                             value={jogadorData.value}
                             onChange={handleValueChange}
@@ -652,8 +644,6 @@ export default function Modal(props) {
                         placeholder="Valor do Jogador"
                         className="inputsCreateCarrer"
                         type="text"
-                        inputMode="text"
-                        autoComplete="off"
                         name="valor renovacao"
                         value={jogadorData.valueRenovacao}
                         onChange={(e) => {
@@ -674,8 +664,6 @@ export default function Modal(props) {
                       placeholder="Salário do Jogador"
                       className="inputsCreateCarrer"
                       type="text"
-                      inputMode="text"
-                      autoComplete="off"
                       name="salario do jogador"
                       value={jogadorData.salary}
                       onChange={handleSalaryChange}
@@ -689,8 +677,6 @@ export default function Modal(props) {
                       placeholder="Tempo de Contrato"
                       className="inputsCreateCarrer"
                       type="text"
-                      inputMode="text"
-                      autoComplete="off"
                       name="tempo de contrato"
                       value={jogadorData.contract}
                       onChange={handleContractChange}
@@ -711,8 +697,6 @@ export default function Modal(props) {
                   placeholder="Valor da Venda"
                   className="inputsCreateCarrer"
                   type="text"
-                  inputMode="text"
-                  autoComplete="off"
                   name="valor da venda"
                   value={jogadorData.valueTransfer}
                   onChange={handleValueTransferChange}
@@ -726,8 +710,6 @@ export default function Modal(props) {
                   placeholder="Data da Venda"
                   className="inputsCreateCarrer"
                   type="text"
-                  inputMode="text"
-                  autoComplete="off"
                   name="data da venda"
                   value={jogadorData.dataExit}
                   onChange={handleDataExitChange}
