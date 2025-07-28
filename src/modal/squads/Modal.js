@@ -13,7 +13,7 @@ import { MdAddLocationAlt } from "react-icons/md";
 import { TbCalendarDollar } from "react-icons/tb";
 import { GrDocumentTime } from "react-icons/gr";
 import { getAuth } from "firebase/auth";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.js";
 
 export default function Modal(props) {
@@ -91,7 +91,7 @@ export default function Modal(props) {
 
   const handleSalaryChange = (e) => {
     const salary = e.target.value.replace(/[^\d]/g, "");
-    setJogadorData({ ...jogadorData, salary: salary.slice(0, 3) });
+    setJogadorData({ ...jogadorData, salary });
   };
 
   const handleContractChange = (e) => {
@@ -416,7 +416,7 @@ export default function Modal(props) {
             <div
               onClick={() => buyOrNot(0)}
               className={`buttonsPositionBuy ${
-                buy == 0 ? "selectedPosition" : ""
+                buy === 0 ? "selectedPosition" : ""
               }`}
             >
               Contratação
@@ -425,7 +425,7 @@ export default function Modal(props) {
             <div
               onClick={() => buyOrNot(1)}
               className={`buttonsPositionBuy ${
-                buy == 1 ? "selectedPosition" : ""
+                buy === 1 ? "selectedPosition" : ""
               }`}
             >
               Elenco
@@ -514,7 +514,8 @@ export default function Modal(props) {
                       <input
                         placeholder="Idade"
                         className="inputsCreateCarrer"
-                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         name="idade"
                         value={jogadorData.ageRenovacao}
                         onChange={(e) => {
@@ -582,7 +583,8 @@ export default function Modal(props) {
                         <input
                           placeholder="Valor da Compra"
                           className="inputsCreateCarrer"
-                          type="text"
+                          inputMode="numeric"
+                          pattern="[0-9]*"
                           name="valor da compra"
                           value={jogadorData.value}
                           onChange={handleValueChange}
@@ -608,7 +610,8 @@ export default function Modal(props) {
                         <input
                           placeholder="Data da Contratação"
                           className="inputsCreateCarrer"
-                          type="text"
+                          inputMode="numeric"
+                          pattern="[0-9]*"
                           name="data da contratacao"
                           value={jogadorData.dataArrival}
                           onChange={handleDataArrivalChange}
@@ -626,7 +629,8 @@ export default function Modal(props) {
                           <input
                             placeholder="Valor do Jogador"
                             className="inputsCreateCarrer"
-                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             name="valor do jogador"
                             value={jogadorData.value}
                             onChange={handleValueChange}
@@ -643,7 +647,8 @@ export default function Modal(props) {
                       <input
                         placeholder="Valor do Jogador"
                         className="inputsCreateCarrer"
-                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         name="valor renovacao"
                         value={jogadorData.valueRenovacao}
                         onChange={(e) => {
@@ -663,7 +668,8 @@ export default function Modal(props) {
                     <input
                       placeholder="Salário do Jogador"
                       className="inputsCreateCarrer"
-                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       name="salario do jogador"
                       value={jogadorData.salary}
                       onChange={handleSalaryChange}
@@ -676,7 +682,8 @@ export default function Modal(props) {
                     <input
                       placeholder="Tempo de Contrato"
                       className="inputsCreateCarrer"
-                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       name="tempo de contrato"
                       value={jogadorData.contract}
                       onChange={handleContractChange}
@@ -696,7 +703,8 @@ export default function Modal(props) {
                 <input
                   placeholder="Valor da Venda"
                   className="inputsCreateCarrer"
-                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   name="valor da venda"
                   value={jogadorData.valueTransfer}
                   onChange={handleValueTransferChange}
@@ -709,7 +717,8 @@ export default function Modal(props) {
                 <input
                   placeholder="Data da Venda"
                   className="inputsCreateCarrer"
-                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   name="data da venda"
                   value={jogadorData.dataExit}
                   onChange={handleDataExitChange}
